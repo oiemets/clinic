@@ -3,6 +3,7 @@ import { SignUp, SignIn } from './pages';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPatients } from './state/patients';
+import { AppState } from './state/types';
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export const App = () => {
 		dispatch(getPatients());
 	}, [dispatch]);
 
-	const patients = useSelector(state => state);
+	const patients = useSelector((state: AppState) => state.patients);
 
 	console.log(patients);
 

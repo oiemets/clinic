@@ -1,15 +1,7 @@
-export type Patient = {
-	id: string;
-	first_name: string;
-	last_name: string;
-	ogin: string;
-	password: string;
-	photo: string;
-	role_id: string;
-};
+import { Patients } from '../api';
 
 export type AppState = {
-	patients?: Patient[];
+	patients?: Patients;
 };
 
 export type AppAction<T extends string, P = null> = {
