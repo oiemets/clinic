@@ -11,7 +11,7 @@ export const setPatients = (patients: any) => ({
 });
 
 const initialState = {
-	patients: undefined,
+	patients: {},
 };
 
 export const patientsReducer = (state = initialState, action: any) => {

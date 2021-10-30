@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { setPatients } from '../patients';
-import { api } from '../store';
+import { api } from '../../api';
 
 export function* patients(): any {
 	try {
