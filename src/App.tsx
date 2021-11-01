@@ -2,14 +2,14 @@ import { Switch, Route } from 'react-router-dom';
 import { SignUp, SignIn } from './pages';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPatients } from './state/patients';
+import { patientsLoadStart } from './state/';
 import { AppState } from './state/types';
 
 export const App = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getPatients());
+		dispatch(patientsLoadStart());
 	}, [dispatch]);
 
 	const patients = useSelector((state: AppState) => state.patients);

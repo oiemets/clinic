@@ -9,7 +9,7 @@ export type Patient = {
 };
 
 export type Patients = {
-	users: Patient[];
+	users?: Patient[];
 };
 
 export type PatientsListQueryParams = {
