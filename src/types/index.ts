@@ -12,7 +12,7 @@ export type Patients = {
 	users?: Patient[];
 };
 
-export type PatientsListQueryParams = {
-	offset: '0' | '5' | '10';
-	count: '1' | '3' | '5' | '10';
+export type PatientsQueryParams = {
+	offset: string;
+	count: '1' | '3' | '5' | '10' | '15' | '20' | '25';
 };
