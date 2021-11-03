@@ -1,4 +1,4 @@
-export const SignIn = () => {
+export const SignInPage = () => {
 	return (
 		<div>
 			<h1>Sign in</h1>
