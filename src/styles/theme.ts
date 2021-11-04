@@ -2,10 +2,13 @@ export const theme = {
 	colours: {
 		black: '#202225',
 		white: '#FFFFFF',
-		blue: '#7297FF',
-		redBorder: '#FF2567',
-		redTxt: '#F6657F',
-		greyMedium: '#A1ABC9',
-		greyLight: '#F9FAFF',
+		lightBlue: '#7297FF',
+		darkBlue: '#476CD3',
+		red: '#FF2567',
+		lightRed: '#F6657F',
+		mediumGrey: '#A1ABC9',
+		lightGrey: '#F9FAFF',
+		solidGrey: '#DCE0EC',
+		green: '#34C197',
 	},
 };

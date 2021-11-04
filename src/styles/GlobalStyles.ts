@@ -23,15 +23,15 @@ export const GlobalStyles = createGlobalStyle<CreateGlobalStyleProps>`
   }
 
   html, body {
-    background-color: ${({ theme }) => theme.colours.greyLight};
-    font: normal 400 15px/21px 'Poppins';
-    color: ${({ theme }) => theme.colours.greyMedium};
+    background-color: ${({ theme: { colours } }) => colours.lightGrey};
+    font: 400 15px/21px 'Poppins';
+    color: ${({ theme: { colours } }) => colours.mediumGrey};
   }
 
   a {
     font-weight: 600;
     line-height: 19.5px;
-    color: ${({ theme }) => theme.colours.blue};
+    color: ${({ theme: { colours } }) => colours.darkBlue};
   }
 
 `;
