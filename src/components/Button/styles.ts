@@ -1,12 +1,5 @@
 import styled from 'styled-components';
-
-type Colours =
-	| 'lightBlue'
-	| 'darkBlue'
-	| 'solidGrey'
-	| 'lightGrey'
-	| 'white'
-	| 'mediumGrey';
+import { Colours } from '../../styles';
 
 export type BtnProps = {
 	variant?: Colours;

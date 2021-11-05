@@ -1,5 +1,10 @@
 import { SignUp } from '../../../modules';
+import { Container } from './style';
 
 export const SignUpPage = () => {
-	return <SignUp />;
+	return (
+		<Container>
+			<SignUp />
+		</Container>
+	);
 };

@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Button } from '../../../components';
+import { Button, Input } from '../../../components';
+import { Root } from './style';
 
 export const SignUp = () => {
+	const testHandler = (input: string) => console.log(input);
+
 	return (
-		<div>
+		<Root>
 			<h1>sign up</h1>
 			<Link to='/signin'>sign in</Link>
 			<Button variant='white' titleColor='lightBlue' border='lightBlue'>
@@ -33,6 +36,23 @@ export const SignUp = () => {
 			<Button size='lg' arrow='right' variant='lightBlue'>
 				Create Account
 			</Button>
-		</div>
+
+			<Input placeholder={'First Name'} icon='user' />
+			<Input placeholder={'Last Name'} icon='user' />
+			<Input placeholder={'Email'} icon='email' />
+			<Input
+				placeholder={'Password'}
+				icon='lock'
+				iconColor='mediumGrey'
+				onInput={testHandler}
+				eyeSlash
+			/>
+			<Input
+				placeholder={'Confirm Password'}
+				icon='check'
+				iconColor='solidGrey'
+				eyeSlash
+			/>
+		</Root>
 	);
 };
