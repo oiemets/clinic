@@ -4,4 +4,7 @@ export type Colours =
 	| 'solidGrey'
 	| 'lightGrey'
 	| 'white'
-	| 'mediumGrey';
+	| 'mediumGrey'
+	| 'red'
+	| 'lightRed'
+	| 'green';

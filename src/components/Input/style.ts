@@ -1,31 +1,29 @@
 import styled from 'styled-components';
-import { Email, User, Check, Lock, EyeSlash } from '../../assets';
 
-export const StyledIcon = styled.span`
-	color: ${({ theme: { colours }, color }) => colours[color ?? 'mediumGrey']};
-	position: absolute;
-	transform: translate(120%, 50%);
-
-	& path {
-		fill: currentColor;
-	}
-`;
-
-export const StyledEyeSlashIcon = styled(EyeSlash)`
-	color: ${({ theme: { colours }, color }) => colours[color ?? 'mediumGrey']};
-	& path {
-		fill: currentColor;
-	}
-	position: absolute;
-	transform: translate(-200%, 50%);
-`;
-
-export const icons = {
-	email: Email,
-	user: User,
-	check: Check,
-	lock: Lock,
+type IconPositionProps = {
+	position?: 'left' | 'right';
 };
+
+type InputBarProps = {
+	isIcon?: boolean;
+};
+
+export const IconPosition = styled.span<IconPositionProps>`
+	position: absolute;
+
+	transform: ${({ position }) => {
+		if (position === 'left') {
+			return 'translate(120%, 50%)';
+		}
+		if (position === 'right') {
+			return 'translate(-200%, 50%)';
+		}
+	}};
+
+	& path {
+		fill: currentColor;
+	}
+`;
 
 export const InputContainer = styled.div`
 	width: 368px;
@@ -34,10 +32,11 @@ export const InputContainer = styled.div`
 	position: relative;
 `;
 
-export const InputBar = styled.input`
+export const InputBar = styled.input<InputBarProps>`
 	width: 100%;
 	height: 56px;
-	padding: 2px 15px 2px 80px;
+	padding: ${({ isIcon }) =>
+		isIcon ? '2px 50px 2px 80px' : '2px 15px 2px 20px'};
 	border-radius: 8px;
 	border: 1px solid ${({ theme: { colours } }) => colours.solidGrey};
 	font: 400 17px/24px 'Poppins';

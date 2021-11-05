@@ -1,19 +1,18 @@
 import { useState, useCallback } from 'react';
-import {
-	InputContainer,
-	InputBar,
-	icons,
-	StyledIcon,
-	StyledEyeSlashIcon,
-} from './style';
+import { InputContainer, InputBar, IconPosition } from './style';
 import { Colours } from '../../styles';
+import { Icon, icons, iconSizes } from '../Icon';
 
 type InputProps = {
-	icon: keyof typeof icons;
+	icon?: keyof typeof icons;
 	iconColor?: Colours;
+	iconSize?: keyof typeof iconSizes;
 	onInput?: (input: string) => void;
 	placeholder?: string;
-	eyeSlash?: boolean;
+
+	iconRight?: keyof typeof icons;
+	iconRightColor?: Colours;
+	iconRightSize?: keyof typeof iconSizes;
 };
 
 export const Input: React.FC<InputProps> = ({
@@ -21,7 +20,10 @@ export const Input: React.FC<InputProps> = ({
 	placeholder,
 	icon,
 	iconColor,
-	eyeSlash,
+	iconSize,
+	iconRight,
+	iconRightColor,
+	iconRightSize,
 }) => {
 	const [input, setInput] = useState('');
 
@@ -35,20 +37,28 @@ export const Input: React.FC<InputProps> = ({
 	);
 
 	const onChange = useCallback(e => setInput(e.target.value), []);
-	const Icon = icons[icon];
+
+	const isIcon = icon ? true : false;
 
 	return (
 		<InputContainer>
-			<StyledIcon color={iconColor}>
-				<Icon />
-			</StyledIcon>
+			{icon && (
+				<IconPosition position='left'>
+					<Icon icon={icon} color={iconColor} size={iconSize} />
+				</IconPosition>
+			)}
 			<InputBar
 				value={input}
 				onChange={onChange}
 				onKeyDown={onKeyDown}
 				placeholder={placeholder}
+				isIcon={isIcon}
 			/>
-			{eyeSlash && <StyledEyeSlashIcon />}
+			{iconRight && (
+				<IconPosition position='right'>
+					<Icon icon={iconRight} color={iconRightColor} size={iconRightSize} />
+				</IconPosition>
+			)}
 		</InputContainer>
 	);
 };

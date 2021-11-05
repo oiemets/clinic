@@ -3,8 +3,6 @@ import { Button, Input } from '../../../components';
 import { Root } from './style';
 
 export const SignUp = () => {
-	const testHandler = (input: string) => console.log(input);
-
 	return (
 		<Root>
 			<h1>sign up</h1>
@@ -40,19 +38,15 @@ export const SignUp = () => {
 			<Input placeholder={'First Name'} icon='user' />
 			<Input placeholder={'Last Name'} icon='user' />
 			<Input placeholder={'Email'} icon='email' />
-			<Input
-				placeholder={'Password'}
-				icon='lock'
-				iconColor='mediumGrey'
-				onInput={testHandler}
-				eyeSlash
-			/>
+			<Input placeholder={'Password'} icon='lock' iconRight='eyeslash' />
 			<Input
 				placeholder={'Confirm Password'}
 				icon='check'
-				iconColor='solidGrey'
-				eyeSlash
+				iconRight='eyeslash'
+				iconColor='green'
 			/>
+
+			<Input placeholder={'Testing'} />
 		</Root>
 	);
 };
