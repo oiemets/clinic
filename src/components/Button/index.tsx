@@ -1,15 +1,26 @@
-import { Btn, BtnProps } from './styles';
-import { ArrowRight, ArrowLeft } from '../../assets/icons';
+import { Btn, BtnProps, IconPosition } from './styles';
+import { Icon, icons, iconSizes } from '../Icon';
+import { Colours } from '../../styles';
 
 type ButtonProps = BtnProps & {
-	arrow?: 'right' | 'left';
+	iconLeft?: keyof typeof icons;
+	iconRight?: keyof typeof icons;
+	iconLeftSize?: keyof typeof iconSizes;
+	iconRightSize?: keyof typeof iconSizes;
+	iconRightColor?: Colours;
+	iconLeftColor?: Colours;
 };
 
 export const Button: React.FC<ButtonProps> = ({
 	variant,
 	titleColor,
 	size,
-	arrow,
+	iconLeft,
+	iconRight,
+	iconRightColor,
+	iconLeftColor,
+	iconLeftSize,
+	iconRightSize,
 	fontLighter,
 	border,
 	children,
@@ -21,9 +32,17 @@ export const Button: React.FC<ButtonProps> = ({
 			size={size}
 			fontLighter={fontLighter}
 			border={border}>
-			{arrow === 'right' && <ArrowRight />}
+			{iconLeft && (
+				<IconPosition>
+					<Icon icon={iconLeft} color={iconLeftColor} size={iconLeftSize} />
+				</IconPosition>
+			)}
 			{children}
-			{arrow === 'left' && <ArrowLeft />}
+			{iconRight && (
+				<IconPosition>
+					<Icon icon={iconRight} color={iconRightColor} size={iconRightSize} />
+				</IconPosition>
+			)}
 		</Btn>
 	);
 };

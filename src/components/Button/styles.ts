@@ -5,7 +5,7 @@ export type BtnProps = {
 	variant?: Colours;
 	titleColor?: Colours;
 	border?: Colours;
-	size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
+	size?: keyof typeof sizes;
 	fontLighter?: boolean;
 };
 
@@ -32,6 +32,14 @@ const sizes = {
 		height: '48px',
 		fontSize: '15px',
 		lineHeight: '19.5px',
+	},
+
+	xlShort: {
+		padding: '16px 24px',
+		width: '146px',
+		height: '56px',
+		fontSize: '17px',
+		lineHeight: '24px',
 	},
 
 	xl: {
@@ -61,7 +69,7 @@ export const Btn = styled.button<BtnProps>`
 	${({ size }) => sizes[size ?? 'sm']}
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: center;
 	appearance: none;
 	cursor: pointer;
 	border: ${({ theme: { colours }, border }) =>
@@ -73,4 +81,12 @@ export const Btn = styled.button<BtnProps>`
 		variant ? colours[variant] : colours.darkBlue};
 	color: ${({ theme: { colours }, titleColor }) =>
 		titleColor ? colours[titleColor] : 'white'};
+
+	:hover {
+		background-color: ${({ theme: { colours } }) => colours.darkBlue};
+	}
+`;
+
+export const IconPosition = styled.span`
+	transform: translate(50%, 10%);
 `;

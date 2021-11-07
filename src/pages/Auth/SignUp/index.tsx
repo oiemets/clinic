@@ -1,9 +1,10 @@
 import { SignUp } from '../../../modules';
-import { Container } from './style';
+import { Container, Bg } from './style';
 
 export const SignUpPage = () => {
 	return (
 		<Container>
+			<Bg />
 			<SignUp />
 		</Container>
 	);

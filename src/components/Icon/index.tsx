@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { Colours } from '../../styles';
-import { Email, User, Check, Lock, EyeSlash } from '../../assets';
+import {
+	Email,
+	User,
+	Check,
+	Lock,
+	EyeSlash,
+	ArrowLeft,
+	ArrowRight,
+} from '../../assets';
 
 type StyledIconProps = {
 	color?: Colours;
@@ -17,6 +25,8 @@ export const icons = {
 	check: Check,
 	lock: Lock,
 	eyeslash: EyeSlash,
+	arrowLeft: ArrowLeft,
+	arrowRight: ArrowRight,
 };
 
 export const iconSizes = {
@@ -43,6 +53,12 @@ export const StyledIcon = styled.span<StyledIconProps>`
 
 	& path {
 		fill: currentColor;
+	}
+
+	@media screen and (max-width: 560px) {
+		& svg {
+			${({ size }) => iconSizes[size ?? 'sm']}
+		}
 	}
 `;
 

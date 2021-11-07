@@ -26,6 +26,8 @@ export const GlobalStyles = createGlobalStyle<CreateGlobalStyleProps>`
     background-color: ${({ theme: { colours } }) => colours.lightGrey};
     font: 400 15px/21px 'Poppins';
     color: ${({ theme: { colours } }) => colours.mediumGrey};
+    width: 100%;
+    height: 100%;
   }
 
   a {
