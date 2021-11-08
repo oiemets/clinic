@@ -1,21 +1,22 @@
 import { useState, useCallback } from 'react';
-import { InputContainer, InputBar, IconPosition } from './style';
-import { Colours } from '../../styles';
+import { InputContainer, InputBar, IconPosition, InputBarProps } from './style';
+import { Colors } from '../../styles';
 import { Icon, icons, iconSizes } from '../Icon';
 
-type InputProps = {
+export type InputProps = {
+	inputSize?: InputBarProps['inputSize'];
 	icon?: keyof typeof icons;
-	iconColor?: Colours;
+	iconColor?: Colors;
 	iconSize?: keyof typeof iconSizes;
 	onInput?: (input: string) => void;
 	placeholder?: string;
-
 	iconRight?: keyof typeof icons;
-	iconRightColor?: Colours;
+	iconRightColor?: Colors;
 	iconRightSize?: keyof typeof iconSizes;
 };
 
 export const Input: React.FC<InputProps> = ({
+	inputSize,
 	onInput,
 	placeholder,
 	icon,
@@ -48,6 +49,7 @@ export const Input: React.FC<InputProps> = ({
 				</IconPosition>
 			)}
 			<InputBar
+				inputSize={inputSize}
 				value={input}
 				onChange={onChange}
 				onKeyDown={onKeyDown}

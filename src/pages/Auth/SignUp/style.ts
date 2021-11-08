@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Bg = styled.div`
 	width: 100%;
-	height: 100vh;
+
 	display: inline-block;
 	background-image: url(${bg});
 	background-size: cover;
@@ -19,5 +19,6 @@ export const Bg = styled.div`
 
 	@media screen and (max-width: 560px) {
 		background-size: contain;
+		height: 100vh;
 	}
 `;

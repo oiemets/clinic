@@ -6,7 +6,7 @@ export const Root = styled.div`
 	flex-flow: column;
 	align-items: center;
 	min-width: 560px;
-	background-color: ${({ theme: { colours } }) => colours.lightGrey};
+	background-color: ${({ theme: { colors } }) => colors.lightGrey};
 
 	@media screen and (max-width: 560px) {
 		border-top-left-radius: 20px;
@@ -45,7 +45,6 @@ export const FormContainer = styled.div`
 
 	@media screen and (max-width: 560px) {
 		margin-top: 5vh;
-		justify-content: space-around;
 		height: 100%;
 		div:nth-child(2) {
 			margin-top: 2vh;
@@ -54,7 +53,7 @@ export const FormContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-	color: ${({ theme: { colours } }) => colours.black};
+	color: ${({ theme: { colors } }) => colors.black};
 	font-weight: 600;
 	font-size: 24px;
 	line-height: 26.4px;
@@ -67,7 +66,7 @@ export const Title = styled.h1`
 `;
 
 export const StyledLink = styled(Link)`
-	color: ${({ theme: { colours } }) => colours.lightBlue};
+	color: ${({ theme: { colors } }) => colors.lightBlue};
 	font-weight: 600;
 	font-size: 15px;
 	line-height: 19.5px;
@@ -80,7 +79,7 @@ export const StyledLink = styled(Link)`
 
 export const SignInLink = styled.div`
 	display: flex;
-	color: ${({ theme: { colours } }) => colours.mediumGrey};
+	color: ${({ theme: { colors } }) => colors.mediumGrey};
 	font-weight: 400;
 	font-size: 15px;
 	line-height: 21px;

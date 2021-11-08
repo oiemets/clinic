@@ -1,4 +1,4 @@
-import { Button, Input } from '../../../components';
+import { ButtonResponsive, InputResponsive } from '../../../components';
 import { Root, Title, StyledLink, SignInLink, FormContainer } from './style';
 
 export const SignUp = () => {
@@ -6,24 +6,30 @@ export const SignUp = () => {
 		<Root>
 			<FormContainer>
 				<Title>sign up</Title>
-				<Input placeholder={'First Name'} icon='user' />
-				<Input placeholder={'Last Name'} icon='user' />
-				<Input placeholder={'Email'} icon='email' />
-				<Input placeholder={'Password'} icon='lock' iconRight='eyeslash' />
-				<Input
-					placeholder={'Confirm Password'}
+				<InputResponsive placeholder='First Name' icon='user' />
+				<InputResponsive placeholder='Last Name' icon='user' />
+				<InputResponsive placeholder='Email' icon='email' />
+				<InputResponsive
+					placeholder='Password'
+					icon='lock'
+					iconRight='eyeslash'
+				/>
+
+				<InputResponsive
+					placeholder='Confirm Password'
 					icon='check'
 					iconRight='eyeslash'
 				/>
 
-				<Button
+				<ButtonResponsive
 					size='xlShort'
 					iconRight='arrowRight'
 					iconRightSize='lg'
 					iconRightColor='white'
-					variant='lightBlue'>
+					variant='lightBlue'
+				>
 					Sign Up
-				</Button>
+				</ButtonResponsive>
 
 				<SignInLink>
 					Already have an account?

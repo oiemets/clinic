@@ -1,17 +1,17 @@
 import styled from 'styled-components';
-import { Colours } from '../../styles';
+import { Colors } from '../../styles';
 
 export type BtnProps = {
-	variant?: Colours;
-	titleColor?: Colours;
-	border?: Colours;
+	variant?: Colors;
+	titleColor?: Colors;
+	border?: Colors;
 	size?: keyof typeof sizes;
 	fontLighter?: boolean;
 };
 
 const sizes = {
 	sm: {
-		padding: '8px 16px',
+		padding: '8px 8px',
 		width: '104px',
 		height: '40px',
 		fontSize: '15px',
@@ -72,18 +72,18 @@ export const Btn = styled.button<BtnProps>`
 	justify-content: center;
 	appearance: none;
 	cursor: pointer;
-	border: ${({ theme: { colours }, border }) =>
-		border ? '1px solid ' + colours[border] : 'none'};
+	border: ${({ theme: { colors }, border }) =>
+		border ? '1px solid ' + colors[border] : 'none'};
 	border-radius: 8px;
 	font-family: 'Poppins';
 	font-weight: ${({ fontLighter }) => (fontLighter ? 400 : 600)};
-	background-color: ${({ theme: { colours }, variant }) =>
-		variant ? colours[variant] : colours.darkBlue};
-	color: ${({ theme: { colours }, titleColor }) =>
-		titleColor ? colours[titleColor] : 'white'};
+	background-color: ${({ theme: { colors }, variant }) =>
+		variant ? colors[variant] : colors.darkBlue};
+	color: ${({ theme: { colors }, titleColor }) =>
+		titleColor ? colors[titleColor] : 'white'};
 
 	:hover {
-		background-color: ${({ theme: { colours } }) => colours.darkBlue};
+		background-color: ${({ theme: { colors } }) => colors.darkBlue};
 	}
 `;
 

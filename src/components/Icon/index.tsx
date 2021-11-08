@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colours } from '../../styles';
+import { Colors } from '../../styles';
 import {
 	Email,
 	User,
@@ -11,7 +11,7 @@ import {
 } from '../../assets';
 
 type StyledIconProps = {
-	color?: Colours;
+	color?: Colors;
 	size?: keyof typeof iconSizes;
 };
 
@@ -45,7 +45,7 @@ export const iconSizes = {
 };
 
 export const StyledIcon = styled.span<StyledIconProps>`
-	color: ${({ theme: { colours }, color }) => colours[color ?? 'mediumGrey']};
+	color: ${({ theme: { colors }, color }) => colors[color ?? 'mediumGrey']};
 
 	& svg {
 		${({ size }) => iconSizes[size ?? 'lg']}
@@ -53,12 +53,6 @@ export const StyledIcon = styled.span<StyledIconProps>`
 
 	& path {
 		fill: currentColor;
-	}
-
-	@media screen and (max-width: 560px) {
-		& svg {
-			${({ size }) => iconSizes[size ?? 'sm']}
-		}
 	}
 `;
 

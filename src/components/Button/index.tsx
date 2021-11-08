@@ -1,14 +1,14 @@
 import { Btn, BtnProps, IconPosition } from './styles';
 import { Icon, icons, iconSizes } from '../Icon';
-import { Colours } from '../../styles';
+import { Colors } from '../../styles';
 
-type ButtonProps = BtnProps & {
+export type ButtonProps = BtnProps & {
 	iconLeft?: keyof typeof icons;
 	iconRight?: keyof typeof icons;
 	iconLeftSize?: keyof typeof iconSizes;
 	iconRightSize?: keyof typeof iconSizes;
-	iconRightColor?: Colours;
-	iconLeftColor?: Colours;
+	iconRightColor?: Colors;
+	iconLeftColor?: Colors;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -31,7 +31,8 @@ export const Button: React.FC<ButtonProps> = ({
 			titleColor={titleColor}
 			size={size}
 			fontLighter={fontLighter}
-			border={border}>
+			border={border}
+		>
 			{iconLeft && (
 				<IconPosition>
 					<Icon icon={iconLeft} color={iconLeftColor} size={iconLeftSize} />

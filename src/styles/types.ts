@@ -1,4 +1,4 @@
-export type Colours =
+export type Colors =
 	| 'lightBlue'
 	| 'darkBlue'
 	| 'solidGrey'
