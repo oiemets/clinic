@@ -5,88 +5,39 @@ export type BtnProps = {
 	variant?: Colors;
 	titleColor?: Colors;
 	border?: Colors;
-	size?: keyof typeof sizes;
 	fontLighter?: boolean;
 };
 
-const sizes = {
-	sm: {
-		padding: '8px 8px',
-		width: '104px',
-		height: '40px',
-		fontSize: '15px',
-		lineHeight: '19.5px',
-	},
-
-	md: {
-		padding: '8px 16px',
-		width: '160px',
-		height: '40px',
-		fontSize: '15px',
-		lineHeight: '19.5px',
-	},
-
-	lg: {
-		padding: '12px 16px',
-		width: '184px',
-		height: '48px',
-		fontSize: '15px',
-		lineHeight: '19.5px',
-	},
-
-	xlShort: {
-		padding: '16px 24px',
-		width: '146px',
-		height: '56px',
-		fontSize: '17px',
-		lineHeight: '24px',
-	},
-
-	xl: {
-		padding: '16px 24px',
-		width: '216px',
-		height: '56px',
-		fontSize: '17px',
-		lineHeight: '24px',
-	},
-	xxl: {
-		padding: '16px 24px',
-		width: '224px',
-		height: '56px',
-		fontSize: '17px',
-		lineHeight: '24px',
-	},
-	xxxl: {
-		padding: '16px 24px',
-		width: '240px',
-		height: '56px',
-		fontSize: '17px',
-		lineHeight: '24px',
-	},
-};
-
 export const Btn = styled.button<BtnProps>`
-	${({ size }) => sizes[size ?? 'sm']}
+	border: ${({ theme: { colors }, border }) =>
+		border ? '1px solid ' + colors[border] : 'none'};
+
+	background-color: ${({ theme: { colors }, variant }) =>
+		variant ? colors[variant] : colors.lightBlue};
+
+	color: ${({ theme: { colors }, titleColor }) =>
+		titleColor ? colors[titleColor] : 'white'};
+	align-self: flex-start;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	appearance: none;
 	cursor: pointer;
-	border: ${({ theme: { colors }, border }) =>
-		border ? '1px solid ' + colors[border] : 'none'};
 	border-radius: 8px;
-	font-family: 'Poppins';
-	font-weight: ${({ fontLighter }) => (fontLighter ? 400 : 600)};
-	background-color: ${({ theme: { colors }, variant }) =>
-		variant ? colors[variant] : colors.darkBlue};
-	color: ${({ theme: { colors }, titleColor }) =>
-		titleColor ? colors[titleColor] : 'white'};
+	font: 600 17px/19.5px 'Poppins';
+	padding: 16px 27px;
 
 	:hover {
 		background-color: ${({ theme: { colors } }) => colors.darkBlue};
 	}
+
+	@media screen and (max-width: ${({ theme: { breakpoints } }) =>
+			breakpoints.sm}) {
+		padding: 15px 24px;
+		font: 600 15px/19.5px 'Poppins';
+	}
 `;
 
-export const IconPosition = styled.span`
-	transform: translate(50%, 10%);
+export const IconPosition = styled.div`
+	transform: translate(50%, 0%);
 `;

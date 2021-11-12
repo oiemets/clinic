@@ -24,7 +24,7 @@ export const GlobalStyles = createGlobalStyle<CreateGlobalStyleProps>`
 
   html, body {
     background-color: ${({ theme: { colors } }) => colors.lightGrey};
-    font: 400 15px/21px 'Poppins';
+    font: 400 15px 'Poppins';
     color: ${({ theme: { colors } }) => colors.mediumGrey};
     width: 100%;
     height: 100%;
@@ -32,7 +32,6 @@ export const GlobalStyles = createGlobalStyle<CreateGlobalStyleProps>`
 
   a {
     font-weight: 600;
-    line-height: 19.5px;
     color: ${({ theme: { colors } }) => colors.darkBlue};
   }
 

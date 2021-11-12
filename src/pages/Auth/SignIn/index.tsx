@@ -1,7 +1,11 @@
+import { PageWrapper, AuthPagesBg } from 'elements';
+import { SignIn } from 'modules';
+
 export const SignInPage = () => {
 	return (
-		<div>
-			<h1>Sign in</h1>
-		</div>
+		<PageWrapper>
+			<AuthPagesBg />
+			<SignIn />
+		</PageWrapper>
 	);
 };
