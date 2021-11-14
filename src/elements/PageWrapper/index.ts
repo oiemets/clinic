@@ -70,7 +70,7 @@ export const AuthFormContainer = styled.div`
 	}
 `;
 
-export const FormTextFieldsContainer = styled.div`
+export const FormTextFieldsWrapper = styled.div`
 	height: 100%;
 	width: 70%;
 	display: flex;

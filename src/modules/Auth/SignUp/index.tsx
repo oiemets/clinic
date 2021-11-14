@@ -1,5 +1,5 @@
 import {
-	FormTextFieldsContainer,
+	FormTextFieldsWrapper,
 	Title,
 	AuthFormContainer,
 	StyledLink,
@@ -10,7 +10,7 @@ import { Button, FormTextField } from 'components';
 export const SignUp = () => {
 	return (
 		<AuthFormContainer>
-			<FormTextFieldsContainer>
+			<FormTextFieldsWrapper>
 				<Title>sign up</Title>
 				<FormTextField icon='user' placeholder='First Name' />
 				<FormTextField icon='user' placeholder='Last Name' />
@@ -24,7 +24,7 @@ export const SignUp = () => {
 				<Button iconRight='arrowRight' iconRightColor='white'>
 					Sign Up
 				</Button>
-			</FormTextFieldsContainer>
+			</FormTextFieldsWrapper>
 			<FooterWrapper>
 				Already have an account?
 				<StyledLink to='/signin'>Sign in</StyledLink>

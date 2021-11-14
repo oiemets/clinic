@@ -1,7 +1,7 @@
 import {
 	Title,
 	AuthFormContainer,
-	FormTextFieldsContainer,
+	FormTextFieldsWrapper,
 	TitleWithIconWrapper,
 	Text,
 } from 'elements';
@@ -10,7 +10,7 @@ import { Button, FormTextField, Icon } from 'components';
 export const RestorePassword = () => {
 	return (
 		<AuthFormContainer>
-			<FormTextFieldsContainer>
+			<FormTextFieldsWrapper>
 				<TitleWithIconWrapper>
 					<Icon icon='arrowLeft' />
 					<Title>Restore Password</Title>
@@ -23,7 +23,7 @@ export const RestorePassword = () => {
 				<Button iconRight='arrowRight' iconRightColor='white'>
 					Send Reset Link
 				</Button>
-			</FormTextFieldsContainer>
+			</FormTextFieldsWrapper>
 		</AuthFormContainer>
 	);
 };
