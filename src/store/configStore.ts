@@ -3,14 +3,15 @@ import { watcherSaga } from './rootSaga';
 import { sagaMiddleware, logger } from './middlewares';
 import { patientsReducer } from '../modules';
 
-export const store = () => {
-	const appStore = configureStore({
+export const appStore = () => {
+	const store = configureStore({
 		reducer: {
 			patients: patientsReducer,
 		},
 		middleware: [sagaMiddleware, logger],
 		preloadedState: {},
 	});
+
 	sagaMiddleware.run(watcherSaga);
-	return appStore;
+	return store;
 };
