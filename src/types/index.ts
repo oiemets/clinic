@@ -16,3 +16,19 @@ export type PatientsQueryParams = {
 	offset: string;
 	count: '1' | '3' | '5' | '10' | '15' | '20' | '25';
 };
+
+export type AppState = {
+	auth?: {};
+};
+
+export type RegistrationHeader = {
+	userName: string;
+	password: string;
+	firstName: string;
+	lastname: string;
+};
+
+export type RegistrationResponse = {
+	access_token: string;
+	refresh_token: string;
+};

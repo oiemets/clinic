@@ -7,6 +7,7 @@ export type ButtonProps = BtnProps & {
 	iconRight?: keyof typeof icons;
 	iconRightColor?: Colors;
 	iconLeftColor?: Colors;
+	onClick?: () => void;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -19,6 +20,7 @@ export const Button: React.FC<ButtonProps> = ({
 	fontLighter,
 	border,
 	children,
+	onClick,
 }) => {
 	return (
 		<Btn
@@ -26,6 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
 			titleColor={titleColor}
 			fontLighter={fontLighter}
 			border={border}
+			onClick={onClick}
 		>
 			{iconLeft && (
 				<IconPosition>

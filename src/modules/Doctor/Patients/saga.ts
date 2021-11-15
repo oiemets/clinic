@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { requestGetPatients } from '../../../services';
-import { loadingSuccess } from './slice';
+import { loadingSuccess } from './PatientsSlice';
 
 export function* loadingPatients(): any {
 	try {

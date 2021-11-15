@@ -5,14 +5,20 @@ import {
 	NotFoundPage,
 	ResetPasswordPage,
 	RestorePasswordPage,
+	Home,
 } from 'pages';
 
 const routes: RouteObject[] = [
-	{ path: '/', element: <SignUpPage /> },
-	{ path: '/signin', element: <SignInPage /> },
-	{ path: '/resetpassword', element: <ResetPasswordPage /> },
-	{ path: '/restorepassword', element: <RestorePasswordPage /> },
-
+	{
+		path: '/',
+		element: <Home />,
+		children: [
+			{ path: 'signup', element: <SignUpPage /> },
+			{ path: 'signin', element: <SignInPage /> },
+			{ path: 'resetpassword', element: <ResetPasswordPage /> },
+			{ path: 'restorepassword', element: <RestorePasswordPage /> },
+		],
+	},
 	{ path: '*', element: <NotFoundPage /> },
 ];
 

@@ -17,11 +17,11 @@ export const SignIn = () => {
 				<Button iconRight='arrowRight' iconRightColor='white'>
 					Sign In
 				</Button>
-				<StyledLink to='restorepassword'>Forgot Password?</StyledLink>
+				<StyledLink to='/restorepassword'>Forgot Password?</StyledLink>
 			</FormTextFieldsWrapper>
 			<FooterWrapper>
 				Don't have an account?
-				<StyledLink to='/'>Sign up</StyledLink>
+				<StyledLink to='/signup'>Sign up</StyledLink>
 			</FooterWrapper>
 		</AuthFormContainer>
 	);
