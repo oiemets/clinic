@@ -1,15 +1,15 @@
 import {
 	FormTextFieldsWrapper,
 	Title,
-	AuthFormContainer,
+	AuthFormWrapper,
 	StyledLink,
-	FooterWrapper,
+	AuthFooterWrapper,
 } from 'elements';
 import { Button, FormTextField } from 'components';
 
 export const SignUp = () => {
 	return (
-		<AuthFormContainer>
+		<AuthFormWrapper>
 			<FormTextFieldsWrapper>
 				<Title>sign up</Title>
 				<FormTextField icon='user' placeholder='First Name' />
@@ -25,10 +25,10 @@ export const SignUp = () => {
 					Sign Up
 				</Button>
 			</FormTextFieldsWrapper>
-			<FooterWrapper>
+			<AuthFooterWrapper>
 				Already have an account?
 				<StyledLink to='/signin'>Sign in</StyledLink>
-			</FooterWrapper>
-		</AuthFormContainer>
+			</AuthFooterWrapper>
+		</AuthFormWrapper>
 	);
 };

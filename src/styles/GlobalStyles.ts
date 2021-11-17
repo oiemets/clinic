@@ -9,7 +9,7 @@ type CreateGlobalStyleProps = {
 
 WebFont.load({
 	google: {
-		families: ['Poppins:400,600', 'sans-serif'],
+		families: ['Poppins:400,500,600', 'sans-serif'],
 	},
 });
 

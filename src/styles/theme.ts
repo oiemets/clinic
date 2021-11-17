@@ -10,8 +10,10 @@ export const theme = {
 		lightGrey: '#F9FAFF',
 		solidGrey: '#DCE0EC',
 		green: '#34C197',
+		blueGrey: '#E4EBFF',
 	},
 	breakpoints: {
+		xs: '420px',
 		sm: '560px',
 		md: '768px',
 		lg: '992px',

@@ -1,11 +1,11 @@
-import { PageWrapper, AuthPagesBg } from 'elements';
+import { AuthPageWrapper, AuthPageBg } from 'elements';
 import { RestorePassword } from 'modules';
 
 export const RestorePasswordPage = () => {
 	return (
-		<PageWrapper>
-			<AuthPagesBg />
+		<AuthPageWrapper>
+			<AuthPageBg />
 			<RestorePassword />
-		</PageWrapper>
+		</AuthPageWrapper>
 	);
 };

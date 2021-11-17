@@ -1,13 +1,13 @@
 import { SignUp } from 'modules';
-import { PageWrapper, AuthPagesBg } from 'elements';
+import { AuthPageWrapper, AuthPageBg } from 'elements';
 
 export const SignUpPage = () => {
 	return (
 		<>
-			<PageWrapper>
-				<AuthPagesBg />
+			<AuthPageWrapper>
+				<AuthPageBg />
 				<SignUp />
-			</PageWrapper>
+			</AuthPageWrapper>
 		</>
 	);
 };

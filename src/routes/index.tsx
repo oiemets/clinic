@@ -6,6 +6,7 @@ import {
 	ResetPasswordPage,
 	RestorePasswordPage,
 	Home,
+	PatientsPage,
 } from 'pages';
 
 const routes: RouteObject[] = [
@@ -17,6 +18,7 @@ const routes: RouteObject[] = [
 			{ path: 'signin', element: <SignInPage /> },
 			{ path: 'resetpassword', element: <ResetPasswordPage /> },
 			{ path: 'restorepassword', element: <RestorePasswordPage /> },
+			{ path: 'patients', element: <PatientsPage /> },
 		],
 	},
 	{ path: '*', element: <NotFoundPage /> },

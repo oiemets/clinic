@@ -5,3 +5,6 @@ export { ReactComponent as User } from './user.svg';
 export { ReactComponent as Lock } from './lock.svg';
 export { ReactComponent as EyeSlash } from './eye-slash.svg';
 export { ReactComponent as Check } from './check.svg';
+export { ReactComponent as Logo } from './logo.svg';
+export { ReactComponent as EmptyState } from './empty-state.svg';
+export { ReactComponent as CardPatch } from './card-patch.svg';

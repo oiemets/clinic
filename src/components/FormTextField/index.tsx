@@ -33,8 +33,6 @@ export const FormTextField: React.FC<FormTextFieldProps> = ({
 
 	const onChange = useCallback(e => setInput(e.target.value), []);
 
-	const isIcon = icon ? true : false;
-
 	return (
 		<InputContainer>
 			{icon && (
@@ -47,7 +45,7 @@ export const FormTextField: React.FC<FormTextFieldProps> = ({
 				onChange={onChange}
 				onKeyDown={onKeyDown}
 				placeholder={placeholder}
-				isIcon={isIcon}
+				isIcon={Boolean(icon)}
 			/>
 			{iconRight && (
 				<IconPosition right>

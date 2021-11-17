@@ -1,6 +1,6 @@
 import {
 	Title,
-	AuthFormContainer,
+	AuthFormWrapper,
 	FormTextFieldsWrapper,
 	TitleWithIconWrapper,
 	Text,
@@ -11,7 +11,7 @@ import { Icon } from 'components';
 
 export const ResetPassword = () => {
 	return (
-		<AuthFormContainer>
+		<AuthFormWrapper>
 			<FormTextFieldsWrapper>
 				<TitleWithIconWrapper>
 					<Icon icon='arrowLeft' />
@@ -23,6 +23,6 @@ export const ResetPassword = () => {
 					click the reset link provided.
 				</Text>
 			</FormTextFieldsWrapper>
-		</AuthFormContainer>
+		</AuthFormWrapper>
 	);
 };
