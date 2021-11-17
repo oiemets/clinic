@@ -7,27 +7,21 @@ import {
 } from 'elements';
 import { Button, FormTextField } from 'components';
 
-export const SignUp = () => {
+export const SignIn = () => {
 	return (
 		<AuthFormContainer>
 			<FormTextFieldsWrapper>
-				<Title>sign up</Title>
-				<FormTextField icon='user' placeholder='First Name' />
-				<FormTextField icon='user' placeholder='Last Name' />
+				<Title>sign in</Title>
 				<FormTextField icon='email' placeholder='Email' />
 				<FormTextField icon='lock' placeholder='Password' />
-				<FormTextField
-					icon='check'
-					placeholder='Confirm Password'
-					iconRight='eyeslash'
-				/>
 				<Button iconRight='arrowRight' iconRightColor='white'>
-					Sign Up
+					Sign In
 				</Button>
+				<StyledLink to='/restorepassword'>Forgot Password?</StyledLink>
 			</FormTextFieldsWrapper>
 			<FooterWrapper>
-				Already have an account?
-				<StyledLink to='/signin'>Sign in</StyledLink>
+				Don't have an account?
+				<StyledLink to='/signup'>Sign up</StyledLink>
 			</FooterWrapper>
 		</AuthFormContainer>
 	);

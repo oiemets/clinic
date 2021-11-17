@@ -1,11 +1,13 @@
-import { SignUp } from '../../../modules';
-import { Container, Bg } from './style';
+import { SignUp } from 'modules';
+import { PageWrapper, AuthPagesBg } from 'elements';
 
 export const SignUpPage = () => {
 	return (
-		<Container>
-			<Bg />
-			<SignUp />
-		</Container>
+		<>
+			<PageWrapper>
+				<AuthPagesBg />
+				<SignUp />
+			</PageWrapper>
+		</>
 	);
 };

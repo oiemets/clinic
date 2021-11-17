@@ -11,4 +11,10 @@ export const theme = {
 		solidGrey: '#DCE0EC',
 		green: '#34C197',
 	},
+	breakpoints: {
+		sm: '560px',
+		md: '768px',
+		lg: '992px',
+		xl: '1280px',
+	},
 };

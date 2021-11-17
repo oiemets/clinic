@@ -1,30 +1,24 @@
 import { useState, useCallback } from 'react';
-import { InputContainer, InputBar, IconPosition, InputBarProps } from './style';
+import { InputContainer, InputBar, IconPosition } from './style';
 import { Colors } from '../../styles';
-import { Icon, icons, iconSizes } from '../Icon';
+import { Icon, icons } from '../Icon';
 
-export type InputProps = {
-	inputSize?: InputBarProps['inputSize'];
+export type FormTextFieldProps = {
 	icon?: keyof typeof icons;
 	iconColor?: Colors;
-	iconSize?: keyof typeof iconSizes;
 	onInput?: (input: string) => void;
 	placeholder?: string;
 	iconRight?: keyof typeof icons;
 	iconRightColor?: Colors;
-	iconRightSize?: keyof typeof iconSizes;
 };
 
-export const Input: React.FC<InputProps> = ({
-	inputSize,
+export const FormTextField: React.FC<FormTextFieldProps> = ({
 	onInput,
 	placeholder,
 	icon,
 	iconColor,
-	iconSize,
 	iconRight,
 	iconRightColor,
-	iconRightSize,
 }) => {
 	const [input, setInput] = useState('');
 
@@ -44,12 +38,11 @@ export const Input: React.FC<InputProps> = ({
 	return (
 		<InputContainer>
 			{icon && (
-				<IconPosition position='left'>
-					<Icon icon={icon} color={iconColor} size={iconSize} />
+				<IconPosition left>
+					<Icon icon={icon} color={iconColor} />
 				</IconPosition>
 			)}
 			<InputBar
-				inputSize={inputSize}
 				value={input}
 				onChange={onChange}
 				onKeyDown={onKeyDown}
@@ -57,8 +50,8 @@ export const Input: React.FC<InputProps> = ({
 				isIcon={isIcon}
 			/>
 			{iconRight && (
-				<IconPosition position='right'>
-					<Icon icon={iconRight} color={iconRightColor} size={iconRightSize} />
+				<IconPosition right>
+					<Icon icon={iconRight} color={iconRightColor} />
 				</IconPosition>
 			)}
 		</InputContainer>

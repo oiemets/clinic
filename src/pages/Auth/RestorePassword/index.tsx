@@ -1,11 +1,11 @@
 import { PageWrapper, AuthPagesBg } from 'elements';
-import { SignIn } from 'modules';
+import { RestorePassword } from 'modules';
 
-export const SignInPage = () => {
+export const RestorePasswordPage = () => {
 	return (
 		<PageWrapper>
 			<AuthPagesBg />
-			<SignIn />
+			<RestorePassword />
 		</PageWrapper>
 	);
 };

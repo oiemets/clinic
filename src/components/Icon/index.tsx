@@ -12,7 +12,6 @@ import {
 
 type StyledIconProps = {
 	color?: Colors;
-	size?: keyof typeof iconSizes;
 };
 
 type IconProps = StyledIconProps & {
@@ -29,37 +28,31 @@ export const icons = {
 	arrowRight: ArrowRight,
 };
 
-export const iconSizes = {
-	sm: {
-		width: '16px',
-		height: '16px',
-	},
-	md: {
-		width: '20px',
-		height: '20px',
-	},
-	lg: {
-		width: '26px',
-		height: '26px',
-	},
-};
-
-export const StyledIcon = styled.span<StyledIconProps>`
+export const StyledIcon = styled.div<StyledIconProps>`
 	color: ${({ theme: { colors }, color }) => colors[color ?? 'mediumGrey']};
-
+	line-height: 0;
 	& svg {
-		${({ size }) => iconSizes[size ?? 'lg']}
+		width: 26px;
+		height: 26px;
 	}
 
 	& path {
 		fill: currentColor;
 	}
+
+	@media screen and (max-width: ${({ theme: { breakpoints } }) =>
+			breakpoints.sm}) {
+		& svg {
+			width: 16px;
+			height: 16px;
+		}
+	}
 `;
 
-export const Icon: React.FC<IconProps> = ({ icon, color, size }) => {
+export const Icon: React.FC<IconProps> = ({ icon, color }) => {
 	const Icon = icons[icon ?? 'user'];
 	return (
-		<StyledIcon color={color} size={size}>
+		<StyledIcon color={color}>
 			<Icon />
 		</StyledIcon>
 	);
