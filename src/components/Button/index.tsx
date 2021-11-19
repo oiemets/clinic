@@ -8,6 +8,7 @@ export type ButtonProps = BtnProps & {
 	iconRightColor?: Colors;
 	iconLeftColor?: Colors;
 	onClick?: () => void;
+	type?: 'submit' | 'reset';
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -21,6 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
 	border,
 	children,
 	onClick,
+	type,
 }) => {
 	return (
 		<Btn
@@ -29,6 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
 			fontLighter={fontLighter}
 			border={border}
 			onClick={onClick}
+			type={type}
 		>
 			{iconLeft && (
 				<IconPosition>

@@ -12,6 +12,7 @@ import {
 
 type StyledIconProps = {
 	color?: Colors;
+	showPassword?: boolean;
 };
 
 type IconProps = StyledIconProps & {
@@ -29,7 +30,9 @@ export const icons = {
 };
 
 export const StyledIcon = styled.div<StyledIconProps>`
-	color: ${({ theme: { colors }, color }) => colors[color ?? 'mediumGrey']};
+	color: ${({ theme: { colors }, color, showPassword }) =>
+		showPassword ? colors.lightRed : colors[color ?? 'mediumGrey']};
+
 	line-height: 0;
 	& svg {
 		width: 26px;
@@ -49,10 +52,10 @@ export const StyledIcon = styled.div<StyledIconProps>`
 	}
 `;
 
-export const Icon: React.FC<IconProps> = ({ icon, color }) => {
+export const Icon: React.FC<IconProps> = ({ icon, color, showPassword }) => {
 	const Icon = icons[icon ?? 'user'];
 	return (
-		<StyledIcon color={color}>
+		<StyledIcon color={color} showPassword={showPassword}>
 			<Icon />
 		</StyledIcon>
 	);
