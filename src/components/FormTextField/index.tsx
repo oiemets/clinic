@@ -20,6 +20,7 @@ export type FormTextFieldProps = {
 	onBlur?: FormikHandlers['handleBlur'];
 	errorMessage?: string | null;
 	borderColor?: Colors | null;
+	checked?: boolean;
 };
 
 export const FormTextField: React.FC<FormTextFieldProps> = ({
@@ -30,6 +31,7 @@ export const FormTextField: React.FC<FormTextFieldProps> = ({
 	iconRightColor,
 	errorMessage,
 	type,
+	checked,
 	...rest
 }) => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -39,7 +41,7 @@ export const FormTextField: React.FC<FormTextFieldProps> = ({
 		<InputContainer>
 			{icon && (
 				<IconPosition left>
-					<Icon icon={icon} color={iconColor} />
+					<Icon icon={icon} color={iconColor} checked={checked} />
 				</IconPosition>
 			)}
 			<InputBar

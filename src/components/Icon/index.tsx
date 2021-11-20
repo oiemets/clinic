@@ -10,13 +10,11 @@ import {
 	ArrowRight,
 } from '../../assets';
 
-type StyledIconProps = {
+type IconProps = {
+	icon?: keyof typeof icons;
 	color?: Colors;
 	showPassword?: boolean;
-};
-
-type IconProps = StyledIconProps & {
-	icon?: keyof typeof icons;
+	checked?: boolean;
 };
 
 export const icons = {
@@ -29,9 +27,12 @@ export const icons = {
 	arrowRight: ArrowRight,
 };
 
-export const StyledIcon = styled.div<StyledIconProps>`
-	color: ${({ theme: { colors }, color, showPassword }) =>
-		showPassword ? colors.lightRed : colors[color ?? 'mediumGrey']};
+export const StyledIcon = styled.div<IconProps>`
+	color: ${({ theme: { colors }, color, showPassword, checked, icon }) => {
+		if (showPassword) return colors.lightRed;
+		if (icon === 'check' && checked) return colors.green;
+		return colors[color ?? 'mediumGrey'];
+	}};
 
 	line-height: 0;
 	& svg {
@@ -52,10 +53,20 @@ export const StyledIcon = styled.div<StyledIconProps>`
 	}
 `;
 
-export const Icon: React.FC<IconProps> = ({ icon, color, showPassword }) => {
+export const Icon: React.FC<IconProps> = ({
+	icon,
+	color,
+	showPassword,
+	checked,
+}) => {
 	const Icon = icons[icon ?? 'user'];
 	return (
-		<StyledIcon color={color} showPassword={showPassword}>
+		<StyledIcon
+			color={color}
+			showPassword={showPassword}
+			checked={checked}
+			icon={icon}
+		>
 			<Icon />
 		</StyledIcon>
 	);
