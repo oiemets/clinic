@@ -6,11 +6,20 @@ import {
 	Text,
 } from 'elements';
 import { Button, FormTextField, Icon } from 'components';
+import { useFormikTextFields } from '../hooks';
+import {
+	restorePasswordFormikConfig,
+	restorePasswordFieldsConfig,
+} from './restorePasswordFieldsConfig';
 
 export const RestorePassword = () => {
+	const [data, handleSubmit] = useFormikTextFields(
+		restorePasswordFormikConfig,
+		restorePasswordFieldsConfig
+	);
 	return (
 		<AuthFormWrapper>
-			<FormTextFieldsWrapper>
+			<FormTextFieldsWrapper onSubmit={handleSubmit}>
 				<TitleWithIconWrapper>
 					<Icon icon='arrowLeft' />
 					<Title>Restore Password</Title>
@@ -19,8 +28,10 @@ export const RestorePassword = () => {
 					Please use your email address, and we'll send you the link to reset
 					your password
 				</Text>
-				<FormTextField placeholder='Email' icon='email' />
-				<Button iconRight='arrowRight' iconRightColor='white'>
+				{data.map(props => (
+					<FormTextField {...props} />
+				))}
+				<Button iconRight='arrowRight' iconRightColor='white' type='submit'>
 					Send Reset Link
 				</Button>
 			</FormTextFieldsWrapper>

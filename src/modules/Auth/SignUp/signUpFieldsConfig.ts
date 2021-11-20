@@ -1,7 +1,7 @@
-import { validationSchema } from './signUpValidationScheme';
+import { signUpValidationSchema as validationSchema } from '../validationSchema';
 import { FormikHelpers, FormikValues } from 'formik';
 
-export const formikConfig = {
+export const signUpFormikConfig = {
 	initialValues: {
 		firstName: '',
 		lastName: '',

@@ -6,15 +6,23 @@ import {
 	AuthFooterWrapper,
 } from 'elements';
 import { Button, FormTextField } from 'components';
+import { useFormikTextFields } from '../hooks';
+import { signInFormikConfig, signInFieldsConfig } from './signInFieldsConfig';
 
 export const SignIn = () => {
+	const [data, handleSubmit] = useFormikTextFields(
+		signInFormikConfig,
+		signInFieldsConfig
+	);
+
 	return (
 		<AuthFormWrapper>
-			<FormTextFieldsWrapper>
+			<FormTextFieldsWrapper onSubmit={handleSubmit}>
 				<Title>sign in</Title>
-				<FormTextField icon='email' placeholder='Email' />
-				<FormTextField icon='lock' placeholder='Password' />
-				<Button iconRight='arrowRight' iconRightColor='white'>
+				{data.map(props => (
+					<FormTextField {...props} />
+				))}
+				<Button iconRight='arrowRight' iconRightColor='white' type='submit'>
 					Sign In
 				</Button>
 				<StyledLink to='/restorepassword'>Forgot Password?</StyledLink>

@@ -6,12 +6,12 @@ import {
 	AuthFooterWrapper,
 } from 'elements';
 import { Button, FormTextField } from 'components';
-import { useFormikTextFields } from './useFormikTextFields';
-import { formikConfig, signUpFieldsConfig } from './signUpFieldsConfig';
+import { useFormikTextFields } from '../hooks';
+import { signUpFormikConfig, signUpFieldsConfig } from './signUpFieldsConfig';
 
 export const SignUp = () => {
 	const [data, handleSubmit] = useFormikTextFields(
-		formikConfig,
+		signUpFormikConfig,
 		signUpFieldsConfig
 	);
 
@@ -19,8 +19,8 @@ export const SignUp = () => {
 		<AuthFormWrapper>
 			<FormTextFieldsWrapper onSubmit={handleSubmit}>
 				<Title>sign up</Title>
-				{data.map(prop => (
-					<FormTextField {...prop} />
+				{data.map(props => (
+					<FormTextField {...props} />
 				))}
 				<Button iconRight='arrowRight' iconRightColor='white' type='submit'>
 					Sign Up
