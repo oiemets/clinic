@@ -126,3 +126,32 @@ export const InnerMainSection = styled.div`
 	align-items: center;
 	justify-content: center;
 `;
+
+export const HeaderWrapper = styled.div`
+	display: flex;
+	flex-flow: column;
+	justify-content: space-evenly;
+	width: 100%;
+	min-height: 170px;
+`;
+
+export const NotFoundTextWrapper = styled.div`
+	width: 60%;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	text-align: center;
+	font: 600 24px 'Poppins';
+	@media screen and (max-width: ${({ theme: { breakpoints } }) =>
+			breakpoints.sm}) {
+		font: 600 17px/22.1px 'Poppins';
+	}
+`;
+
+export const ButtonsHeaderWrapper = styled.div`
+	display: flex;
+	gap: 12px;
+	@media (max-width: ${({ theme: { breakpoints } }) => breakpoints.xs}) {
+		justify-content: center;
+	}
+`;

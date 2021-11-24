@@ -18,17 +18,22 @@ export type PatientsQueryParams = {
 };
 
 export type AppState = {
-	auth?: {};
+	auth?: {
+		authProvider?: AuthProvider;
+	};
 };
 
-export type RegistrationHeader = {
-	userName: string;
-	password: string;
-	firstName: string;
-	lastname: string;
-};
-
-export type RegistrationResponse = {
+export type AuthProvider = {
+	isAuthenticated: boolean;
 	access_token: string;
 	refresh_token: string;
+	profile: UserProfile;
+};
+
+export type UserProfile = {
+	id: string;
+	first_name: string;
+	last_name: string;
+	photo: string;
+	role_name: string;
 };

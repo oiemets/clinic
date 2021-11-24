@@ -5,8 +5,11 @@ import { Provider } from 'react-redux';
 import { appStore } from './store/configStore';
 import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyles } from './styles';
+import { injectStore } from './services';
 
 const store = appStore();
+
+injectStore(store);
 
 ReactDOM.render(
 	<BrowserRouter>

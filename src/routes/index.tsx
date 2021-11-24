@@ -1,25 +1,13 @@
 import { RouteObject, useRoutes } from 'react-router-dom';
-import {
-	SignUpPage,
-	SignInPage,
-	NotFoundPage,
-	ResetPasswordPage,
-	RestorePasswordPage,
-	Home,
-	PatientsPage,
-} from 'pages';
+import { NotFoundPage, HomePage } from 'pages';
+import { publicRoutes } from './public';
+import { privateRoutes } from './private';
 
 const routes: RouteObject[] = [
 	{
 		path: '/',
-		element: <Home />,
-		children: [
-			{ path: 'signup', element: <SignUpPage /> },
-			{ path: 'signin', element: <SignInPage /> },
-			{ path: 'resetpassword', element: <ResetPasswordPage /> },
-			{ path: 'restorepassword', element: <RestorePasswordPage /> },
-			{ path: 'patients', element: <PatientsPage /> },
-		],
+		element: <HomePage />,
+		children: [...publicRoutes, ...privateRoutes],
 	},
 	{ path: '*', element: <NotFoundPage /> },
 ];

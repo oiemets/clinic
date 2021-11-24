@@ -1,6 +1,6 @@
-import { takeLatest } from 'redux-saga/effects';
-import { loadingPatients } from '../modules';
+import { all, fork } from 'redux-saga/effects';
+import { authSaga } from '../modules';
 
-export function* watcherSaga() {
-	yield takeLatest('patients/loadingStart', loadingPatients);
+export function* rootSaga() {
+	yield all([fork(authSaga)]);
 }

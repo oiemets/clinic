@@ -6,12 +6,25 @@ import {
 	AuthFooterWrapper,
 } from 'elements';
 import { Button, FormTextField } from 'components';
-import { useFormikTextFields } from '../hooks';
+import { useFormikTextFields } from 'hooks';
 import { signInFormikConfig, signInFieldsConfig } from './signInFieldsConfig';
+import { FormikHelpers, FormikValues } from 'formik';
+import { useDispatch } from 'react-redux';
+import { signInRequest } from '../redux/signInSlice';
 
 export const SignIn = () => {
+	const dispatch = useDispatch();
+
+	const onSubmit = (
+		values: FormikValues,
+		{ resetForm }: FormikHelpers<FormikValues>
+	) => {
+		dispatch(signInRequest(values));
+		resetForm();
+	};
+
 	const [data, handleSubmit] = useFormikTextFields(
-		signInFormikConfig,
+		signInFormikConfig(onSubmit),
 		signInFieldsConfig
 	);
 

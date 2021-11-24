@@ -1,18 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { watcherSaga } from './rootSaga';
+import { rootSaga } from './rootSaga';
 import { sagaMiddleware, logger } from './middlewares';
-import { patientsReducer, authReducer } from 'modules';
+import { rootReducer } from './rootReducer';
 
 export const appStore = () => {
 	const store = configureStore({
-		reducer: {
-			patients: patientsReducer,
-			auth: authReducer,
-		},
+		reducer: rootReducer,
 		middleware: [sagaMiddleware, logger],
 		preloadedState: {},
 	});
 
-	sagaMiddleware.run(watcherSaga);
+	sagaMiddleware.run(rootSaga);
 	return store;
 };

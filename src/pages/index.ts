@@ -1,4 +1,5 @@
 export * from './Auth';
 export * from './NotFound';
-export * from './Home';
+export * from './HomePage';
 export * from './Doctor';
+export * from './Patient';

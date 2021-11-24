@@ -8,7 +8,9 @@ const lastName = Yup.string()
 	.max(20, 'Must be 20 characters or less')
 	.required('Required');
 
-const email = Yup.string().email('Invalid email address').required('Required');
+const userName = Yup.string()
+	.email('Invalid email address')
+	.required('Required');
 
 const password = Yup.string()
 	.required('Password should not be empty')
@@ -22,11 +24,11 @@ const confirmPassword = Yup.string()
 export const signUpValidationSchema = Yup.object({
 	firstName,
 	lastName,
-	email,
+	userName,
 	password,
 	confirmPassword,
 });
 
-export const signInValidationSchema = Yup.object({ email, password });
+export const signInValidationSchema = Yup.object({ userName, password });
 
-export const restorePasswordValidationSchema = Yup.object({ email });
+export const restorePasswordValidationSchema = Yup.object({ userName });

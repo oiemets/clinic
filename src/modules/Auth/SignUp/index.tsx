@@ -6,7 +6,7 @@ import {
 	AuthFooterWrapper,
 } from 'elements';
 import { Button, FormTextField } from 'components';
-import { useFormikTextFields } from '../hooks';
+import { useFormikTextFields } from 'hooks';
 import { signUpFormikConfig, signUpFieldsConfig } from './signUpFieldsConfig';
 
 export const SignUp = () => {

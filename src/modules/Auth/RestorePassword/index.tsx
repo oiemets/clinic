@@ -6,7 +6,7 @@ import {
 	Text,
 } from 'elements';
 import { Button, FormTextField, Icon } from 'components';
-import { useFormikTextFields } from '../hooks';
+import { useFormikTextFields } from '../../../hooks';
 import {
 	restorePasswordFormikConfig,
 	restorePasswordFieldsConfig,

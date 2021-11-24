@@ -1,15 +1,15 @@
-import { HeaderWrapper, HeaderTitle, ButtonsWrapper } from './style';
+import { HeaderWrapper, HeaderTitle, ButtonsHeaderWrapper } from 'elements';
 import { Button } from 'components';
 
 export const DoctorPageHeader = () => {
 	return (
 		<HeaderWrapper>
-			<ButtonsWrapper>
+			<ButtonsHeaderWrapper>
 				<Button>Patients</Button>
 				<Button variant='white' titleColor='lightBlue' fontLighter>
 					Resolutions
 				</Button>
-			</ButtonsWrapper>
+			</ButtonsHeaderWrapper>
 
 			<HeaderTitle>My Patients</HeaderTitle>
 		</HeaderWrapper>
