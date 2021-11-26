@@ -7,7 +7,7 @@ export const RequireAuth: React.FC = ({ children }) => {
 	const isAuthenticated = useTypedSelector(isAuth);
 
 	if (!isAuthenticated) {
-		return <Navigate to='/signup' state={{ from: location }} />;
+		return <Navigate to='/' state={{ from: location }} />;
 	}
 
 	return (

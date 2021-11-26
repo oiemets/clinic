@@ -20,13 +20,22 @@ export const PatientPageHeader: React.FC<PatientPageHeaderProps> = ({
 	return (
 		<HeaderWrapper>
 			<ButtonsHeaderWrapper>
-				<Button {...(isActive === 'profile' ? active : unactive)}>
+				<Button
+					{...(isActive === 'profile' ? active : unactive)}
+					linkTo='/profile'
+				>
 					Profile
 				</Button>
-				<Button {...(isActive === 'appointments' ? active : unactive)}>
+				<Button
+					{...(isActive === 'appointments' ? active : unactive)}
+					linkTo='/appointments'
+				>
 					Appointments
 				</Button>
-				<Button {...(isActive === 'resolutions' ? active : unactive)}>
+				<Button
+					{...(isActive === 'resolutions' ? active : unactive)}
+					linkTo='/resolutions'
+				>
 					Resolutions
 				</Button>
 			</ButtonsHeaderWrapper>

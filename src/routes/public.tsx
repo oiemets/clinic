@@ -5,11 +5,13 @@ import {
 	SignInPage,
 	ResetPasswordPage,
 	RestorePasswordPage,
+	NotFoundPage,
 } from 'pages';
 
 export const publicRoutes: RouteObject[] = [
-	{ path: 'signup', element: <SignUpPage /> },
+	{ index: true, element: <SignUpPage /> },
 	{ path: 'signin', element: <SignInPage /> },
 	{ path: 'resetpassword', element: <ResetPasswordPage /> },
 	{ path: 'restorepassword', element: <RestorePasswordPage /> },
+	{ path: '*', element: <NotFoundPage /> },
 ];

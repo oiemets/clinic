@@ -33,6 +33,7 @@ export const GlobalStyles = createGlobalStyle<CreateGlobalStyleProps>`
   a {
     font-weight: 600;
     color: ${({ theme: { colors } }) => colors.darkBlue};
+    text-decoration: none;
   }
 
 `;

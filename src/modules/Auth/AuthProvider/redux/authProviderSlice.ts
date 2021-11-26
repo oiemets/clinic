@@ -3,6 +3,7 @@ import { AuthProvider } from 'types';
 
 const authProviderInitialState: AuthProvider = {
 	isAuthenticated: false,
+	readyToRedirect: false,
 	access_token: '',
 	refresh_token: '',
 	profile: {
@@ -27,6 +28,12 @@ const authProviderSlice = createSlice({
 			...state,
 			profile: payload,
 			isAuthenticated: true,
+			readyToRedirect: true,
+		}),
+
+		readyToRedirectEnd: state => ({
+			...state,
+			readyToRedirect: false,
 		}),
 
 		signOutRequest: () => authProviderInitialState,
@@ -34,5 +41,6 @@ const authProviderSlice = createSlice({
 });
 
 const { actions, reducer } = authProviderSlice;
-export const { setAuth, signOutRequest, setProfile } = actions;
+export const { setAuth, signOutRequest, setProfile, readyToRedirectEnd } =
+	actions;
 export { reducer as authProviderReducer };

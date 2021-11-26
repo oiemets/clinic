@@ -1,6 +1,7 @@
 import { Btn, BtnProps, IconPosition } from './styles';
 import { Icon, icons } from '../Icon';
 import { Colors } from '../../styles';
+import { Link } from 'react-router-dom';
 
 export type ButtonProps = BtnProps & {
 	iconLeft?: keyof typeof icons;
@@ -9,6 +10,7 @@ export type ButtonProps = BtnProps & {
 	iconLeftColor?: Colors;
 	onClick?: () => void;
 	type?: 'submit' | 'reset';
+	linkTo?: string;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -23,8 +25,9 @@ export const Button: React.FC<ButtonProps> = ({
 	children,
 	onClick,
 	type,
+	linkTo,
 }) => {
-	return (
+	const RenderButton = () => (
 		<Btn
 			variant={variant}
 			titleColor={titleColor}
@@ -45,5 +48,17 @@ export const Button: React.FC<ButtonProps> = ({
 				</IconPosition>
 			)}
 		</Btn>
+	);
+
+	return (
+		<>
+			{linkTo ? (
+				<Link to={linkTo ?? ''}>
+					<RenderButton />
+				</Link>
+			) : (
+				<RenderButton />
+			)}
+		</>
 	);
 };

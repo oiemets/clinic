@@ -154,4 +154,8 @@ export const ButtonsHeaderWrapper = styled.div`
 	@media (max-width: ${({ theme: { breakpoints } }) => breakpoints.xs}) {
 		justify-content: center;
 	}
+	@media (max-width: ${({ theme: { breakpoints } }) => breakpoints.md}) {
+		justify-content: center;
+		flex-wrap: wrap;
+	}
 `;
