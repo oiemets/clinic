@@ -1,10 +1,8 @@
-import { RouteObject, useRoutes } from 'react-router-dom';
-import { publicRoutes } from './public';
-import { privateRoutes } from './private';
-
-const routes: RouteObject[] = [...publicRoutes, ...privateRoutes];
+import { useRoutes } from 'react-router-dom';
+import { useClinicRoutes } from './routes';
 
 export const AppRouter = () => {
-	let appRouter = useRoutes(routes);
+	const routes = useClinicRoutes();
+	const appRouter = useRoutes(routes);
 	return <>{appRouter}</>;
 };

@@ -1,9 +1,10 @@
-import { PatientPageWrapper } from '../components';
+import { InnerPageWrapper, PatientPageHeader } from 'components';
 
 export const PatientAppointments = () => {
 	return (
-		<PatientPageWrapper isActive='appointments' title='Appointments'>
+		<InnerPageWrapper>
+			<PatientPageHeader isActive='appointments' />
 			appointments
-		</PatientPageWrapper>
+		</InnerPageWrapper>
 	);
 };

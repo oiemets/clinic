@@ -1,48 +1,39 @@
-import { RouteObject } from 'react-router-dom';
-import { RequireAuth } from 'modules';
+import { RouteObject, Navigate } from 'react-router-dom';
 import {
 	PatientsPage,
 	PatientAppointmentsPage,
 	PatientProfilePage,
 	PatientResolutionsPage,
+	UserPage,
+	NotFoundPage,
 } from 'pages';
 
-const Patient: RouteObject[] = [
+export const patient: RouteObject[] = [
 	{
-		path: 'appointments',
-		element: (
-			<RequireAuth>
-				<PatientAppointmentsPage />
-			</RequireAuth>
-		),
+		path: '/',
+		element: <UserPage />,
+		children: [
+			{
+				path: 'appointments',
+				element: <PatientAppointmentsPage />,
+			},
+			{
+				path: 'profile',
+				element: <PatientProfilePage />,
+			},
+			{
+				path: 'resolutions',
+				element: <PatientResolutionsPage />,
+			},
+		],
 	},
-	{
-		path: 'profile',
-		element: (
-			<RequireAuth>
-				<PatientProfilePage />
-			</RequireAuth>
-		),
-	},
-	{
-		path: 'resolutions',
-		element: (
-			<RequireAuth>
-				<PatientResolutionsPage />
-			</RequireAuth>
-		),
-	},
+	{ index: true, element: <Navigate to='appointments' /> },
+	{ path: '*', element: <NotFoundPage /> },
 ];
 
-const Doctor: RouteObject[] = [
+export const doctor: RouteObject[] = [
 	{
 		path: 'patients',
-		element: (
-			<RequireAuth>
-				<PatientsPage />
-			</RequireAuth>
-		),
+		element: <PatientsPage />,
 	},
 ];
-
-export const privateRoutes: RouteObject[] = [...Doctor, ...Patient];

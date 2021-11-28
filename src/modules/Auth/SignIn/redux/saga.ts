@@ -1,12 +1,7 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects';
 import { signIn, getProfileRequest } from 'services';
 import { signInRequest, signInSuccess, signInError } from './signInSlice';
-import {
-	setAuth,
-	signOutRequest,
-	setProfile,
-	readyToRedirectEnd,
-} from '../../AuthProvider';
+import { setAuth, signOutRequest, setProfile } from '../../AuthProvider';
 import { AxiosResponse } from 'axios';
 
 function* createSignIn({ payload }: any) {
@@ -17,7 +12,6 @@ function* createSignIn({ payload }: any) {
 
 		const { data }: AxiosResponse = yield call(getProfileRequest);
 		yield put(setProfile(data));
-		yield put(readyToRedirectEnd());
 	} catch (error) {
 		yield put(signInError());
 		yield put(signOutRequest());

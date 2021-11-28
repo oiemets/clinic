@@ -1,5 +1,5 @@
 import { HeaderWrapper, HeaderTitle, ButtonsHeaderWrapper } from 'elements';
-import { Button, ButtonProps } from 'components';
+import { Button, ButtonProps } from '../Button';
 
 export type PatientPageHeaderProps = {
 	title?: string;

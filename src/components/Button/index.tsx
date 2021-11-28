@@ -27,7 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
 	type,
 	linkTo,
 }) => {
-	const RenderButton = () => (
+	const RenderButton = (
 		<Btn
 			variant={variant}
 			titleColor={titleColor}
@@ -51,14 +51,6 @@ export const Button: React.FC<ButtonProps> = ({
 	);
 
 	return (
-		<>
-			{linkTo ? (
-				<Link to={linkTo ?? ''}>
-					<RenderButton />
-				</Link>
-			) : (
-				<RenderButton />
-			)}
-		</>
+		<>{linkTo ? <Link to={linkTo ?? ''}>{RenderButton}</Link> : RenderButton}</>
 	);
 };

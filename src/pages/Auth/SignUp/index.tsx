@@ -3,11 +3,9 @@ import { AuthPageWrapper, AuthPageBg } from 'elements';
 
 export const SignUpPage = () => {
 	return (
-		<>
-			<AuthPageWrapper>
-				<AuthPageBg />
-				<SignUp />
-			</AuthPageWrapper>
-		</>
+		<AuthPageWrapper>
+			<AuthPageBg />
+			<SignUp />
+		</AuthPageWrapper>
 	);
 };
