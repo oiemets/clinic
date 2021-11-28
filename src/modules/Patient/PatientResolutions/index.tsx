@@ -1,9 +1,10 @@
-import { PatientPageWrapper } from '../components';
+import { InnerPageWrapper, PatientPageHeader } from 'components';
 
 export const PatientResolutions = () => {
 	return (
-		<PatientPageWrapper isActive='resolutions' title='Resolutions'>
+		<InnerPageWrapper>
+			<PatientPageHeader isActive='resolutions' />
 			resolutions
-		</PatientPageWrapper>
+		</InnerPageWrapper>
 	);
 };

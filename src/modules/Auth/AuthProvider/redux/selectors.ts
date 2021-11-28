@@ -3,11 +3,16 @@ import { AppState } from 'types';
 
 const authSelector = (state: AppState) => state.auth;
 
-export const isAuth = createSelector(authSelector, auth => {
+export const userProfile = createSelector(authSelector, auth => {
+	if (auth?.authProvider?.profile) {
+		return auth?.authProvider?.profile;
+	}
+});
+
+export const isAuthed = createSelector(authSelector, auth => {
 	if (auth?.authProvider?.isAuthenticated) {
 		return auth.authProvider.isAuthenticated;
 	}
-	return false;
 });
 
 export const userRole = createSelector(authSelector, auth => {
