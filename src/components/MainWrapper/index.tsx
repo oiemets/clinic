@@ -1,13 +1,18 @@
 import { PageWrapper, PageHeader } from 'elements';
 import { Logo } from 'assets';
-import { UserAvatar } from 'components';
+import { UserAvatar, UserAvatarProps } from 'components';
 
-export const MainWrapper: React.FC = ({ children }) => {
+export type MainWrapperProps = UserAvatarProps & {};
+
+export const MainWrapper: React.FC<MainWrapperProps> = ({
+	children,
+	...rest
+}) => {
 	return (
 		<PageWrapper>
 			<PageHeader>
 				<Logo />
-				<UserAvatar />
+				<UserAvatar {...rest} />
 			</PageHeader>
 			{children}
 		</PageWrapper>

@@ -1,1 +1,1 @@
-export * from './networkService';
+export * from './api';

@@ -1,11 +1,12 @@
+import { VariantType } from 'notistack';
 export type Patient = {
 	id: string;
-	first_name: string;
-	last_name: string;
+	firstName: string;
+	lastName: string;
 	ogin: string;
 	password: string;
 	photo: string;
-	role_id: string;
+	roleIid: string;
 };
 
 export type Patients = {
@@ -18,17 +19,29 @@ export type PatientsQueryParams = {
 };
 
 export type AppState = {
-	auth?: {};
+	auth?: {
+		authProvider?: AuthProvider;
+	};
+	snackBar?: SnackBar;
 };
 
-export type RegistrationHeader = {
-	userName: string;
-	password: string;
-	firstName: string;
-	lastname: string;
+export type AuthProvider = {
+	isAuthenticated?: boolean;
+	accessToken?: string;
+	refreshToken?: string;
+	profile?: UserProfile;
 };
 
-export type RegistrationResponse = {
-	access_token: string;
-	refresh_token: string;
+export type UserProfile = {
+	id?: string;
+	firstName?: string;
+	lastName?: string;
+	photo?: string;
+	roleName?: string;
+};
+
+export type SnackBar = {
+	type?: VariantType;
+	message?: string;
+	key?: string;
 };

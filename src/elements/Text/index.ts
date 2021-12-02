@@ -27,15 +27,7 @@ export const TitleWithIconWrapper = styled.div`
 
 export const Text = styled.p``;
 
-export const NotFoundTextWrapper = styled.div`
-	width: 60%;
-	display: flex;
-	flex-flow: column;
-	align-items: center;
-	text-align: center;
-	font: 600 24px 'Poppins';
-	@media screen and (max-width: ${({ theme: { breakpoints } }) =>
-			breakpoints.sm}) {
-		font: 600 17px/22.1px 'Poppins';
-	}
+export const HeaderTitle = styled.h1`
+	font: 600 24px/26.4px 'Poppins';
+	color: ${({ theme: { colors } }) => colors.black};
 `;

@@ -21,4 +21,3 @@ export const Patients = () => {
 };
 
 export * from './PatientsSlice';
-export * from './saga';

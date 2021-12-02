@@ -6,28 +6,30 @@ import {
 	AuthFooterWrapper,
 } from 'elements';
 import { Button, FormTextField } from 'components';
+import { useFormikTextFields } from 'hooks';
+import { signUpFormikConfig, signUpFieldsConfig } from './signUpFieldsConfig';
+import { SIGN_IN } from 'routes';
 
 export const SignUp = () => {
+	const [data, handleSubmit] = useFormikTextFields(
+		signUpFormikConfig,
+		signUpFieldsConfig
+	);
+
 	return (
 		<AuthFormWrapper>
-			<FormTextFieldsWrapper>
+			<FormTextFieldsWrapper onSubmit={handleSubmit}>
 				<Title>sign up</Title>
-				<FormTextField icon='user' placeholder='First Name' />
-				<FormTextField icon='user' placeholder='Last Name' />
-				<FormTextField icon='email' placeholder='Email' />
-				<FormTextField icon='lock' placeholder='Password' />
-				<FormTextField
-					icon='check'
-					placeholder='Confirm Password'
-					iconRight='eyeslash'
-				/>
-				<Button iconRight='arrowRight' iconRightColor='white'>
+				{data.map(props => (
+					<FormTextField {...props} />
+				))}
+				<Button iconRight='arrowRight' iconRightColor='white' type='submit'>
 					Sign Up
 				</Button>
 			</FormTextFieldsWrapper>
 			<AuthFooterWrapper>
 				Already have an account?
-				<StyledLink to='/signin'>Sign in</StyledLink>
+				<StyledLink to={'/' + SIGN_IN}>Sign in</StyledLink>
 			</AuthFooterWrapper>
 		</AuthFormWrapper>
 	);
