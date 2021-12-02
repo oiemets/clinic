@@ -8,19 +8,16 @@ import {
 import { Button, FormTextField } from 'components';
 import { useFormikTextFields } from 'hooks';
 import { signInFormikConfig, signInFieldsConfig } from './signInFieldsConfig';
-import { FormikHelpers, FormikValues } from 'formik';
+import { FormikValues } from 'formik';
 import { useDispatch } from 'react-redux';
 import { signInRequest } from '../redux/signInSlice';
+import { SIGN_UP, RESTORE_PASSWORD } from 'routes';
 
 export const SignIn = () => {
 	const dispatch = useDispatch();
 
-	const onSubmit = (
-		values: FormikValues,
-		{ resetForm }: FormikHelpers<FormikValues>
-	) => {
+	const onSubmit = (values: FormikValues) => {
 		dispatch(signInRequest(values));
-		resetForm();
 	};
 
 	const [data, handleSubmit] = useFormikTextFields(
@@ -38,11 +35,11 @@ export const SignIn = () => {
 				<Button iconRight='arrowRight' iconRightColor='white' type='submit'>
 					Sign In
 				</Button>
-				<StyledLink to='/restorepassword'>Forgot Password?</StyledLink>
+				<StyledLink to={'/' + RESTORE_PASSWORD}>Forgot Password?</StyledLink>
 			</FormTextFieldsWrapper>
 			<AuthFooterWrapper>
 				Don't have an account?
-				<StyledLink to='/'>Sign up</StyledLink>
+				<StyledLink to={'/' + SIGN_UP}>Sign up</StyledLink>
 			</AuthFooterWrapper>
 		</AuthFormWrapper>
 	);

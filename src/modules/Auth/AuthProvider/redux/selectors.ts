@@ -3,20 +3,27 @@ import { AppState } from 'types';
 
 const authSelector = (state: AppState) => state.auth;
 
-export const userProfile = createSelector(authSelector, auth => {
-	if (auth?.authProvider?.profile) {
-		return auth?.authProvider?.profile;
-	}
-});
+export const getAccessToken = createSelector(
+	authSelector,
+	auth => auth?.authProvider?.accessToken
+);
 
-export const isAuthed = createSelector(authSelector, auth => {
-	if (auth?.authProvider?.isAuthenticated) {
-		return auth.authProvider.isAuthenticated;
-	}
-});
+export const getRefreshToken = createSelector(
+	authSelector,
+	auth => auth?.authProvider?.refreshToken
+);
 
-export const userRole = createSelector(authSelector, auth => {
-	if (auth?.authProvider?.profile.role_name) {
-		return auth?.authProvider?.profile.role_name;
-	}
-});
+export const userProfile = createSelector(
+	authSelector,
+	auth => auth?.authProvider?.profile
+);
+
+export const isAuthed = createSelector(
+	authSelector,
+	auth => auth?.authProvider?.isAuthenticated
+);
+
+export const userRole = createSelector(
+	authSelector,
+	auth => auth?.authProvider?.profile?.roleName
+);

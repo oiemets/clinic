@@ -5,20 +5,20 @@ import { Provider } from 'react-redux';
 import { appStore } from './store/configStore';
 import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyles } from './styles';
-import { injectStore } from './services';
 import { PersistGate } from 'redux-persist/integration/react';
+import { SnackBarProvider } from 'modules';
 
 const { store, persistor } = appStore();
-
-injectStore(store);
 
 ReactDOM.render(
 	<Provider store={store}>
 		<PersistGate persistor={persistor}>
 			<BrowserRouter>
 				<ThemeProvider theme={theme}>
-					<GlobalStyles />
-					<App />
+					<SnackBarProvider>
+						<GlobalStyles />
+						<App />
+					</SnackBarProvider>
 				</ThemeProvider>
 			</BrowserRouter>
 		</PersistGate>

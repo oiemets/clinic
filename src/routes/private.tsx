@@ -1,5 +1,12 @@
 import { RouteObject, Navigate } from 'react-router-dom';
 import {
+	ROOT,
+	APPOINTMENTS,
+	PROFILE,
+	RESOLUTIONS,
+	PATIENTS,
+} from './pageRoutes';
+import {
 	PatientsPage,
 	PatientAppointmentsPage,
 	PatientProfilePage,
@@ -10,31 +17,31 @@ import {
 
 export const patient: RouteObject[] = [
 	{
-		path: '/',
+		path: ROOT,
 		element: <UserPage />,
 		children: [
-			{ index: true, element: <Navigate to='appointments' /> },
+			{ index: true, element: <Navigate to={APPOINTMENTS} /> },
 			{
-				path: 'appointments',
+				path: APPOINTMENTS,
 				element: <PatientAppointmentsPage />,
 			},
 			{
-				path: 'profile',
+				path: PROFILE,
 				element: <PatientProfilePage />,
 			},
 			{
-				path: 'resolutions',
+				path: RESOLUTIONS,
 				element: <PatientResolutionsPage />,
 			},
 		],
 	},
-	{ path: '/*', element: <Navigate to='appointments' /> },
+	{ path: '/*', element: <Navigate to={APPOINTMENTS} /> },
 	{ path: '*', element: <NotFoundPage /> },
 ];
 
 export const doctor: RouteObject[] = [
 	{
-		path: 'patients',
+		path: PATIENTS,
 		element: <PatientsPage />,
 	},
 ];

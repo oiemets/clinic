@@ -8,7 +8,7 @@ const signInSlice = createSlice({
 	name: 'auth',
 	initialState: signInInitialState,
 	reducers: {
-		signInRequest: (state, action) => {
+		signInRequest: (state, { payload }) => {
 			state.isFetching = true;
 		},
 		signInSuccess: state => {

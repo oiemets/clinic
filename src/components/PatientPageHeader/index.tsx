@@ -1,5 +1,6 @@
 import { HeaderWrapper, HeaderTitle, ButtonsHeaderWrapper } from 'elements';
 import { Button, ButtonProps } from '../Button';
+import { PROFILE, APPOINTMENTS, RESOLUTIONS } from 'routes';
 
 export type PatientPageHeaderProps = {
 	title?: string;
@@ -22,19 +23,19 @@ export const PatientPageHeader: React.FC<PatientPageHeaderProps> = ({
 			<ButtonsHeaderWrapper>
 				<Button
 					{...(isActive === 'profile' ? active : unactive)}
-					linkTo='/profile'
+					linkTo={'/' + PROFILE}
 				>
 					Profile
 				</Button>
 				<Button
 					{...(isActive === 'appointments' ? active : unactive)}
-					linkTo='/appointments'
+					linkTo={'/' + APPOINTMENTS}
 				>
 					Appointments
 				</Button>
 				<Button
 					{...(isActive === 'resolutions' ? active : unactive)}
-					linkTo='/resolutions'
+					linkTo={'/' + RESOLUTIONS}
 				>
 					Resolutions
 				</Button>

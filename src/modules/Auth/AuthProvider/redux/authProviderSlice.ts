@@ -3,14 +3,14 @@ import { AuthProvider } from 'types';
 
 const authProviderInitialState: AuthProvider = {
 	isAuthenticated: false,
-	access_token: '',
-	refresh_token: '',
+	accessToken: '',
+	refreshToken: '',
 	profile: {
 		id: '',
-		first_name: '',
-		last_name: '',
+		firstName: '',
+		lastName: '',
 		photo: '',
-		role_name: '',
+		roleName: '',
 	},
 };
 
@@ -23,6 +23,8 @@ const authProviderSlice = createSlice({
 			...payload,
 		}),
 
+		getProfile: () => {},
+
 		setProfile: (state, { payload }) => ({
 			...state,
 			profile: payload,
@@ -30,9 +32,27 @@ const authProviderSlice = createSlice({
 		}),
 
 		signOutRequest: () => authProviderInitialState,
+		authenticate: () => {},
+		removeAccessToken: state => {
+			state.accessToken = '';
+		},
+		refreshTokens: () => {},
+		setRefreshedTokens: (state, { payload }) => ({
+			...state,
+			...payload,
+		}),
 	},
 });
 
 const { actions, reducer } = authProviderSlice;
-export const { setAuth, signOutRequest, setProfile } = actions;
+export const {
+	setAuth,
+	signOutRequest,
+	setProfile,
+	authenticate,
+	removeAccessToken,
+	getProfile,
+	setRefreshedTokens,
+	refreshTokens,
+} = actions;
 export { reducer as authProviderReducer };

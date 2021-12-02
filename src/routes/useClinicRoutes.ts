@@ -1,10 +1,10 @@
 import { userRole } from 'modules';
-import { useTypedSelector } from 'hooks';
+import { useSelector } from 'react-redux';
 import { publicRoutes } from './public';
 import { patient } from './private';
 
 export const useClinicRoutes = () => {
-	const user = useTypedSelector(userRole);
+	const user = useSelector(userRole);
 
 	if (user === 'Patient') {
 		return [...patient];

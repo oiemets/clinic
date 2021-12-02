@@ -8,6 +8,7 @@ import {
 import { Button, FormTextField } from 'components';
 import { useFormikTextFields } from 'hooks';
 import { signUpFormikConfig, signUpFieldsConfig } from './signUpFieldsConfig';
+import { SIGN_IN } from 'routes';
 
 export const SignUp = () => {
 	const [data, handleSubmit] = useFormikTextFields(
@@ -28,7 +29,7 @@ export const SignUp = () => {
 			</FormTextFieldsWrapper>
 			<AuthFooterWrapper>
 				Already have an account?
-				<StyledLink to='/signin'>Sign in</StyledLink>
+				<StyledLink to={'/' + SIGN_IN}>Sign in</StyledLink>
 			</AuthFooterWrapper>
 		</AuthFormWrapper>
 	);

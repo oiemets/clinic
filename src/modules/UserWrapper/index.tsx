@@ -1,16 +1,16 @@
 import { MainWrapper, MainWrapperProps } from 'components';
-import { useTypedSelector } from 'hooks';
+import { useSelector } from 'react-redux';
 import { userProfile } from 'modules';
 
 type UserWrapperProps = MainWrapperProps & {};
 
 export const UserWrapper: React.FC<UserWrapperProps> = ({ children }) => {
-	const user = useTypedSelector(userProfile);
+	const user = useSelector(userProfile);
 
 	return (
 		<MainWrapper
-			avatarTitle={user?.first_name + ' ' + user?.last_name}
-			avatarUserRole={user?.role_name}
+			avatarTitle={user?.firstName + ' ' + user?.lastName}
+			avatarUserRole={user?.roleName}
 			avatarPhoto={user?.photo}
 		>
 			{children}
