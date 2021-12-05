@@ -23,6 +23,7 @@ export type AppState = {
 		authProvider?: AuthProvider;
 	};
 	snackBar?: SnackBar;
+	wizardProvider?: WizardProvider;
 };
 
 export type AuthProvider = {
@@ -44,4 +45,24 @@ export type SnackBar = {
 	type?: VariantType;
 	message?: string;
 	key?: string;
+};
+
+export type Specialization = {
+	id: string;
+	specializationName: string;
+};
+
+export type Doctor = {
+	id: string;
+	firstName: string;
+	lastName: string;
+};
+
+export type Specializations = Specialization[];
+
+export type WizardProvider = {
+	specializations: Specializations;
+	doctorsBySpecialty: Doctor[];
+	reasonForTheVisit: string;
+	note?: string;
 };

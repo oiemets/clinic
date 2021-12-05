@@ -8,6 +8,11 @@ export type BtnProps = {
 	fontLighter?: boolean;
 };
 
+type IconPositionProps = {
+	left?: boolean;
+	right?: boolean;
+};
+
 export const Btn = styled.button<BtnProps>`
 	border: ${({ theme: { colors }, border }) =>
 		border ? '1px solid ' + colors[border] : 'none'};
@@ -44,6 +49,7 @@ export const Btn = styled.button<BtnProps>`
 	}
 `;
 
-export const IconPosition = styled.div`
-	transform: translate(50%, 0%);
+export const IconPosition = styled.div<IconPositionProps>`
+	${({ left }) =>
+		left ? 'transform: translate(-50%, 0%)' : 'transform: translate(50%, 0%)'}
 `;

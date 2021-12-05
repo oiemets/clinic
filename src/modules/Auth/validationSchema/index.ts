@@ -21,6 +21,14 @@ const confirmPassword = Yup.string()
 	.min(10, 'Password should be at least 10 characters.')
 	.oneOf([Yup.ref('password')], 'Passwords do not match.');
 
+const reason = Yup.string()
+	.required('This field should not be empty')
+	.max(50, 'Must be 50 characters or less');
+
+const specialty = Yup.string().required('This field should not be empty');
+
+const doctorID = Yup.string().required('This field should not be empty');
+
 export const signUpValidationSchema = Yup.object({
 	firstName,
 	lastName,
@@ -32,3 +40,9 @@ export const signUpValidationSchema = Yup.object({
 export const signInValidationSchema = Yup.object({ userName, password });
 
 export const restorePasswordValidationSchema = Yup.object({ userName });
+
+export const createAppointmentFormSchema = Yup.object({
+	specialty,
+	doctorID,
+	reason,
+});

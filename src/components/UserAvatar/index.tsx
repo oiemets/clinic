@@ -1,9 +1,11 @@
+// import { useState, SyntheticEvent } from 'react';
 import {
 	UserAvatarWrapper,
 	UserAvatarTitle,
 	UserAvatarRole,
 	UserIcon,
 	UserAvatarTitleWrapper,
+	// UserPhoto,
 } from './style';
 
 export type UserAvatarProps = {
@@ -15,13 +17,25 @@ export type UserAvatarProps = {
 export const UserAvatar: React.FC<UserAvatarProps> = ({
 	avatarTitle,
 	avatarUserRole,
+	avatarPhoto,
 }) => {
+	// const [photoLoaded, setPhotoLoaded] = useState(true);
+
+	// const onError = (e: SyntheticEvent<HTMLDivElement>) => setPhotoLoaded(false);
+
 	return (
 		<UserAvatarWrapper>
 			<UserAvatarTitleWrapper>
 				<UserAvatarTitle>{avatarTitle}</UserAvatarTitle>
 				<UserAvatarRole>{avatarUserRole}</UserAvatarRole>
 			</UserAvatarTitleWrapper>
+
+			{/* {photoLoaded ? (
+				<UserPhoto src={avatarPhoto} alt='user image' onError={onError} />
+			) : (
+				<UserIcon />
+			)} */}
+
 			<UserIcon />
 		</UserAvatarWrapper>
 	);

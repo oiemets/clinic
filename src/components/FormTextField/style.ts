@@ -11,6 +11,17 @@ export type InputBarProps = {
 	borderColor?: Colors | null;
 };
 
+export const MainTextFieldWrapper = styled.div`
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 16px;
+`;
+
+export const TextFieldTitle = styled.h3`
+	font: 500 13px/17px 'Poppins';
+	color: #000000;
+`;
+
 export const IconPosition = styled.span<IconPositionProps>`
 	position: absolute;
 	left: ${({ left }) => (left ? '5%' : '')};
@@ -35,7 +46,7 @@ export const InputContainer = styled.div`
 
 export const InputBar = styled.input<InputBarProps>`
 	width: 100%;
-	padding: 1em 1em 1em 3.5em;
+	padding: ${({ isIcon }) => (isIcon ? '1em 1em 1em 3.5em' : '1em')};
 	border-radius: 8px;
 	border: 1px solid
 		${({ theme: { colors }, borderColor }) =>

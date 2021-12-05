@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { User } from 'assets';
 
 export const UserAvatarWrapper = styled.div`
-	/* border: 1px solid green; */
 	display: flex;
 	gap: 16px;
 `;
@@ -34,4 +33,11 @@ export const UserIcon = styled(User)`
 	& path {
 		fill: currentColor;
 	}
+`;
+
+export const UserPhoto = styled.img`
+	object-fit: cover;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
 `;

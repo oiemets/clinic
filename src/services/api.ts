@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { mapKeys, camelCase, rearg } from 'lodash';
 import { AuthProvider } from 'types';
+import { keysToCamelCase } from 'utils';
 
 class TheClinicAPI {
 	private token: AuthProvider['accessToken'] = '';
@@ -31,7 +31,7 @@ class TheClinicAPI {
 
 	private setupResponseInterceptor = () =>
 		this.instance.interceptors.response.use((response: AxiosResponse) => {
-			response.data = mapKeys(response.data, rearg(camelCase, 1));
+			response.data = keysToCamelCase(response.data);
 			return response;
 		});
 
@@ -53,6 +53,11 @@ class TheClinicAPI {
 			headers: { authorization: token },
 		});
 	};
+
+	getSpecializations = async () => this.get('specializations');
+
+	getDoctorsBySpecialty = async (id: string) =>
+		this.get(`doctors/specialization/${id}`);
 }
 
 const createApiService = (url: string | undefined, timeout: number) => {

@@ -7,3 +7,4 @@ export const APPOINTMENTS = 'appointments';
 export const PROFILE = 'profile';
 export const RESOLUTIONS = 'resolutions';
 export const PATIENTS = 'patients';
+export const CREATE_APPOINTMENT = 'createappointment';

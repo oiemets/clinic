@@ -8,3 +8,5 @@ export { ReactComponent as Check } from './check.svg';
 export { ReactComponent as Logo } from './logo.svg';
 export { ReactComponent as EmptyState } from './empty-state.svg';
 export { ReactComponent as CardPatch } from './card-patch.svg';
+export { ReactComponent as Plus } from './plus.svg';
+export { ReactComponent as AngleDown } from './angle-down.svg';

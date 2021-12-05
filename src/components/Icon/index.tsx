@@ -8,6 +8,7 @@ import {
 	EyeSlash,
 	ArrowLeft,
 	ArrowRight,
+	Plus,
 } from '../../assets';
 
 type IconProps = {
@@ -25,6 +26,7 @@ export const icons = {
 	eyeslash: EyeSlash,
 	arrowLeft: ArrowLeft,
 	arrowRight: ArrowRight,
+	plus: Plus,
 };
 
 export const StyledIcon = styled.div<IconProps>`

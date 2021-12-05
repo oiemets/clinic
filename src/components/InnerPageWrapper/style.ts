@@ -8,4 +8,5 @@ export const InnerWrapper = styled.div`
 	border-radius: 16px;
 	height: 100%;
 	padding: 40px 40px 30px 40px;
+	gap: 20px;
 `;

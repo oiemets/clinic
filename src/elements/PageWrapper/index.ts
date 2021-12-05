@@ -107,6 +107,10 @@ export const PageWrapper = styled.div`
 			breakpoints.sm}) {
 		padding: 22px 0 0 0;
 	}
+
+	@media (max-height: 685px) {
+		height: 685px;
+	}
 `;
 
 export const PageHeader = styled.div`
@@ -119,12 +123,11 @@ export const PageHeader = styled.div`
 `;
 
 export const InnerMainSection = styled.div`
-	border: 1px solid red;
 	width: 100%;
 	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	/* display: flex; */
+	/* align-items: center; */
+	/* justify-content: center; */
 `;
 
 export const HeaderWrapper = styled.div`
@@ -132,7 +135,7 @@ export const HeaderWrapper = styled.div`
 	flex-flow: column;
 	justify-content: space-evenly;
 	width: 100%;
-	min-height: 170px;
+	padding-bottom: 40px;
 `;
 
 export const NotFoundTextWrapper = styled.div`
