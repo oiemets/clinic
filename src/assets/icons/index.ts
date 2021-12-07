@@ -10,3 +10,5 @@ export { ReactComponent as EmptyState } from './empty-state.svg';
 export { ReactComponent as CardPatch } from './card-patch.svg';
 export { ReactComponent as Plus } from './plus.svg';
 export { ReactComponent as AngleDown } from './angle-down.svg';
+export { ReactComponent as AngleLeft } from './angle-left-b.svg';
+export { ReactComponent as AngleRight } from './angle-right-b.svg';

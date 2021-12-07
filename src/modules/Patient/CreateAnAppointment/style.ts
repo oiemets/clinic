@@ -13,15 +13,8 @@ export const CreateAnAppointmentFormWrapper = styled.form`
 	height: 100%;
 	width: 100%;
 	display: flex;
-	/* justify-content: center; */
-	align-content: center;
+	align-items: center;
 	flex-flow: row nowrap;
-	/* row-gap: 4%; */
-	/* button {
-		margin-top: 20px;
-	} */
-
-	/* border: 1px solid green; */
 `;
 
 export const ButtonWrapper = styled.div`

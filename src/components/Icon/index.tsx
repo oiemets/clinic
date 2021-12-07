@@ -9,6 +9,8 @@ import {
 	ArrowLeft,
 	ArrowRight,
 	Plus,
+	AngleLeft,
+	AngleRight,
 } from '../../assets';
 
 type IconProps = {
@@ -16,6 +18,7 @@ type IconProps = {
 	color?: Colors;
 	showPassword?: boolean;
 	checked?: boolean;
+	onClick?: React.MouseEventHandler<SVGSVGElement>;
 };
 
 export const icons = {
@@ -27,6 +30,8 @@ export const icons = {
 	arrowLeft: ArrowLeft,
 	arrowRight: ArrowRight,
 	plus: Plus,
+	angleleft: AngleLeft,
+	angleright: AngleRight,
 };
 
 export const StyledIcon = styled.div<IconProps>`
@@ -60,6 +65,7 @@ export const Icon: React.FC<IconProps> = ({
 	color,
 	showPassword,
 	checked,
+	...rest
 }) => {
 	const Icon = icons[icon ?? 'user'];
 	return (
@@ -69,7 +75,7 @@ export const Icon: React.FC<IconProps> = ({
 			checked={checked}
 			icon={icon}
 		>
-			<Icon />
+			<Icon {...rest} />
 		</StyledIcon>
 	);
 };
