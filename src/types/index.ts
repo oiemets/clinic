@@ -1,4 +1,5 @@
 import { VariantType } from 'notistack';
+
 export type Patient = {
 	id: string;
 	firstName: string;
@@ -65,4 +66,7 @@ export type WizardProvider = {
 	doctorsBySpecialty: Doctor[];
 	reasonForTheVisit: string;
 	note?: string;
+	selectedDoctorID?: string;
+	availableAppointments?: string[];
+	selectedAppointmentTime?: string;
 };

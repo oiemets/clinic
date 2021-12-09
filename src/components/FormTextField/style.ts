@@ -14,7 +14,7 @@ export type InputBarProps = {
 export const MainTextFieldWrapper = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 16px;
+	gap: 1em;
 `;
 
 export const TextFieldTitle = styled.h3`

@@ -9,12 +9,18 @@ import {
 	SelectedDateCell,
 	ArrowIcon,
 	AdjacentCell,
+	MainCalendarWrapper,
 } from './style';
+import { SelectHeader } from './../SelectHeader';
 import { format, isEqual, isSameDay, isSameMonth } from 'date-fns';
 
-import { useCalendar } from './useCalendar';
+import { useCalendar } from 'hooks';
 
-export const SelectDay = () => {
+type SelectDayProps = {
+	isActive?: boolean;
+};
+
+export const SelectDay: React.FC<SelectDayProps> = ({ isActive }) => {
 	const [
 		calendar,
 		weekLabels,
@@ -36,37 +42,39 @@ export const SelectDay = () => {
 	};
 
 	return (
-		<CalendarWrapper>
-			<CalendarHeader>
-				<ArrowIcon icon='angleleft' color='mediumGrey' onClick={monthBack} />
-				<CalendarTitle>{currentMonth}</CalendarTitle>
-				<ArrowIcon
-					icon='angleright'
-					color='mediumGrey'
-					onClick={monthForward}
-				/>
-			</CalendarHeader>
-			<MonthWrapper>
-				{weekLabels.map((d: string, index: number) => (
-					<CalendarHeaderCell key={d + '-' + index}>{d}</CalendarHeaderCell>
-				))}
+		<MainCalendarWrapper>
+			<SelectHeader number='2' title='Choose a day for an appointment' />
 
-				{calendar.map((d: Date, index: number) => {
-					const key = d.toString() + index;
-					const cell = format(new Date(d), 'd');
-					const isToday = isSameDay(d, selectedDate);
-					const CellType = cellType(d);
-					const Cell = (
-						<CellType
-							key={key}
-							onClick={() => onClick(d)}
-							isToday={isToday}
-							children={cell}
-						/>
-					);
-					return Cell;
-				})}
-			</MonthWrapper>
-		</CalendarWrapper>
+			<CalendarWrapper active={isActive}>
+				<CalendarHeader>
+					<ArrowIcon icon='angleleft' color='mediumGrey' onClick={monthBack} />
+					<CalendarTitle active={isActive}>{currentMonth}</CalendarTitle>
+					<ArrowIcon
+						icon='angleright'
+						color='mediumGrey'
+						onClick={monthForward}
+					/>
+				</CalendarHeader>
+				<MonthWrapper>
+					{weekLabels.map((d: string, index: number) => (
+						<CalendarHeaderCell key={d + '-' + index}>{d}</CalendarHeaderCell>
+					))}
+
+					{calendar.map((d: Date, index: number) => {
+						const CellType = cellType(d);
+						const Cell = (
+							<CellType
+								active={isActive}
+								key={d.toString() + index}
+								isToday={isSameDay(d, selectedDate)}
+								onClick={isActive ? () => onClick(d) : () => {}}
+								children={format(new Date(d), 'd')}
+							/>
+						);
+						return Cell;
+					})}
+				</MonthWrapper>
+			</CalendarWrapper>
+		</MainCalendarWrapper>
 	);
 };

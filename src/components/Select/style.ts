@@ -10,7 +10,7 @@ type SelectFieldWrapperProps = {
 export const SelectWrapper = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 16px;
+	gap: 1em;
 `;
 
 export const SelectFieldWrapper = styled.div<SelectFieldWrapperProps>`

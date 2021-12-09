@@ -6,6 +6,9 @@ const wizardProviderInitialState: WizardProvider = {
 	doctorsBySpecialty: [],
 	reasonForTheVisit: '',
 	note: '',
+	selectedDoctorID: '',
+	availableAppointments: [],
+	selectedAppointmentTime: '',
 };
 
 const wizardProviderSlice = createSlice({
@@ -20,6 +23,22 @@ const wizardProviderSlice = createSlice({
 		setDoctorsBySpecialty: (state, { payload }) => {
 			state.doctorsBySpecialty = payload;
 		},
+		setSelectedDoctorID: (state, { payload }) => {
+			state.selectedDoctorID = payload;
+		},
+		getAvailableAppointments: (state, { payload }) => {},
+		setAvailableAppointments: (state, { payload }) => {
+			state.availableAppointments = payload;
+		},
+		setSelectedAppointmentTime: (state, { payload }) => {
+			state.selectedAppointmentTime = payload;
+		},
+		resetWizardFormValues: state => {
+			state.selectedDoctorID = '';
+			state.selectedAppointmentTime = '';
+			state.doctorsBySpecialty = [];
+			state.availableAppointments = [];
+		},
 	},
 });
 
@@ -29,5 +48,10 @@ export const {
 	setSpecializations,
 	getDoctorsBySpecialty,
 	setDoctorsBySpecialty,
+	setSelectedDoctorID,
+	getAvailableAppointments,
+	setAvailableAppointments,
+	setSelectedAppointmentTime,
+	resetWizardFormValues,
 } = actions;
 export { reducer as wizardProviderReducer };

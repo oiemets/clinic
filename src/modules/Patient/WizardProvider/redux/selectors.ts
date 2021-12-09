@@ -19,3 +19,54 @@ export const getDoctorsSelector = createSelector(
 		return wizard.doctorsBySpecialty;
 	}
 );
+
+export const getSelectedDoctorIDSelector = createSelector(
+	wizardProviderSelector,
+
+	wizard => {
+		if (!wizard) return '';
+		return wizard.selectedDoctorID;
+	}
+);
+
+export const isSelectedDoctorIDSelector = createSelector(
+	wizardProviderSelector,
+
+	wizard => (wizard?.selectedDoctorID ? true : false)
+);
+
+export const getAvailableAppointmentsSelector = createSelector(
+	wizardProviderSelector,
+
+	wizard => {
+		if (!wizard) return [];
+		return wizard.availableAppointments;
+	}
+);
+
+export const getSelectedAppointmentTimeSelector = createSelector(
+	wizardProviderSelector,
+
+	wizard => {
+		if (!wizard) return '';
+		return wizard.selectedAppointmentTime;
+	}
+);
+
+export const getReasonForTheVisitSelector = createSelector(
+	wizardProviderSelector,
+
+	wizard => {
+		if (!wizard) return [];
+		return wizard.reasonForTheVisit;
+	}
+);
+
+export const getSelectedNoteSelector = createSelector(
+	wizardProviderSelector,
+
+	wizard => {
+		if (!wizard) return [];
+		return wizard.note;
+	}
+);

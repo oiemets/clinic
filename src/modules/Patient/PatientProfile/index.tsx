@@ -1,8 +1,7 @@
-import { InnerPageWrapper, PatientPageHeader } from 'components';
-
+import { InnerPageWrapper } from 'elements';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'components';
+import { Button, PatientPageHeader } from 'components';
 import { signOutRequest } from '../../Auth/AuthProvider';
 
 export const PatientProfile = () => {

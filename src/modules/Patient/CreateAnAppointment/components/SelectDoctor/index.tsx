@@ -1,4 +1,5 @@
-import { SelectDoctorWrapper } from './style';
+import { SelectDoctorWrapper, SelectDoctorFieldsWrapper } from './style';
+import { SelectHeader } from '../SelectHeader';
 import { Select, FormTextField } from 'components';
 
 type SelectDoctorProps = {
@@ -12,13 +13,19 @@ export const SelectDoctor: React.FC<SelectDoctorProps> = ({
 }) => {
 	return (
 		<SelectDoctorWrapper>
-			{selectData?.map(props => (
-				<Select {...props} />
-			))}
+			<SelectHeader
+				number='1'
+				title='Select a doctor and define the reason for your visit'
+			/>
+			<SelectDoctorFieldsWrapper>
+				{selectData?.map(props => (
+					<Select {...props} />
+				))}
 
-			{textFieldsData?.map(props => (
-				<FormTextField {...props} />
-			))}
+				{textFieldsData?.map(props => (
+					<FormTextField {...props} />
+				))}
+			</SelectDoctorFieldsWrapper>
 		</SelectDoctorWrapper>
 	);
 };

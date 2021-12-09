@@ -1,35 +1,41 @@
 import styled from 'styled-components';
 import { Icon } from 'components';
 
-type DateCellProps = {
+type DateCellProps = CalendarElementsProps & {
 	isToday?: boolean;
 };
 
-export const CalendarWrapper = styled.div`
-	width: 400px;
-	height: 473px;
-	font: 600 17px/24px 'Poppins';
-	color: ${({ theme: { colors } }) => colors.black};
-	display: flex;
-	flex-flow: column nowrap;
-	border-radius: 12px;
-	background-color: #fff;
+type CalendarElementsProps = {
+	active?: boolean;
+};
+
+export const MainCalendarWrapper = styled.div`
+	display: inline-block;
 `;
 
-export const MonthWrapper = styled.div`
+export const CalendarWrapper = styled.div<CalendarElementsProps>`
+	font: 600 17px/24px 'Poppins';
+	color: ${({ theme: { colors }, active }) =>
+		active ? colors.black : colors.solidGrey};
+	border-radius: 12px;
+	background-color: ${({ theme: { colors } }) => colors.white};
+`;
+
+export const MonthWrapper = styled.div<CalendarElementsProps>`
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	width: 100%;
-	height: 384px;
-	align-self: center;
-	padding: 0 2em;
+	padding: 2em 2em;
 
 	:hover {
-		cursor: pointer;
+		cursor: ${({ active }) => (active ? 'pointer' : 'unset')};
+	}
+
+	@media (max-width: ${({ theme: { breakpoints } }) => breakpoints.xs}) {
+		padding: 0;
 	}
 `;
 
-export const CalendarHeader = styled.div`
+export const CalendarHeader = styled.div<CalendarElementsProps>`
 	width: 100%;
 	display: flex;
 	flex-flow: row nowrap;
@@ -39,25 +45,26 @@ export const CalendarHeader = styled.div`
 	border-bottom: 1px solid ${({ theme: { colors } }) => colors.lightGrey};
 `;
 
-export const CalendarTitle = styled.h1`
+export const CalendarTitle = styled.h1<CalendarElementsProps>`
 	font: 600 17px/24px 'Poppins';
-	color: #000;
+	color: ${({ theme: { colors }, active }) =>
+		active ? colors.black : colors.solidGrey};
 `;
 
 export const CalendarCell = styled.div<DateCellProps>`
 	text-align: center;
-	width: 48px;
-	height: 48px;
+	width: 40px;
+	height: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
 	:hover {
-		cursor: pointer;
+		cursor: ${({ active }) => (active ? 'pointer' : 'unset')};
 	}
 `;
 
-export const CalendarHeaderCell = styled.div`
+export const CalendarHeaderCell = styled.div<CalendarElementsProps>`
 	font: 500 13px/20px 'Poppins';
 	text-align: center;
 	margin: 1em 0;
@@ -65,13 +72,17 @@ export const CalendarHeaderCell = styled.div`
 `;
 
 export const CurrentDateCell = styled(CalendarCell)<DateCellProps>`
-	color: ${({ theme: { colors } }) => colors.lightBlue};
-	border: 1px solid ${({ theme: { colors } }) => colors.lightBlue};
+	color: ${({ theme: { colors }, active }) =>
+		active ? colors.lightBlue : colors.solidGrey};
+	border: 1px solid
+		${({ theme: { colors }, active }) =>
+			active ? colors.lightBlue : colors.solidGrey};
 	border-radius: 12px;
 `;
 
 export const SelectedDateCell = styled(CalendarCell)<DateCellProps>`
-	background-color: ${({ theme: { colors } }) => colors.lightBlue};
+	background-color: ${({ theme: { colors }, active }) =>
+		active ? colors.lightBlue : colors.solidGrey};
 	color: #fff;
 	border-radius: 12px;
 	border: ${({ theme: { colors }, isToday }) =>

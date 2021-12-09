@@ -1,49 +1,14 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAvailableAppointments } from 'modules';
+import { mapMonthEnd, mapMonthStart, mapMonthAsc } from 'utils';
 import {
 	format,
 	subMonths,
 	addMonths,
-	startOfWeek,
-	endOfWeek,
-	addDays,
 	endOfMonth,
 	startOfMonth,
-	isLastDayOfMonth,
-	isFirstDayOfMonth,
-	subDays,
 } from 'date-fns';
-
-const mapMonthAsc = (day: Date): Date[] => {
-	let res = [];
-	let count = day;
-	while (!isLastDayOfMonth(count)) {
-		res.push(count);
-		count = addDays(count, 1);
-	}
-	res.push(count);
-	return res;
-};
-
-const mapMonthDesc = (day: Date): Date[] => {
-	let res = [];
-	let count = day;
-	while (!isFirstDayOfMonth(count)) {
-		res.unshift(count);
-		count = subDays(count, 1);
-	}
-	res.unshift(count);
-	return res;
-};
-
-const mapMonthStart = (date: Date): any => {
-	const startWeek = startOfWeek(date, { weekStartsOn: 1 });
-	return isFirstDayOfMonth(startWeek) ? [] : mapMonthAsc(startWeek);
-};
-
-const mapMonthEnd = (date: Date): any => {
-	const endWeek = endOfWeek(date, { weekStartsOn: 1 });
-	return isLastDayOfMonth(endWeek) ? [] : mapMonthDesc(endWeek);
-};
 
 type UseCalendarType = [
 	Date[],
@@ -57,12 +22,17 @@ type UseCalendarType = [
 ];
 
 export const useCalendar = (): UseCalendarType => {
+	const dispatch = useDispatch();
+
 	const [currentDate, setCurrentDate] = useState<Date>(new Date());
 	const [selectedDate, setSelectedDate] = useState<Date>(currentDate);
 
 	const monthBack = () => setCurrentDate(subMonths(currentDate, 1));
 	const monthForward = () => setCurrentDate(addMonths(currentDate, 1));
-	const onClick = (date: Date) => setSelectedDate(date);
+	const onClick = (date: Date) => {
+		setSelectedDate(date);
+		dispatch(getAvailableAppointments(date.toISOString()));
+	};
 
 	const startMonth = startOfMonth(currentDate);
 	const endMonth = endOfMonth(currentDate);

@@ -9,7 +9,7 @@ export type ButtonProps = BtnProps & {
 	iconRightColor?: Colors;
 	iconLeftColor?: Colors;
 	onClick?: () => void;
-	type?: 'submit' | 'reset';
+	type?: 'submit' | 'reset' | 'button';
 	linkTo?: string;
 };
 

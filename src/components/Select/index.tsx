@@ -39,8 +39,8 @@ export const Select: React.FC<SelectProps> = ({
 			<SelectFieldWrapper borderColor={borderColor} checked={checked}>
 				<SelectField value={value} onChange={onChange} name={name} {...rest}>
 					{options
-						? options.map(o => (
-								<option key={o.value} value={o.value}>
+						? options.map((o, i) => (
+								<option key={o.value + '--' + i} value={o.value}>
 									{o.text}
 								</option>
 						  ))

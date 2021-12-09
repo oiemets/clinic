@@ -5,6 +5,9 @@ import {
 	getSpecializationsSelector,
 	getDoctorsBySpecialty,
 	getDoctorsSelector,
+	setSelectedDoctorID,
+	setAvailableAppointments,
+	resetWizardFormValues,
 } from 'modules';
 import { FormikHandlers } from 'formik';
 import { SelectDoctor } from 'components';
@@ -19,15 +22,15 @@ const indexOptionDoctorsSelect = {
 	lastName: '',
 };
 
-export type UseSelectDoctorData = {
+export type UseSelectDataType = {
 	options: SelectDoctor[];
 	value: string;
 	onChange: FormikHandlers['handleChange'];
 };
 
-export const useSelectDoctor = (
+export const useSelectData = (
 	handleChange: FormikHandlers['handleChange']
-): UseSelectDoctorData[] => {
+): UseSelectDataType[] => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -60,7 +63,12 @@ export const useSelectDoctor = (
 	const specialtyOnChange = useCallback(
 		e => {
 			setSpecialty(e.target.value);
-			dispatch(getDoctorsBySpecialty(e.target.value));
+			if (!e.target.value === Boolean('')) {
+				dispatch(getDoctorsBySpecialty(e.target.value));
+			}
+			if (e.target.value === '') {
+				dispatch(resetWizardFormValues());
+			}
 			handleChange(e);
 		},
 		[dispatch, handleChange]
@@ -70,8 +78,14 @@ export const useSelectDoctor = (
 		e => {
 			setDoctorID(e.target.value);
 			handleChange(e);
+
+			if (e.target.value === '') {
+				dispatch(setAvailableAppointments([]));
+			}
+
+			dispatch(setSelectedDoctorID(e.target.value));
 		},
-		[handleChange]
+		[dispatch, handleChange]
 	);
 
 	return [

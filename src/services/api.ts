@@ -58,6 +58,9 @@ class TheClinicAPI {
 
 	getDoctorsBySpecialty = async (id: string) =>
 		this.get(`doctors/specialization/${id}`);
+
+	getFreeTimeForVisit = async (date: string, doctorID: string) =>
+		this.get('appointments/time/free', { date, doctorID });
 }
 
 const createApiService = (url: string | undefined, timeout: number) => {

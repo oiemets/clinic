@@ -1,5 +1,5 @@
-import { InnerPageWrapper, PatientPageHeader, Button } from 'components';
-import { InnerMainSection, HeaderTitle } from 'elements';
+import { PatientPageHeader, Button } from 'components';
+import { InnerMainSection, HeaderTitle, InnerPageWrapper } from 'elements';
 import { CREATE_APPOINTMENT } from 'routes';
 import {
 	AppointmentsMainSectionHeader,

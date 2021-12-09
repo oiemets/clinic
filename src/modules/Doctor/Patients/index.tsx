@@ -1,10 +1,10 @@
-import { MainWrapper, InnerPageWrapper } from 'components';
+import { MainWrapper } from 'components';
 import {
 	DoctorPageHeader,
 	// PatientsEmptyState,
 	PatientsLoader,
 } from '../components';
-import { InnerMainSection } from 'elements';
+import { InnerMainSection, InnerPageWrapper } from 'elements';
 
 export const Patients = () => {
 	return (

@@ -29,10 +29,10 @@ export const Btn = styled.button<BtnProps>`
 	appearance: none;
 	cursor: pointer;
 	border-radius: 8px;
-	font: 500 17px/24px 'Poppins';
+	font: ${({ fontLighter }) => (fontLighter ? '400' : '500')} 17px/25px
+		'Poppins';
 	letter-spacing: normal;
-	font-weight: ${({ fontLighter }) => (fontLighter ? '400' : '')};
-	padding: 16px 27px;
+	padding: ${({ fontLighter }) => (fontLighter ? '16px 27.5px' : '16px 27px')};
 	min-width: 160px;
 
 	:hover {
@@ -43,7 +43,7 @@ export const Btn = styled.button<BtnProps>`
 	@media screen and (max-width: ${({ theme: { breakpoints } }) =>
 			breakpoints.sm}) {
 		padding: 15px 24px;
-		font: 500 15px/19.5px 'Poppins';
+		font: 500 15px/20px 'Poppins';
 		font-weight: ${({ fontLighter }) => (fontLighter ? '400' : '')};
 		min-width: 120px;
 	}

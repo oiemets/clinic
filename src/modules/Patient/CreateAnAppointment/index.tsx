@@ -1,28 +1,42 @@
-import { InnerPageWrapper, Button } from 'components';
-import { HeaderTitle } from 'elements';
-import { SelectDoctor, SelectDay } from './components';
+import { Button } from 'components';
+import { HeaderTitle, InnerPageWrapper } from 'elements';
+import { SelectDoctor, SelectDay, SelectTimeSlot } from './components';
 import {
 	CreateAnAppointmentWrapper,
 	CreateAnAppointmentFormWrapper,
 	ButtonWrapper,
+	DisabledButton,
 } from './style';
-import { FormikValues } from 'formik';
-import { useFormikTextFields } from 'hooks';
+import { useFormikTextFields, useSelectData } from 'hooks';
 import {
 	createAppointmentFieldsConfig,
 	createAppointmentFormikConfig,
 } from './createAppointmentConfig';
-import { useSelectDoctor } from './components/SelectDoctor/useSelectDoctor';
+import { useSelector } from 'react-redux';
+import {
+	getAvailableAppointmentsSelector,
+	getSelectedAppointmentTimeSelector,
+	isSelectedDoctorIDSelector,
+} from 'modules';
 
 export const CreateAnAppointment = () => {
-	const onSubmit = (values: FormikValues) => console.log(values);
+	const appointments = useSelector(getAvailableAppointmentsSelector);
+
+	const selectedDate = useSelector(getSelectedAppointmentTimeSelector);
+	const isSelectedDoctor = useSelector(isSelectedDoctorIDSelector);
+
+	const onSubmit = (values: any) => {
+		const { doctorID, reason, note } = values;
+		const result = { doctorID, reason, note, date: selectedDate };
+		console.log(result);
+	};
 
 	const [data, handleSubmit, handleChange] = useFormikTextFields(
 		createAppointmentFormikConfig(onSubmit),
 		createAppointmentFieldsConfig
 	);
 
-	const [specialty, doctorID] = useSelectDoctor(handleChange);
+	const [specialty, doctorID] = useSelectData(handleChange);
 
 	const [specialtyFormik, doctorIDFormik, reason, note] = data;
 	const textFieldsData = [reason, note];
@@ -40,9 +54,14 @@ export const CreateAnAppointment = () => {
 						selectData={selectData}
 						textFieldsData={textFieldsData}
 					/>
-					<SelectDay />
+					<SelectDay isActive={isSelectedDoctor} />
+					<SelectTimeSlot data={appointments} selectedDate={selectedDate} />
 					<ButtonWrapper>
-						<Button type='submit'>Submit</Button>
+						{selectedDate ? (
+							<Button type='submit'>Submit</Button>
+						) : (
+							<DisabledButton type='button'>Submit</DisabledButton>
+						)}
 					</ButtonWrapper>
 				</CreateAnAppointmentFormWrapper>
 			</CreateAnAppointmentWrapper>

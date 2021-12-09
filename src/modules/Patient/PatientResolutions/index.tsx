@@ -1,4 +1,5 @@
-import { InnerPageWrapper, PatientPageHeader } from 'components';
+import { PatientPageHeader } from 'components';
+import { InnerPageWrapper } from 'elements';
 
 export const PatientResolutions = () => {
 	return (
