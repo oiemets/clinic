@@ -1,17 +1,14 @@
 import { Button } from 'components';
 import { HeaderTitle, InnerPageWrapper } from 'elements';
 import { SelectDoctor, SelectDay, SelectTimeSlot } from './components';
+import { FormikValues } from 'formik';
 import {
 	CreateAnAppointmentWrapper,
 	CreateAnAppointmentFormWrapper,
 	ButtonWrapper,
 	DisabledButton,
 } from './style';
-import { useFormikTextFields, useSelectData } from 'hooks';
-import {
-	createAppointmentFieldsConfig,
-	createAppointmentFormikConfig,
-} from './createAppointmentConfig';
+import { useSelectDoctor } from 'hooks';
 import { useSelector } from 'react-redux';
 import {
 	getAvailableAppointmentsSelector,
@@ -25,25 +22,13 @@ export const CreateAnAppointment = () => {
 	const selectedDate = useSelector(getSelectedAppointmentTimeSelector);
 	const isSelectedDoctor = useSelector(isSelectedDoctorIDSelector);
 
-	const onSubmit = (values: any) => {
+	const onSubmit = (values: FormikValues) => {
 		const { doctorID, reason, note } = values;
 		const result = { doctorID, reason, note, date: selectedDate };
 		console.log(result);
 	};
 
-	const [data, handleSubmit, handleChange] = useFormikTextFields(
-		createAppointmentFormikConfig(onSubmit),
-		createAppointmentFieldsConfig
-	);
-
-	const [specialty, doctorID] = useSelectData(handleChange);
-
-	const [specialtyFormik, doctorIDFormik, reason, note] = data;
-	const textFieldsData = [reason, note];
-	const selectData = [
-		{ ...specialtyFormik, ...specialty },
-		{ ...doctorIDFormik, ...doctorID },
-	];
+	const [textFieldsData, selectData, handleSubmit] = useSelectDoctor(onSubmit);
 
 	return (
 		<InnerPageWrapper>
@@ -68,3 +53,5 @@ export const CreateAnAppointment = () => {
 		</InnerPageWrapper>
 	);
 };
+
+export * from './components';
