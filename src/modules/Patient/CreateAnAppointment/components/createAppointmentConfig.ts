@@ -1,5 +1,5 @@
 import { createAppointmentFormSchema as validationSchema } from 'modules';
-import { FormikHelpers, FormikValues } from 'formik';
+import { FormikValues } from 'formik';
 
 const initialValues = {
 	specialty: '',
@@ -9,10 +9,7 @@ const initialValues = {
 };
 
 export const createAppointmentFormikConfig = (
-	onSubmit: (
-		values: FormikValues,
-		{ resetForm }: FormikHelpers<FormikValues>
-	) => void
+	onSubmit: (values: FormikValues) => void
 ) => ({
 	initialValues,
 	validationSchema,
