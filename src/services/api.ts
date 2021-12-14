@@ -19,7 +19,7 @@ class TheClinicAPI {
 		this.instance.post(url, data, config);
 
 	private get = async (url: string, params?: any) =>
-		this.instance.get(url, { params });
+		this.instance.get(url, { params, withCredentials: false });
 
 	private setupRequestInterceptor = () =>
 		this.instance.interceptors.request.use((config: AxiosRequestConfig) => {
@@ -61,6 +61,11 @@ class TheClinicAPI {
 
 	getFreeTimeForVisit = async (date: string, doctorID: string) =>
 		this.get('appointments/time/free', { date, doctorID });
+
+	getAllAppointments = async (offset: number = 0, limit: number = 10) =>
+		this.get('appointments/patient/me', { offset, limit });
+
+	createNewAppointment = async (data: any) => this.post('appointments', data);
 }
 
 const createApiService = (url: string | undefined, timeout: number) => {

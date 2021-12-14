@@ -4,6 +4,7 @@ import {
 	authReducers,
 	snackBarReducer,
 	wizardProviderReducer,
+	patientAppointmentsReducer,
 } from 'modules';
 
 export const rootReducer = combineReducers({
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
 	patients: patientsReducer,
 	snackBar: snackBarReducer,
 	wizardProvider: wizardProviderReducer,
+	patientAppointments: patientAppointmentsReducer,
 });

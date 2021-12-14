@@ -9,8 +9,9 @@ import {
 	getAvailableAppointments,
 	setAvailableAppointments,
 	setSelectedAppointmentTime,
+	submitForm,
 } from './wizardProviderSlice';
-import { errorHandler } from 'utils';
+import { errorHandler, successMessageHandler } from 'utils';
 import { getSelectedDoctorIDSelector } from './selectors';
 
 function* createGetSpecializations() {
@@ -49,10 +50,20 @@ function* createGetAvailableAppointments({ payload }: any) {
 	}
 }
 
+function* createSubmitForm({ payload }: any) {
+	try {
+		yield call(apiService.createNewAppointment, payload);
+		yield successMessageHandler('Your request has been sent');
+	} catch (error: any) {
+		errorHandler(error);
+	}
+}
+
 export function* wizardProviderSaga() {
 	yield all([
 		takeLatest(getSpecializations, createGetSpecializations),
 		takeLatest(getDoctorsBySpecialty, createGetDoctorsBySpecialty),
 		takeLatest(getAvailableAppointments, createGetAvailableAppointments),
+		takeLatest(submitForm, createSubmitForm),
 	]);
 }

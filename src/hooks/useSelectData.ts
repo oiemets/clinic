@@ -34,6 +34,7 @@ export const useSelectData = (
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		dispatch(resetWizardFormValues());
 		dispatch(getSpecializations());
 	}, [dispatch]);
 
@@ -63,12 +64,8 @@ export const useSelectData = (
 	const specialtyOnChange = useCallback(
 		e => {
 			setSpecialty(e.target.value);
-			if (!e.target.value === Boolean('')) {
-				dispatch(getDoctorsBySpecialty(e.target.value));
-			}
-			if (e.target.value === '') {
-				dispatch(resetWizardFormValues());
-			}
+			dispatch(resetWizardFormValues());
+			dispatch(getDoctorsBySpecialty(e.target.value));
 			handleChange(e);
 		},
 		[dispatch, handleChange]

@@ -6,7 +6,7 @@ import {
 } from './style';
 import { SelectHeader } from '../SelectHeader';
 import { parseISO, format } from 'date-fns';
-import { addHours } from 'utils';
+import { mapAddHours } from 'utils';
 import { useDispatch } from 'react-redux';
 import { setSelectedAppointmentTime } from 'modules';
 
@@ -15,7 +15,7 @@ type SelectTimeSlotProps = {
 	selectedDate?: string;
 };
 
-const fakeTimeSlots = addHours(
+const fakeTimeSlots = mapAddHours(
 	new Date(1970, 0, 1, 9, 0, 0, 0),
 	Math.floor(Math.random() * 9) + 3
 );

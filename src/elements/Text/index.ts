@@ -30,9 +30,11 @@ export const Text = styled.p``;
 export const HeaderTitle = styled.h1`
 	font: 600 24px/26px 'Poppins';
 	color: ${({ theme: { colors } }) => colors.black};
-	margin-bottom: 30px;
-
 	@media (max-width: ${({ theme: { breakpoints } }) => breakpoints.xs}) {
 		font: 600 20px/24px 'Poppins';
 	}
+`;
+
+export const MakeAppointmentHeaderTitle = styled(HeaderTitle)`
+	margin-bottom: 30px;
 `;

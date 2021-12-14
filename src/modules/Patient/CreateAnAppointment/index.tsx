@@ -1,5 +1,5 @@
 import { Button } from 'components';
-import { HeaderTitle, InnerPageWrapper } from 'elements';
+import { MakeAppointmentHeaderTitle, InnerPageWrapper } from 'elements';
 import { SelectDoctor, SelectDay, SelectTimeSlot } from './components';
 import { FormikValues } from 'formik';
 import {
@@ -9,14 +9,18 @@ import {
 	DisabledButton,
 } from './style';
 import { useSelectDoctor } from 'hooks';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
 	getAvailableAppointmentsSelector,
 	getSelectedAppointmentTimeSelector,
 	isSelectedDoctorIDSelector,
+	submitForm,
 } from 'modules';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateAnAppointment = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const appointments = useSelector(getAvailableAppointmentsSelector);
 
 	const selectedDate = useSelector(getSelectedAppointmentTimeSelector);
@@ -24,8 +28,9 @@ export const CreateAnAppointment = () => {
 
 	const onSubmit = (values: FormikValues) => {
 		const { doctorID, reason, note } = values;
-		const result = { doctorID, reason, note, date: selectedDate };
-		console.log(result);
+		const data = { doctorID, reason, note, date: selectedDate };
+		dispatch(submitForm(data));
+		navigate('/appointments');
 	};
 
 	const [textFieldsData, selectData, handleSubmit] = useSelectDoctor(onSubmit);
@@ -33,7 +38,9 @@ export const CreateAnAppointment = () => {
 	return (
 		<InnerPageWrapper>
 			<CreateAnAppointmentWrapper>
-				<HeaderTitle>Make an appointment</HeaderTitle>
+				<MakeAppointmentHeaderTitle>
+					Make an appointment
+				</MakeAppointmentHeaderTitle>
 				<CreateAnAppointmentFormWrapper onSubmit={handleSubmit}>
 					<SelectDoctor
 						selectData={selectData}

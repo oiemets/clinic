@@ -12,3 +12,6 @@ export { ReactComponent as Plus } from './plus.svg';
 export { ReactComponent as AngleDown } from './angle-down.svg';
 export { ReactComponent as AngleLeft } from './angle-left-b.svg';
 export { ReactComponent as AngleRight } from './angle-right-b.svg';
+export { ReactComponent as Clock } from './clock-three.svg';
+export { ReactComponent as HeartReason } from './reason.svg';
+export { ReactComponent as VerticalDots } from './more-vertical.svg';

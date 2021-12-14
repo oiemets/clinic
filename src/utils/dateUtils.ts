@@ -6,7 +6,10 @@ import {
 	isFirstDayOfMonth,
 	subDays,
 	add,
+	addHours,
 	isEqual,
+	parseISO,
+	format,
 } from 'date-fns';
 
 export const mapMonthAsc = (day: Date): Date[] => {
@@ -41,7 +44,7 @@ export const mapMonthEnd = (date: Date): any => {
 	return isLastDayOfMonth(endWeek) ? [] : mapMonthDesc(endWeek);
 };
 
-export const addHours = (date: Date, hours: number) => {
+export const mapAddHours = (date: Date, hours: number) => {
 	let res = [];
 	const end = add(date, { hours });
 	let count = date;
@@ -52,4 +55,11 @@ export const addHours = (date: Date, hours: number) => {
 	}
 	res.push(count);
 	return res;
+};
+
+export const appointmentCardDateFormat = (date: string) => {
+	const parsedDate = parseISO(date);
+	const addOneHour = format(addHours(parsedDate, 1), 'h aaa');
+	const formatedDate = format(parsedDate, 'E MMM dd, uuuu h aaa - ');
+	return formatedDate + addOneHour;
 };

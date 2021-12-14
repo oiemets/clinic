@@ -39,6 +39,7 @@ const wizardProviderSlice = createSlice({
 			state.doctorsBySpecialty = [];
 			state.availableAppointments = [];
 		},
+		submitForm: (state, { payload }) => {},
 	},
 });
 
@@ -53,5 +54,6 @@ export const {
 	setAvailableAppointments,
 	setSelectedAppointmentTime,
 	resetWizardFormValues,
+	submitForm,
 } = actions;
 export { reducer as wizardProviderReducer };

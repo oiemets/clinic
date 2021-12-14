@@ -25,6 +25,7 @@ export type AppState = {
 	};
 	snackBar?: SnackBar;
 	wizardProvider?: WizardProvider;
+	patientAppointments?: PatientAppointments;
 };
 
 export type AuthProvider = {
@@ -69,4 +70,25 @@ export type WizardProvider = {
 	selectedDoctorID?: string;
 	availableAppointments?: string[];
 	selectedAppointmentTime?: string;
+};
+
+export type PatientAppointments = {
+	appointments?: Appointment[];
+};
+
+export type Appointment = {
+	id: string;
+	reason: string;
+	note: string;
+	patientId: string;
+	doctorId: string;
+	visitDate: string;
+	status: string;
+	doctor: {
+		lastName: string;
+		firstName: string;
+		id: string;
+		photo: string;
+		specializationName: string;
+	};
 };
