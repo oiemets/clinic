@@ -16,10 +16,10 @@ import { resolutionTableDateFormat } from 'utils';
 
 type ResolutionsTableProps = {
 	data?: Resolution[];
-	sortingOrder?: { order: 'up' | 'down'; id: string };
+	sortingOrder?: 'asc' | 'desc';
 	input?: string;
 	currentIndex?: number;
-	headerClick?: (name: string) => void;
+	headerClick: (name: any) => void;
 	rowClick?: (index: number) => void;
 };
 
@@ -32,12 +32,19 @@ const resolutionsHeaders = [
 	{ label: 'Actions', id: '', width: 10 },
 ];
 
-const orderIcon = (order?: string) =>
-	order === 'up' ? <ArrowUpIcon /> : <ArrowDownIcon />;
+const orderIcon = (order?: string) => {
+	if (order === 'asc') {
+		return <ArrowDownIcon />;
+	}
+	if (order === 'desc') {
+		return <ArrowUpIcon />;
+	}
+};
 
 export const ResolutionsTable: React.FC<ResolutionsTableProps> = ({
 	data,
 	sortingOrder,
+	headerClick,
 }) => {
 	return (
 		<TableWrapper>
@@ -46,13 +53,12 @@ export const ResolutionsTable: React.FC<ResolutionsTableProps> = ({
 					<TRow>
 						{resolutionsHeaders.map(({ label, id, width }, i) => (
 							<THeader key={id + '-' + i} width={width}>
-								<THeaderLabelWrapper>
+								<THeaderLabelWrapper
+									sortable={id !== ''}
+									{...(id !== '' && { onClick: () => headerClick(id) })}
+								>
 									<THeaderLabel>{label}</THeaderLabel>
-									{id !== ''
-										? sortingOrder?.id === id
-											? orderIcon(sortingOrder.order)
-											: orderIcon()
-										: null}
+									{id !== '' ? orderIcon(sortingOrder) : null}
 								</THeaderLabelWrapper>
 							</THeader>
 						))}

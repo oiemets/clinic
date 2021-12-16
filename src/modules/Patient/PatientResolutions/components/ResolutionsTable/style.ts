@@ -5,6 +5,10 @@ type THeaderProps = {
 	width?: number;
 };
 
+type THeaderLabelWrapperProps = {
+	sortable?: boolean;
+};
+
 export const TableWrapper = styled.div`
 	width: 100%;
 	height: 100%;
@@ -37,15 +41,19 @@ export const TRow = styled.tr``;
 export const THeader = styled.th<THeaderProps>`
 	background: ${({ theme: { colors } }) => colors.white};
 	width: ${({ width }) => width + '%'};
-	min-width: 180px;
+	min-width: 190px;
 	padding: 36px;
 `;
 
 export const THeaderLabel = styled.h3``;
 
-export const THeaderLabelWrapper = styled.div`
+export const THeaderLabelWrapper = styled.div<THeaderLabelWrapperProps>`
 	display: flex;
 	gap: 0.5em;
+
+	:hover {
+		cursor: ${({ sortable }) => (sortable ? 'pointer' : 'unset')};
+	}
 `;
 
 export const TBody = styled.tbody``;
@@ -58,6 +66,18 @@ export const TData = styled.td`
 	padding: 34px;
 `;
 
-export const ArrowUpIcon = styled(ArrowUp)``;
+export const ArrowUpIcon = styled(ArrowUp)`
+	color: ${({ theme: { colors } }) => colors.mediumGrey};
 
-export const ArrowDownIcon = styled(ArrowDown)``;
+	& path {
+		fill: currentColor;
+	}
+`;
+
+export const ArrowDownIcon = styled(ArrowDown)`
+	color: ${({ theme: { colors } }) => colors.mediumGrey};
+
+	& path {
+		fill: currentColor;
+	}
+`;

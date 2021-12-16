@@ -6,5 +6,5 @@ const patientResolutionsSelector = (state: AppState) =>
 
 export const getAllPatientResolutionsSelector = createSelector(
 	patientResolutionsSelector,
-	data => data?.resolutions
+	data => (data?.resolutions ? data.resolutions : [])
 );

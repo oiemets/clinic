@@ -21,7 +21,7 @@ const createAppointmentInitialState: CreateAppointment = {
 };
 
 const createAppointmentSlice = createSlice({
-	name: 'wizardProvider',
+	name: 'createAppointment',
 	initialState: createAppointmentInitialState,
 	reducers: {
 		getSpecializations: () => {},
