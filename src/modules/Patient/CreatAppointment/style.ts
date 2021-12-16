@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const CreateAnAppointmentWrapper = styled.div``;
+export const CreateAppointmentWrapper = styled.div``;
 
-export const CreateAnAppointmentFormWrapper = styled.form`
+export const CreateAppointmentFormWrapper = styled.form`
 	display: flex;
 	flex-flow: row wrap;
 	gap: 20px;

@@ -11,6 +11,7 @@ import {
 	Plus,
 	AngleLeft,
 	AngleRight,
+	Pen,
 } from '../../assets';
 
 type IconProps = {
@@ -32,6 +33,7 @@ export const icons = {
 	plus: Plus,
 	angleleft: AngleLeft,
 	angleright: AngleRight,
+	pen: Pen,
 };
 
 export const StyledIcon = styled.div<IconProps>`

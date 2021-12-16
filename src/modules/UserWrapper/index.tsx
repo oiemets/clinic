@@ -1,11 +1,11 @@
 import { MainWrapper, MainWrapperProps } from 'components';
 import { useSelector } from 'react-redux';
-import { userProfile } from 'modules';
+import { userProfileSelector } from 'modules';
 
 type UserWrapperProps = MainWrapperProps & {};
 
 export const UserWrapper: React.FC<UserWrapperProps> = ({ children }) => {
-	const user = useSelector(userProfile);
+	const user = useSelector(userProfileSelector);
 
 	return (
 		<MainWrapper

@@ -31,6 +31,7 @@ export const DoctorAvatarTitleWrapper = styled.div`
 `;
 
 export const DoctorAvatarTitle = styled.h1`
+	max-width: 230px;
 	font: 600 15px/19.5px 'Poppins';
 	color: ${({ theme: { colors } }) => colors.black};
 `;
@@ -107,12 +108,15 @@ export const VerticalDotsOptions = styled(VerticalDots)`
 	right: 1em;
 	top: 2em;
 
+	border-radius: 6px;
+
 	& path {
 		fill: currentColor;
 		stroke: currentColor;
 	}
 
 	:hover {
-		cursor: pointer;
+		color: ${({ theme: { colors } }) => colors.lightBlue};
+		background: ${({ theme: { colors } }) => colors.lightGrey};
 	}
 `;

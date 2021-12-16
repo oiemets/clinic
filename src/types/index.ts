@@ -1,41 +1,23 @@
 import { VariantType } from 'notistack';
 
-export type Patient = {
-	id: string;
-	firstName: string;
-	lastName: string;
-	ogin: string;
-	password: string;
-	photo: string;
-	roleIid: string;
-};
-
-export type Patients = {
-	users?: Patient[];
-};
-
-export type PatientsQueryParams = {
-	offset: string;
-	count: '1' | '3' | '5' | '10' | '15' | '20' | '25';
-};
-
 export type AppState = {
 	auth?: {
 		authProvider?: AuthProvider;
 	};
 	snackBar?: SnackBar;
-	wizardProvider?: WizardProvider;
+	createAppointment?: CreateAppointment;
 	patientAppointments?: PatientAppointments;
+	patientResolutions?: PatientResolutions;
 };
 
 export type AuthProvider = {
 	isAuthenticated?: boolean;
 	accessToken?: string;
 	refreshToken?: string;
-	profile?: UserProfile;
+	profile?: userProfileSelector;
 };
 
-export type UserProfile = {
+export type userProfileSelector = {
 	id?: string;
 	firstName?: string;
 	lastName?: string;
@@ -62,7 +44,7 @@ export type Doctor = {
 
 export type Specializations = Specialization[];
 
-export type WizardProvider = {
+export type CreateAppointment = {
 	specializations: Specializations;
 	doctorsBySpecialty: Doctor[];
 	reasonForTheVisit: string;
@@ -70,6 +52,7 @@ export type WizardProvider = {
 	selectedDoctorID?: string;
 	availableAppointments?: string[];
 	selectedAppointmentTime?: string;
+	appointmentConfirmationData?: AppointmentConfirmation;
 };
 
 export type PatientAppointments = {
@@ -84,6 +67,36 @@ export type Appointment = {
 	doctorId: string;
 	visitDate: string;
 	status: string;
+	doctor: {
+		lastName: string;
+		firstName: string;
+		id: string;
+		photo: string;
+		specializationName: string;
+	};
+};
+
+export type AppointmentConfirmation = {
+	id: string;
+	patientId: string;
+	doctorId: string;
+	visitDate: string;
+	reason: string;
+	note: string;
+	status: string;
+};
+
+export type PatientResolutions = {
+	resolutions?: Resolution[];
+	total?: number;
+};
+
+export type Resolution = {
+	id: string;
+	appointmentId: string;
+	nextAppointmentDate: string;
+	resolution: string;
+	visitDate: string;
 	doctor: {
 		lastName: string;
 		firstName: string;

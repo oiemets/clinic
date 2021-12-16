@@ -3,14 +3,16 @@ import {
 	patientsReducer,
 	authReducers,
 	snackBarReducer,
-	wizardProviderReducer,
+	createAppointmentReducer,
 	patientAppointmentsReducer,
+	patientResolutionsReducer,
 } from 'modules';
 
 export const rootReducer = combineReducers({
 	auth: authReducers,
 	patients: patientsReducer,
 	snackBar: snackBarReducer,
-	wizardProvider: wizardProviderReducer,
+	createAppointment: createAppointmentReducer,
 	patientAppointments: patientAppointmentsReducer,
+	patientResolutions: patientResolutionsReducer,
 });

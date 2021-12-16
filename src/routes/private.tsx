@@ -14,7 +14,7 @@ import {
 	PatientResolutionsPage,
 	UserPage,
 	NotFoundPage,
-	CreateAnAppointmentPage,
+	CreateAppointmentPage,
 } from 'pages';
 
 export const patient: RouteObject[] = [
@@ -37,7 +37,7 @@ export const patient: RouteObject[] = [
 			},
 			{
 				path: CREATE_APPOINTMENT,
-				element: <CreateAnAppointmentPage />,
+				element: <CreateAppointmentPage />,
 			},
 		],
 	},

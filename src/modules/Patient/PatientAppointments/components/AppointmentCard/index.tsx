@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
 	CardWrapper,
 	DoctorAvatar,
@@ -13,6 +14,7 @@ import {
 	ClockIcon,
 	HeartIcon,
 	VerticalDotsOptions,
+	UserIcon,
 } from './style';
 import { Appointment } from 'types';
 import { appointmentCardDateFormat } from 'utils';
@@ -28,12 +30,19 @@ export const AppointmentCard: React.FC<AppointmentCardProps> = ({
 	specializationName = '',
 	visitDate = '',
 }) => {
+	const [isImgLoaded, setIsImgLoaded] = useState(true);
+	const onError = () => setIsImgLoaded(false);
+
 	return (
 		<CardWrapper>
 			<VerticalDotsOptions />
 
 			<DoctorAvatarWrapper>
-				<DoctorAvatar src={photo} alt='doctor' />
+				{isImgLoaded ? (
+					<DoctorAvatar src={photo} alt='doctor' onError={onError} />
+				) : (
+					<UserIcon />
+				)}
 				<DoctorAvatarTitleWrapper>
 					<DoctorAvatarTitle>{firstName + ' ' + lastName}</DoctorAvatarTitle>
 					<DoctorAvatarRole>{specializationName}</DoctorAvatarRole>

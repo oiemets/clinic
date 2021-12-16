@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { WizardProvider } from 'types';
+import { CreateAppointment } from 'types';
 
-const wizardProviderInitialState: WizardProvider = {
+const createAppointmentInitialState: CreateAppointment = {
 	specializations: [],
 	doctorsBySpecialty: [],
 	reasonForTheVisit: '',
@@ -9,11 +9,20 @@ const wizardProviderInitialState: WizardProvider = {
 	selectedDoctorID: '',
 	availableAppointments: [],
 	selectedAppointmentTime: '',
+	appointmentConfirmationData: {
+		id: '',
+		patientId: '',
+		doctorId: '',
+		visitDate: '',
+		reason: '',
+		note: '',
+		status: '',
+	},
 };
 
-const wizardProviderSlice = createSlice({
+const createAppointmentSlice = createSlice({
 	name: 'wizardProvider',
-	initialState: wizardProviderInitialState,
+	initialState: createAppointmentInitialState,
 	reducers: {
 		getSpecializations: () => {},
 		setSpecializations: (state, { payload }) => {
@@ -33,17 +42,20 @@ const wizardProviderSlice = createSlice({
 		setSelectedAppointmentTime: (state, { payload }) => {
 			state.selectedAppointmentTime = payload;
 		},
-		resetWizardFormValues: state => {
+		resetFormValues: state => {
 			state.selectedDoctorID = '';
 			state.selectedAppointmentTime = '';
 			state.doctorsBySpecialty = [];
 			state.availableAppointments = [];
 		},
 		submitForm: (state, { payload }) => {},
+		setAppointmentConfirmationData: (state, { payload }) => {
+			state.appointmentConfirmationData = payload;
+		},
 	},
 });
 
-const { actions, reducer } = wizardProviderSlice;
+const { actions, reducer } = createAppointmentSlice;
 export const {
 	getSpecializations,
 	setSpecializations,
@@ -53,7 +65,8 @@ export const {
 	getAvailableAppointments,
 	setAvailableAppointments,
 	setSelectedAppointmentTime,
-	resetWizardFormValues,
+	resetFormValues,
 	submitForm,
+	setAppointmentConfirmationData,
 } = actions;
-export { reducer as wizardProviderReducer };
+export { reducer as createAppointmentReducer };

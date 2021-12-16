@@ -66,6 +66,9 @@ class TheClinicAPI {
 		this.get('appointments/patient/me', { offset, limit });
 
 	createNewAppointment = async (data: any) => this.post('appointments', data);
+
+	getAllResolutions = async (offset: number = 0, limit: number = 10) =>
+		this.get('resolutions/patient/me', { offset, limit });
 }
 
 const createApiService = (url: string | undefined, timeout: number) => {

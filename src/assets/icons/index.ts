@@ -1,5 +1,7 @@
 export { ReactComponent as ArrowRight } from './angle-right-b.svg';
 export { ReactComponent as ArrowLeft } from './angle-left-b.svg';
+export { ReactComponent as ArrowUp } from './angle-up.svg';
+export { ReactComponent as ArrowDown } from './angle-down.svg';
 export { ReactComponent as Email } from './email.svg';
 export { ReactComponent as User } from './user.svg';
 export { ReactComponent as Lock } from './lock.svg';
@@ -15,3 +17,4 @@ export { ReactComponent as AngleRight } from './angle-right-b.svg';
 export { ReactComponent as Clock } from './clock-three.svg';
 export { ReactComponent as HeartReason } from './reason.svg';
 export { ReactComponent as VerticalDots } from './more-vertical.svg';
+export { ReactComponent as Pen } from './pen.svg';

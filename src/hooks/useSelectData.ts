@@ -7,7 +7,7 @@ import {
 	getDoctorsSelector,
 	setSelectedDoctorID,
 	setAvailableAppointments,
-	resetWizardFormValues,
+	resetFormValues,
 } from 'modules';
 import { FormikHandlers } from 'formik';
 import { SelectDoctor } from 'components';
@@ -34,7 +34,7 @@ export const useSelectData = (
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(resetWizardFormValues());
+		dispatch(resetFormValues());
 		dispatch(getSpecializations());
 	}, [dispatch]);
 
@@ -64,7 +64,7 @@ export const useSelectData = (
 	const specialtyOnChange = useCallback(
 		e => {
 			setSpecialty(e.target.value);
-			dispatch(resetWizardFormValues());
+			dispatch(resetFormValues());
 			dispatch(getDoctorsBySpecialty(e.target.value));
 			handleChange(e);
 		},

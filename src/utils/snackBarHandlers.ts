@@ -2,7 +2,10 @@ import { put } from 'redux-saga/effects';
 import { refreshTokens, showErrorSnackBar, showSuccessSnackBar } from 'modules';
 
 export function* errorHandler(error: any) {
-	if (error.response.status === 401 && error.response.data === 'wrong token') {
+	if (
+		error.response.status === 403 &&
+		error.response.data === 'message: wrong token'
+	) {
 		yield put(refreshTokens());
 	}
 	yield put({

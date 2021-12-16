@@ -1,3 +1,3 @@
-export * from './wizardProviderSlice';
+export * from './createAppointmentSlice';
 export * from './saga';
 export * from './selectors';

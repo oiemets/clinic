@@ -63,3 +63,8 @@ export const appointmentCardDateFormat = (date: string) => {
 	const formatedDate = format(parsedDate, 'E MMM dd, uuuu h aaa - ');
 	return formatedDate + addOneHour;
 };
+
+export const resolutionTableDateFormat = (date: string) => {
+	const parsedDate = parseISO(date);
+	return format(parsedDate, 'M/d/yy');
+};

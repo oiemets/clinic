@@ -13,7 +13,7 @@ export const getRefreshToken = createSelector(
 	auth => auth?.authProvider?.refreshToken
 );
 
-export const userProfile = createSelector(
+export const userProfileSelector = createSelector(
 	authSelector,
 	auth => auth?.authProvider?.profile
 );

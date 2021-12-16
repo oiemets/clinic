@@ -10,9 +10,13 @@ import {
 	setAvailableAppointments,
 	setSelectedAppointmentTime,
 	submitForm,
-} from './wizardProviderSlice';
+	setAppointmentConfirmationData,
+} from './createAppointmentSlice';
 import { errorHandler, successMessageHandler } from 'utils';
-import { getSelectedDoctorIDSelector } from './selectors';
+import {
+	getSelectedDoctorIDSelector,
+	getAppointmentConfirmationStatusSelector,
+} from './selectors';
 
 function* createGetSpecializations() {
 	try {
@@ -52,14 +56,23 @@ function* createGetAvailableAppointments({ payload }: any) {
 
 function* createSubmitForm({ payload }: any) {
 	try {
-		yield call(apiService.createNewAppointment, payload);
-		yield successMessageHandler('Your request has been sent');
+		const { data }: AxiosResponse = yield call(
+			apiService.createNewAppointment,
+			payload
+		);
+		yield put(setAppointmentConfirmationData(data));
+		const status: string = yield select(
+			getAppointmentConfirmationStatusSelector
+		);
+		yield successMessageHandler(
+			`Your request has been sent. Status: ${status}`
+		);
 	} catch (error: any) {
 		errorHandler(error);
 	}
 }
 
-export function* wizardProviderSaga() {
+export function* createAppointmentSaga() {
 	yield all([
 		takeLatest(getSpecializations, createGetSpecializations),
 		takeLatest(getDoctorsBySpecialty, createGetDoctorsBySpecialty),
