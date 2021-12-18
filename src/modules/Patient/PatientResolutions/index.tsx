@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllPatientResolutionsSelector, getAllResolutions } from 'modules';
 import { PatientPageHeader } from 'components';
 import { InnerPageWrapper, HeaderTitle } from 'elements';
+import { ResolutionsPageHeader } from './style';
 import { ResolutionsTable } from './components';
 import { useSortedResolutions } from 'hooks';
 
@@ -19,7 +20,9 @@ export const PatientResolutions = () => {
 	return (
 		<InnerPageWrapper>
 			<PatientPageHeader isActive='resolutions' />
-			<HeaderTitle>Resolutions</HeaderTitle>
+			<ResolutionsPageHeader>
+				<HeaderTitle>Resolutions</HeaderTitle>
+			</ResolutionsPageHeader>
 			<ResolutionsTable
 				data={data}
 				headerClick={onClick}

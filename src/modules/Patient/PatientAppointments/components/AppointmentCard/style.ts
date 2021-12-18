@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { User, Clock, HeartReason, VerticalDots } from 'assets';
+import { User, Clock, HeartReason } from 'assets';
 
 export const CardWrapper = styled.div`
 	min-width: 300px;
@@ -100,23 +100,8 @@ export const ReasonTitle = styled.h3`
 	font: 400 15px/21px 'Poppins';
 `;
 
-export const VerticalDotsOptions = styled(VerticalDots)`
-	color: ${({ theme: { colors } }) => colors.solidGrey};
-	width: 24px;
-	height: 24px;
+export const ActionsIconWrapper = styled.div`
 	position: absolute;
 	right: 1em;
 	top: 2em;
-
-	border-radius: 6px;
-
-	& path {
-		fill: currentColor;
-		stroke: currentColor;
-	}
-
-	:hover {
-		color: ${({ theme: { colors } }) => colors.lightBlue};
-		background: ${({ theme: { colors } }) => colors.lightGrey};
-	}
 `;

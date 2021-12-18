@@ -39,6 +39,8 @@ class TheClinicAPI {
 		this.token = token;
 	};
 
+	isToken = () => this.token !== '';
+
 	removeAccessToken = () => {
 		this.token = '';
 	};

@@ -66,6 +66,13 @@ export const TData = styled.td`
 	padding: 34px;
 `;
 
+export const TDataIcon = styled.td`
+	background: ${({ theme: { colors } }) => colors.white};
+	border-radius: 4px;
+	display: flex;
+	padding: 34px 0 34px 60px;
+`;
+
 export const ArrowUpIcon = styled(ArrowUp)`
 	color: ${({ theme: { colors } }) => colors.mediumGrey};
 
@@ -80,4 +87,8 @@ export const ArrowDownIcon = styled(ArrowDown)`
 	& path {
 		fill: currentColor;
 	}
+`;
+
+export const ActionsIconWrapper = styled.div`
+	position: absolute;
 `;

@@ -18,3 +18,4 @@ export { ReactComponent as Clock } from './clock-three.svg';
 export { ReactComponent as HeartReason } from './reason.svg';
 export { ReactComponent as VerticalDots } from './more-vertical.svg';
 export { ReactComponent as Pen } from './pen.svg';
+export { ReactComponent as Search } from './search.svg';

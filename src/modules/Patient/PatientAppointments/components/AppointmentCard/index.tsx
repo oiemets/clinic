@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ActionsIcon } from 'components';
 import {
 	CardWrapper,
 	DoctorAvatar,
@@ -13,8 +14,8 @@ import {
 	ReasonTitle,
 	ClockIcon,
 	HeartIcon,
-	VerticalDotsOptions,
 	UserIcon,
+	ActionsIconWrapper,
 } from './style';
 import { Appointment } from 'types';
 import { appointmentCardDateFormat } from 'utils';
@@ -35,7 +36,9 @@ export const AppointmentCard: React.FC<AppointmentCardProps> = ({
 
 	return (
 		<CardWrapper>
-			<VerticalDotsOptions />
+			<ActionsIconWrapper>
+				<ActionsIcon />
+			</ActionsIconWrapper>
 
 			<DoctorAvatarWrapper>
 				{isImgLoaded ? (

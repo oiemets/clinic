@@ -10,8 +10,10 @@ import {
 	THeaderLabelWrapper,
 	TBody,
 	TData,
+	TDataIcon,
 	TableWrapper,
 } from './style';
+import { ActionsIcon } from 'components';
 import { resolutionTableDateFormat } from 'utils';
 
 type ResolutionsTableProps = {
@@ -76,12 +78,18 @@ export const ResolutionsTable: React.FC<ResolutionsTableProps> = ({
 							i
 						) => (
 							<TRow key={visitDate + '-' + i}>
-								<TData>{firstName}</TData>
-								<TData>{lastName}</TData>
-								<TData>{resolution}</TData>
-								<TData>{resolutionTableDateFormat(visitDate)}</TData>
-								<TData>{resolutionTableDateFormat(nextAppointmentDate)}</TData>
-								<TData></TData>
+								{[
+									firstName,
+									lastName,
+									resolution,
+									resolutionTableDateFormat(visitDate),
+									resolutionTableDateFormat(nextAppointmentDate),
+								].map((p, index) => (
+									<TData key={visitDate + '--' + index}>{p}</TData>
+								))}
+								<TDataIcon>
+									<ActionsIcon />
+								</TDataIcon>
 							</TRow>
 						)
 					)}

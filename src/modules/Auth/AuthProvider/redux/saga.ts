@@ -16,6 +16,9 @@ import { errorHandler, successMessageHandler } from 'utils';
 
 function* authenticateUser() {
 	const token: AuthProvider['accessToken'] = yield select(getAccessToken);
+	// if (!apiService.isToken) {
+	// 	yield put(getProfile());
+	// }
 	if (token) {
 		apiService.setAccessToken(token);
 	}
