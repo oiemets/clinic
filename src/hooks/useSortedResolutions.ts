@@ -4,8 +4,10 @@ import { compareAsc, compareDesc } from 'date-fns';
 
 type UseSortedResolutionsType = [
 	data: Resolution[],
+	sortingOrder: 'asc' | 'desc',
+	searchValue: string,
 	onClick: (name: any) => void,
-	sortingOrder: 'asc' | 'desc'
+	onSearch: (query: string) => void
 ];
 
 export const useSortedResolutions = (
@@ -13,6 +15,7 @@ export const useSortedResolutions = (
 ): UseSortedResolutionsType => {
 	const [sortBy, setSortBy] = useState('visitDate');
 	const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+	const [searchValue, setSearchValue] = useState('');
 
 	const data = useMemo(() => {
 		let resolutionsSorted = [...inputData];
@@ -39,13 +42,24 @@ export const useSortedResolutions = (
 			});
 		}
 
+		if (searchValue !== '') {
+			resolutionsSorted = resolutionsSorted.filter(
+				r =>
+					r.doctor.firstName
+						.toLowerCase()
+						.includes(searchValue.toLowerCase()) ||
+					r.doctor.lastName.toLowerCase().includes(searchValue.toLowerCase()) ||
+					r.resolution.toLowerCase().includes(searchValue.toLowerCase())
+			);
+		}
+
 		return resolutionsSorted;
-	}, [inputData, sortBy, sortOrder]);
+	}, [inputData, sortBy, sortOrder, searchValue]);
 
 	const headerOnClick = (name: any) => {
 		setSortBy(name);
 		setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
 	};
 
-	return [data, headerOnClick, sortOrder];
+	return [data, sortOrder, searchValue, headerOnClick, setSearchValue];
 };

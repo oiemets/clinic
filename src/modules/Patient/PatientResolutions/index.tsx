@@ -4,7 +4,7 @@ import { getAllPatientResolutionsSelector, getAllResolutions } from 'modules';
 import { PatientPageHeader } from 'components';
 import { InnerPageWrapper, HeaderTitle } from 'elements';
 import { ResolutionsPageHeader } from './style';
-import { ResolutionsTable } from './components';
+import { ResolutionsTable, Search } from './components';
 import { useSortedResolutions } from 'hooks';
 
 export const PatientResolutions = () => {
@@ -15,13 +15,15 @@ export const PatientResolutions = () => {
 		dispatch(getAllResolutions());
 	}, [dispatch]);
 
-	const [data, onClick, sortingOrder] = useSortedResolutions(resolutions);
+	const [data, sortingOrder, searchValue, onClick, onChange] =
+		useSortedResolutions(resolutions);
 
 	return (
 		<InnerPageWrapper>
 			<PatientPageHeader isActive='resolutions' />
 			<ResolutionsPageHeader>
 				<HeaderTitle>Resolutions</HeaderTitle>
+				<Search searchValue={searchValue} onChange={onChange} />
 			</ResolutionsPageHeader>
 			<ResolutionsTable
 				data={data}
