@@ -2,9 +2,16 @@ import { useMemo, useState } from 'react';
 import { Resolution } from 'types';
 import { compareAsc, compareDesc } from 'date-fns';
 
+export type SortByType =
+	| 'firstName'
+	| 'lastName'
+	| 'visitDate'
+	| 'nextAppointmentDate';
+
 type UseSortedResolutionsType = [
 	data: Resolution[],
 	sortingOrder: 'asc' | 'desc',
+	sortBy: SortByType,
 	searchValue: string,
 	onClick: (name: any) => void,
 	onSearch: (query: string) => void
@@ -13,7 +20,7 @@ type UseSortedResolutionsType = [
 export const useSortedResolutions = (
 	inputData: Resolution[]
 ): UseSortedResolutionsType => {
-	const [sortBy, setSortBy] = useState('visitDate');
+	const [sortBy, setSortBy] = useState<SortByType>('visitDate');
 	const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 	const [searchValue, setSearchValue] = useState('');
 
@@ -61,5 +68,5 @@ export const useSortedResolutions = (
 		setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
 	};
 
-	return [data, sortOrder, searchValue, headerOnClick, setSearchValue];
+	return [data, sortOrder, sortBy, searchValue, headerOnClick, setSearchValue];
 };

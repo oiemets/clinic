@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import { Search } from 'assets';
 
 export const SearchWrapper = styled.div`
-	min-width: 100px;
+	min-width: 80px;
 	position: relative;
 	display: flex;
 `;
 
 export const SearchField = styled.input`
-	width: 100%;
-	padding: 2px 15px 2px 45px;
+	max-width: 150px;
+	padding: 2px 5px 2px 40px;
 	border: 2px solid transparent;
 	border-radius: 20px;
 	outline: none;

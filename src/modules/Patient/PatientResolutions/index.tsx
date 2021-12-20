@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllPatientResolutionsSelector, getAllResolutions } from 'modules';
 import { PatientPageHeader } from 'components';
 import { InnerPageWrapper, HeaderTitle } from 'elements';
-import { ResolutionsPageHeader } from './style';
-import { ResolutionsTable, Search } from './components';
+import { ResolutionsPageHeader, SortWrapper } from './style';
+import { ResolutionsTable, Search, SelectResolutions } from './components';
 import { useSortedResolutions } from 'hooks';
 
 export const PatientResolutions = () => {
@@ -15,7 +15,7 @@ export const PatientResolutions = () => {
 		dispatch(getAllResolutions());
 	}, [dispatch]);
 
-	const [data, sortingOrder, searchValue, onClick, onChange] =
+	const [data, sortingOrder, sortBy, searchValue, onClick, onChange] =
 		useSortedResolutions(resolutions);
 
 	return (
@@ -23,7 +23,10 @@ export const PatientResolutions = () => {
 			<PatientPageHeader isActive='resolutions' />
 			<ResolutionsPageHeader>
 				<HeaderTitle>Resolutions</HeaderTitle>
-				<Search searchValue={searchValue} onChange={onChange} />
+				<SortWrapper>
+					<Search searchValue={searchValue} onChange={onChange} />
+					<SelectResolutions sortBy={sortBy} valueHandler={onClick} />
+				</SortWrapper>
 			</ResolutionsPageHeader>
 			<ResolutionsTable
 				data={data}
