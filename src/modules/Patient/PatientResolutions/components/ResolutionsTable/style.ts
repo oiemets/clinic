@@ -64,6 +64,7 @@ export const TData = styled.td`
 	color: ${({ theme: { colors } }) => colors.black};
 	border-radius: 4px;
 	padding: 34px;
+	white-space: nowrap;
 `;
 
 export const TDataIcon = styled.td`

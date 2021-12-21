@@ -4,8 +4,13 @@ import { getAllPatientResolutionsSelector, getAllResolutions } from 'modules';
 import { PatientPageHeader } from 'components';
 import { InnerPageWrapper, HeaderTitle } from 'elements';
 import { ResolutionsPageHeader, SortWrapper } from './style';
-import { ResolutionsTable, Search, SelectResolutions } from './components';
-import { useSortedResolutions } from 'hooks';
+import {
+	ResolutionsTable,
+	Search,
+	SelectResolutions,
+	Pagination,
+} from './components';
+import { useSortedResolutions, usePagination } from 'hooks';
 
 export const PatientResolutions = () => {
 	const dispatch = useDispatch();
@@ -15,8 +20,17 @@ export const PatientResolutions = () => {
 		dispatch(getAllResolutions());
 	}, [dispatch]);
 
-	const [data, sortingOrder, sortBy, searchValue, onClick, onChange] =
-		useSortedResolutions(resolutions);
+	const [
+		resolutionsData,
+		sortingOrder,
+		sortBy,
+		searchValue,
+		onClick,
+		onChange,
+	] = useSortedResolutions(resolutions);
+
+	const [data, currentPageNumber, pageNumbers, onPageClick, onArrowClick] =
+		usePagination(resolutionsData);
 
 	return (
 		<InnerPageWrapper>
@@ -33,6 +47,14 @@ export const PatientResolutions = () => {
 				headerClick={onClick}
 				sortingOrder={sortingOrder}
 			/>
+			{resolutions.length < 8 ? null : (
+				<Pagination
+					numbers={pageNumbers}
+					currentPageNumber={currentPageNumber}
+					onClick={onPageClick}
+					onArrowClick={onArrowClick}
+				/>
+			)}
 		</InnerPageWrapper>
 	);
 };
