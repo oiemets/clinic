@@ -23,8 +23,8 @@ export const VerticalDotsIconWrapper = styled.div`
 	}
 `;
 
-export const ActionsIcon = () => (
-	<VerticalDotsIconWrapper>
+export const ActionsIcon = ({ ...rest }) => (
+	<VerticalDotsIconWrapper {...rest}>
 		<VerticalDotsIcon />
 	</VerticalDotsIconWrapper>
 );

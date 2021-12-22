@@ -5,7 +5,6 @@ import {
 	SelectResolutionsTitle,
 } from './style';
 import { SortByType } from 'hooks';
-import _ from 'lodash';
 
 type SelectResolutionsProps = {
 	sortBy: SortByType;

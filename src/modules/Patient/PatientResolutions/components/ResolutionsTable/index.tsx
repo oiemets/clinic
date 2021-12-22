@@ -13,7 +13,7 @@ import {
 	TDataIcon,
 	TableWrapper,
 } from './style';
-import { ActionsIcon } from 'components';
+import { ActionsIcon, DropDownMenu } from 'components';
 import { resolutionTableDateFormat } from 'utils';
 
 type ResolutionsTableProps = {
@@ -88,7 +88,17 @@ export const ResolutionsTable: React.FC<ResolutionsTableProps> = ({
 									<TData key={visitDate + '--' + index}>{p}</TData>
 								))}
 								<TDataIcon>
-									<ActionsIcon />
+									<DropDownMenu
+										element={<ActionsIcon />}
+										menuItems={[
+											{
+												label: 'Testing dropdown menu',
+											},
+											{
+												label: 'Delete resolution',
+											},
+										]}
+									/>
 								</TDataIcon>
 							</TRow>
 						)

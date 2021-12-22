@@ -7,3 +7,4 @@ export * from './UserAvatar';
 export * from './PatientPageHeader';
 export * from './Select';
 export * from './ActionsIcon';
+export * from './DropDownMenu';

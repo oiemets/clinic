@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ActionsIcon } from 'components';
+import { ActionsIcon, DropDownMenu } from 'components';
 import {
 	CardWrapper,
 	DoctorAvatar,
@@ -37,7 +37,13 @@ export const AppointmentCard: React.FC<AppointmentCardProps> = ({
 	return (
 		<CardWrapper>
 			<ActionsIconWrapper>
-				<ActionsIcon />
+				<DropDownMenu
+					element={<ActionsIcon />}
+					menuItems={[
+						{ label: 'Test DropDown' },
+						{ label: 'Delete appointment' },
+					]}
+				/>
 			</ActionsIconWrapper>
 
 			<DoctorAvatarWrapper>
