@@ -9,7 +9,7 @@ export type ButtonProps = BtnProps & {
 	iconRightColor?: Colors;
 	iconLeftColor?: Colors;
 	onClick?: () => void;
-	type?: 'submit' | 'reset';
+	type?: 'submit' | 'reset' | 'button';
 	linkTo?: string;
 };
 
@@ -37,13 +37,13 @@ export const Button: React.FC<ButtonProps> = ({
 			type={type}
 		>
 			{iconLeft && (
-				<IconPosition>
+				<IconPosition left>
 					<Icon icon={iconLeft} color={iconLeftColor} />
 				</IconPosition>
 			)}
 			{children}
 			{iconRight && (
-				<IconPosition>
+				<IconPosition right>
 					<Icon icon={iconRight} color={iconRightColor} />
 				</IconPosition>
 			)}

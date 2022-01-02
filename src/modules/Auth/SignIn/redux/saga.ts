@@ -1,8 +1,9 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects';
 import { apiService } from 'services';
 import { signInRequest, signInError } from './signInSlice';
-import { setAuth, authenticate, getProfile, showErrorSnackBar } from 'modules';
+import { setAuth, authenticate, getProfile } from 'modules';
 import { AxiosResponse } from 'axios';
+import { errorHandler } from 'utils';
 
 function* createSignIn({ payload }: any) {
 	try {
@@ -11,10 +12,7 @@ function* createSignIn({ payload }: any) {
 		yield put(authenticate());
 		yield put(getProfile());
 	} catch (error: any) {
-		yield put({
-			...showErrorSnackBar(),
-			payload: { message: error.response.data },
-		});
+		yield errorHandler(error);
 		yield put(signInError());
 	}
 }

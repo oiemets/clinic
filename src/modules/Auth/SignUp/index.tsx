@@ -9,10 +9,18 @@ import { Button, FormTextField } from 'components';
 import { useFormikTextFields } from 'hooks';
 import { signUpFormikConfig, signUpFieldsConfig } from './signUpFieldsConfig';
 import { SIGN_IN } from 'routes';
+// import { useDispatch } from 'react-redux';
+import { FormikValues } from 'formik';
 
 export const SignUp = () => {
+	// const dispatch = useDispatch();
+
+	const onSubmit = (values: FormikValues) => {
+		console.log(values);
+	};
+
 	const [data, handleSubmit] = useFormikTextFields(
-		signUpFormikConfig,
+		signUpFormikConfig(onSubmit),
 		signUpFieldsConfig
 	);
 

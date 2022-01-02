@@ -1,11 +1,23 @@
-import { useFormik, FormikValues, FormikConfig } from 'formik';
+import { useFormik, FormikValues, FormikConfig, FormikHandlers } from 'formik';
+
+export type UseFormikTextFieldsData = [
+	any[],
+	FormikHandlers['handleSubmit'],
+	FormikHandlers['handleChange']
+];
 
 export const useFormikTextFields = (
 	formik: FormikConfig<FormikValues>,
 	configFieldsProps: any
 ) => {
-	const { initialValues, getFieldProps, touched, errors, handleSubmit } =
-		useFormik(formik);
+	const {
+		initialValues,
+		getFieldProps,
+		touched,
+		errors,
+		handleSubmit,
+		handleChange,
+	} = useFormik(formik);
 
 	const mapInitValues = Object.keys(initialValues);
 
@@ -18,10 +30,11 @@ export const useFormikTextFields = (
 		checked: touched[v] && !errors[v],
 	}));
 
-	const data: [
-		any[],
-		(e?: React.FormEvent<HTMLFormElement> | undefined) => void
-	] = [textFieldProps, handleSubmit];
+	const data: UseFormikTextFieldsData = [
+		textFieldProps,
+		handleSubmit,
+		handleChange,
+	];
 
 	return data;
 };

@@ -1,4 +1,4 @@
-import { signInValidationSchema as validationSchema } from '../../validationSchema';
+import { signInValidationSchema as validationSchema } from 'modules';
 import { FormikHelpers, FormikValues } from 'formik';
 
 const initialValues = {

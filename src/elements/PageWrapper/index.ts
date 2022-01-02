@@ -99,32 +99,45 @@ export const AuthFooterWrapper = styled.div`
 export const PageWrapper = styled.div`
 	background-color: ${({ theme: { colors } }) => colors.blueGrey};
 	padding: 22px 64px;
-	display: flex;
-	flex-flow: column nowrap;
-	gap: 20px;
-	height: 100vh;
+	min-width: 320px;
+	min-height: 100vh;
+	width: 100%;
+	height: 100%;
+
 	@media screen and (max-width: ${({ theme: { breakpoints } }) =>
 			breakpoints.sm}) {
 		padding: 22px 0 0 0;
+	}
+
+	@media (max-width: ${({ theme: { breakpoints } }) => breakpoints.lg}) {
+		height: 100%;
 	}
 `;
 
 export const PageHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 20px;
 
 	@media (max-width: ${({ theme: { breakpoints } }) => breakpoints.sm}) {
 		padding: 0 22px;
 	}
 `;
 
+export const InnerPageWrapper = styled.div`
+	min-width: 320px;
+	background-color: ${({ theme: { colors } }) => colors.lightGrey};
+	border-radius: 16px;
+	padding: 40px 40px 30px 40px;
+
+	@media (max-width: ${({ theme: { breakpoints } }) => breakpoints.xs}) {
+		padding: 24px;
+	}
+`;
+
 export const InnerMainSection = styled.div`
-	border: 1px solid red;
 	width: 100%;
 	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 `;
 
 export const HeaderWrapper = styled.div`
@@ -132,7 +145,7 @@ export const HeaderWrapper = styled.div`
 	flex-flow: column;
 	justify-content: space-evenly;
 	width: 100%;
-	min-height: 170px;
+	padding-bottom: 40px;
 `;
 
 export const NotFoundTextWrapper = styled.div`

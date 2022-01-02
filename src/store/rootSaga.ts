@@ -1,6 +1,18 @@
 import { all, fork } from 'redux-saga/effects';
-import { authSaga, snackBarSaga } from '../modules';
+import {
+	authSaga,
+	snackBarSaga,
+	createAppointmentSaga,
+	patientAppointmentsSaga,
+	patientResolutionsSaga,
+} from '../modules';
 
 export function* rootSaga() {
-	yield all([fork(authSaga), fork(snackBarSaga)]);
+	yield all([
+		fork(authSaga),
+		fork(snackBarSaga),
+		fork(createAppointmentSaga),
+		fork(patientAppointmentsSaga),
+		fork(patientResolutionsSaga),
+	]);
 }

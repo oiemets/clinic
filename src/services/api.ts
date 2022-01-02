@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { mapKeys, camelCase, rearg } from 'lodash';
 import { AuthProvider } from 'types';
+import { keysToCamelCase } from 'utils';
 
 class TheClinicAPI {
 	private token: AuthProvider['accessToken'] = '';
@@ -19,7 +19,7 @@ class TheClinicAPI {
 		this.instance.post(url, data, config);
 
 	private get = async (url: string, params?: any) =>
-		this.instance.get(url, { params });
+		this.instance.get(url, { params, withCredentials: false });
 
 	private setupRequestInterceptor = () =>
 		this.instance.interceptors.request.use((config: AxiosRequestConfig) => {
@@ -31,13 +31,15 @@ class TheClinicAPI {
 
 	private setupResponseInterceptor = () =>
 		this.instance.interceptors.response.use((response: AxiosResponse) => {
-			response.data = mapKeys(response.data, rearg(camelCase, 1));
+			response.data = keysToCamelCase(response.data);
 			return response;
 		});
 
 	setAccessToken = async (token: AuthProvider['accessToken']) => {
 		this.token = token;
 	};
+
+	isToken = () => this.token !== '';
 
 	removeAccessToken = () => {
 		this.token = '';
@@ -53,6 +55,22 @@ class TheClinicAPI {
 			headers: { authorization: token },
 		});
 	};
+
+	getSpecializations = async () => this.get('specializations');
+
+	getDoctorsBySpecialty = async (id: string) =>
+		this.get(`doctors/specialization/${id}`);
+
+	getFreeTimeForVisit = async (date: string, doctorID: string) =>
+		this.get('appointments/time/free', { date, doctorID });
+
+	getAllAppointments = async (offset: number = 0, limit: number = 10) =>
+		this.get('appointments/patient/me', { offset, limit });
+
+	createNewAppointment = async (data: any) => this.post('appointments', data);
+
+	getAllResolutions = async (offset: number = 0, limit: number = 10) =>
+		this.get('resolutions/patient/me', { offset, limit });
 }
 
 const createApiService = (url: string | undefined, timeout: number) => {

@@ -1,25 +1,29 @@
 import { signUpValidationSchema as validationSchema } from '../validationSchema';
 import { FormikHelpers, FormikValues } from 'formik';
 
-export const signUpFormikConfig = {
-	initialValues: {
-		firstName: '',
-		lastName: '',
-		email: '',
-		password: '',
-		confirmPassword: '',
-	},
-	validationSchema,
-	onSubmit: (e: any, { resetForm }: FormikHelpers<FormikValues>) => {
-		console.log(e);
-		resetForm();
-	},
+const initialValues = {
+	firstName: '',
+	lastName: '',
+	userName: '',
+	password: '',
+	confirmPassword: '',
 };
+
+export const signUpFormikConfig = (
+	onSubmit: (
+		values: FormikValues,
+		{ resetForm }: FormikHelpers<FormikValues>
+	) => void
+) => ({
+	initialValues,
+	validationSchema,
+	onSubmit,
+});
 
 export const signUpFieldsConfig = {
 	firstName: { icon: 'user', placeholder: 'First Name' },
 	lastName: { icon: 'user', placeholder: 'Last Name' },
-	email: { icon: 'email', placeholder: 'Email' },
+	userName: { icon: 'email', placeholder: 'Email' },
 	password: {
 		icon: 'lock',
 		iconRight: 'eyeslash',

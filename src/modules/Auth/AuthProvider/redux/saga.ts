@@ -11,12 +11,14 @@ import {
 	removeAccessToken,
 	setRefreshedTokens,
 } from './authProviderSlice';
-import { showSuccessSnackBar, showErrorSnackBar } from 'modules';
 import { AxiosResponse } from 'axios';
-import { errorHandler } from 'utils';
+import { errorHandler, successMessageHandler } from 'utils';
 
 function* authenticateUser() {
 	const token: AuthProvider['accessToken'] = yield select(getAccessToken);
+	// if (!apiService.isToken) {
+	// 	yield put(getProfile());
+	// }
 	if (token) {
 		apiService.setAccessToken(token);
 	}
@@ -26,21 +28,14 @@ function* createGetProfile() {
 	try {
 		const { data }: AxiosResponse = yield call(apiService.getProfile);
 		yield put(setProfile(data));
-
-		yield put({
-			...showSuccessSnackBar(),
-			payload: { message: 'successfuly signed in' },
-		});
+		yield successMessageHandler('Successfuly Signed In');
 	} catch (error: any) {
-		errorHandler(error);
+		yield errorHandler(error);
 	}
 }
 
 function* createSignedOutRequest() {
-	yield put({
-		...showSuccessSnackBar(),
-		payload: { message: 'Signed out' },
-	});
+	yield successMessageHandler('Signed out');
 }
 
 function* createRefreshTokenRequest() {
@@ -56,10 +51,7 @@ function* createRefreshTokenRequest() {
 		);
 		yield put(setRefreshedTokens(refreshedTokens.data));
 	} catch (error: any) {
-		yield put({
-			...showErrorSnackBar(),
-			payload: { message: error.response.data },
-		});
+		yield errorHandler(error);
 	}
 }
 

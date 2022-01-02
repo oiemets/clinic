@@ -1,4 +1,11 @@
-import { InputContainer, InputBar, IconPosition, ErrorMessage } from './style';
+import {
+	InputContainer,
+	InputBar,
+	IconPosition,
+	ErrorMessage,
+	MainTextFieldWrapper,
+	TextFieldTitle,
+} from './style';
 import { Colors } from 'styles';
 import { Icon, icons } from '../Icon';
 import { FormikHandlers } from 'formik';
@@ -10,7 +17,6 @@ export type FormTextFieldProps = {
 	onInput?: (input: string) => void;
 	iconRight?: keyof typeof icons;
 	iconRightColor?: Colors;
-
 	placeholder?: string;
 	id?: string;
 	type?: React.HTMLInputTypeAttribute;
@@ -21,6 +27,7 @@ export type FormTextFieldProps = {
 	errorMessage?: string | null;
 	borderColor?: Colors | null;
 	checked?: boolean;
+	title?: string;
 };
 
 export const FormTextField: React.FC<FormTextFieldProps> = ({
@@ -32,36 +39,43 @@ export const FormTextField: React.FC<FormTextFieldProps> = ({
 	errorMessage,
 	type,
 	checked,
+	title,
 	...rest
 }) => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [isInputEmpty, setIsInputEmpty] = useState(false);
 
 	return (
-		<InputContainer>
-			{icon && (
-				<IconPosition left>
-					<Icon icon={icon} color={iconColor} checked={checked} />
-				</IconPosition>
-			)}
-			<InputBar
-				{...rest}
-				isIcon={Boolean(icon)}
-				type={iconRight === 'eyeslash' && !showPassword ? 'password' : type}
-				onBlurCapture={({ target }) => setIsInputEmpty(target.value.length > 0)}
-			/>
-			{errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-			{iconRight && (
-				<IconPosition right onClick={() => setShowPassword(!showPassword)}>
-					<Icon
-						icon={iconRight}
-						color={iconRightColor}
-						showPassword={
-							iconRight === 'eyeslash' && showPassword && isInputEmpty
-						}
-					/>
-				</IconPosition>
-			)}
-		</InputContainer>
+		<MainTextFieldWrapper>
+			{title && <TextFieldTitle>{title}</TextFieldTitle>}
+			<InputContainer>
+				{icon && (
+					<IconPosition left>
+						<Icon icon={icon} color={iconColor} checked={checked} />
+					</IconPosition>
+				)}
+				<InputBar
+					{...rest}
+					isIcon={Boolean(icon)}
+					type={iconRight === 'eyeslash' && !showPassword ? 'password' : type}
+					onBlurCapture={({ target }) =>
+						setIsInputEmpty(target.value.length > 0)
+					}
+					maxLength={30}
+				/>
+				{errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+				{iconRight && (
+					<IconPosition right onClick={() => setShowPassword(!showPassword)}>
+						<Icon
+							icon={iconRight}
+							color={iconRightColor}
+							showPassword={
+								iconRight === 'eyeslash' && showPassword && isInputEmpty
+							}
+						/>
+					</IconPosition>
+				)}
+			</InputContainer>
+		</MainTextFieldWrapper>
 	);
 };

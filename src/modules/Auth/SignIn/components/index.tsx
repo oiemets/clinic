@@ -44,3 +44,5 @@ export const SignIn = () => {
 		</AuthFormWrapper>
 	);
 };
+
+export * from './signInFieldsConfig';
