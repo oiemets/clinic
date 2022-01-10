@@ -25,7 +25,9 @@ const reason = Yup.string()
 	.required('This field should not be empty')
 	.max(50, 'Must be 50 characters or less');
 
-const specialty = Yup.string().required('This field should not be empty');
+const date = Yup.string().required('This field should not be empty');
+
+const note = Yup.string().required('This field should not be empty');
 
 const doctorID = Yup.string().required('This field should not be empty');
 
@@ -42,7 +44,8 @@ export const signInValidationSchema = Yup.object({ userName, password });
 export const restorePasswordValidationSchema = Yup.object({ userName });
 
 export const createAppointmentFormSchema = Yup.object({
-	specialty,
+	date,
 	doctorID,
 	reason,
+	note,
 });

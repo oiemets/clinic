@@ -9,10 +9,7 @@ type SelectHeaderProps = {
 	title?: string;
 };
 
-export const SelectHeader: React.FC<SelectHeaderProps> = ({
-	number,
-	title,
-}) => {
+export const SelectHeader = ({ number, title }: SelectHeaderProps) => {
 	return (
 		<SelectHeaderWrapper>
 			<SelectHeaderNumber>{number}</SelectHeaderNumber>

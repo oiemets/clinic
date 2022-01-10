@@ -5,7 +5,7 @@ export type AppState = {
 		authProvider?: AuthProvider;
 	};
 	snackBar?: SnackBar;
-	createAppointment?: CreateAppointment;
+	createAppointment?: CreateAppointmentType;
 	patientAppointments?: PatientAppointments;
 	patientResolutions?: PatientResolutions;
 };
@@ -48,6 +48,17 @@ export type CreateAppointment = {
 	specializations: Specializations;
 	doctorsBySpecialty: Doctor[];
 	reasonForTheVisit: string;
+	note?: string;
+	selectedDoctorID?: string;
+	availableAppointments?: string[];
+	selectedAppointmentTime?: string;
+	appointmentConfirmationData?: AppointmentConfirmation;
+};
+
+export type CreateAppointmentType = {
+	specializations: Specializations;
+	doctors: Doctor[];
+	reason: string;
 	note?: string;
 	selectedDoctorID?: string;
 	availableAppointments?: string[];

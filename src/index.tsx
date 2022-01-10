@@ -2,13 +2,13 @@ import ReactDOM from 'react-dom';
 import { App } from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { appStore } from './store/configStore';
+import { store, persistor } from './store/configStore';
 import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyles } from './styles';
 import { PersistGate } from 'redux-persist/integration/react';
 import { SnackBarProvider } from 'modules';
 
-const { store, persistor } = appStore();
+// const { store, persistor } = appStore();
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -6,6 +6,13 @@ export const CreateAppointmentFormWrapper = styled.form`
 	display: flex;
 	flex-flow: row wrap;
 	gap: 20px;
+	/* justify-content: space-between; */
+	/* border: 1px solid yellow; */
+
+	> :nth-child(2) {
+		/* border: 1px solid yellow; */
+		justify-self: flex-end;
+	}
 `;
 
 export const ButtonWrapper = styled.div`
@@ -13,6 +20,7 @@ export const ButtonWrapper = styled.div`
 	justify-content: flex-end;
 	width: 100%;
 	height: fit-content;
+	/* border: 1px solid orange; */
 `;
 
 export const DisabledButton = styled.button`
