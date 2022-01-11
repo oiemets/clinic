@@ -1,5 +1,5 @@
 import { CreateAppointment } from 'modules';
 
 export const CreateAppointmentPage = () => {
-	return <>{<CreateAppointment />}</>;
+	return <CreateAppointment />;
 };

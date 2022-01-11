@@ -47,5 +47,4 @@ export const createAppointmentFormSchema = Yup.object({
 	date,
 	doctorID,
 	reason,
-	note,
 });

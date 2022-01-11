@@ -5,7 +5,11 @@ import {
 	showErrorSnackBar,
 } from './snackBarSlice';
 
-function* createShowSuccessSnackBar({ payload }: any) {
+function* createShowSuccessSnackBar({
+	payload,
+}: {
+	payload: { message: string };
+}) {
 	yield put(
 		addSnackBar({
 			type: 'success',
@@ -14,7 +18,11 @@ function* createShowSuccessSnackBar({ payload }: any) {
 	);
 }
 
-function* createShowErrorSnackBar({ payload }: any) {
+function* createShowErrorSnackBar({
+	payload,
+}: {
+	payload: { message: string };
+}) {
 	yield put(
 		addSnackBar({
 			type: 'error',

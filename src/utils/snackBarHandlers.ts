@@ -8,17 +8,13 @@ export function* errorHandler(error: any) {
 	) {
 		yield put(refreshTokens());
 	}
-	yield put({
-		...showErrorSnackBar(),
-		payload: {
+	yield put(
+		showErrorSnackBar({
 			message: error.response.data + ' - ' + error.response.statusText,
-		},
-	});
+		})
+	);
 }
 
 export function* successMessageHandler(message: string) {
-	yield put({
-		...showSuccessSnackBar(),
-		payload: { message },
-	});
+	yield put(showSuccessSnackBar({ message }));
 }

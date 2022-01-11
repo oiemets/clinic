@@ -7,14 +7,9 @@ type CalendarElementsProps = {
 };
 
 export const CalendarContainer = styled.div`
-	/* display: inline-block; */
-	/* padding: 10px; */
-	/* border: 1px solid pink; */
-
 	.react-datepicker__month {
 		display: flex;
 		flex-flow: column nowrap;
-		/* border: 1px solid orange; */
 		background-color: ${({ theme: { colors } }) => colors.white};
 	}
 
@@ -28,9 +23,6 @@ export const CalendarContainer = styled.div`
 export const CalendarTitleContainer = styled.div`
 	display: flex;
 	gap: 30px;
-	/* justify-content: space-around; */
-
-	/* border: 1px solid black; */
 `;
 
 export const CalendarInnerWrapper = styled.div<CalendarElementsProps>`
@@ -39,33 +31,14 @@ export const CalendarInnerWrapper = styled.div<CalendarElementsProps>`
 	font: 600 17px/24px 'Poppins';
 	color: ${({ theme: { colors } }) => colors.black};
 
-	/* border: 1px solid blue; */
-
 	.react-datepicker__month-container {
 		background-color: white;
-		/* border: 1px solid brown; */
 		padding: 15px 30px;
-		/* height: fit-content; */
-		/* min-width: 330px; */
-		/* min-height: 300px; */
 		height: max-content;
 		border-radius: 12px;
 	}
 
-	.react-datepicker__time-container {
-	}
-
-	.react-datepicker__header--time {
-	}
-
-	.react-datepicker-time__header {
-	}
-
-	.react-datepicker__time {
-	}
-
 	.react-datepicker__time-box {
-		/* border: 1px solid orange; */
 		width: 100%;
 	}
 
@@ -74,6 +47,10 @@ export const CalendarInnerWrapper = styled.div<CalendarElementsProps>`
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 5px;
+
+		@media (max-width: 1520px) {
+			grid-template-columns: repeat(3, 1fr);
+		}
 	}
 
 	.react-datepicker__time-list-item {
@@ -105,16 +82,12 @@ export const CalendarInnerWrapper = styled.div<CalendarElementsProps>`
 	}
 
 	.react-datepicker__day-names {
-		/* border: 1px solid aqua; */
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-around;
 		font: 500 13px/20px 'Poppins';
 		color: ${({ theme: { colors } }) => colors.mediumGrey};
 		margin: 1em 0;
-	}
-
-	.react-datepicker__day-name {
 	}
 
 	.react-datepicker__day--selected {
@@ -128,15 +101,17 @@ export const CalendarInnerWrapper = styled.div<CalendarElementsProps>`
 		border: 1px solid ${({ theme: { colors } }) => colors.lightBlue};
 		border-radius: 12px;
 	}
+
+	@media (max-width: ${({ theme: { breakpoints } }) => breakpoints.lg}) {
+		flex-flow: column;
+	}
 `;
 
 export const CalendarHeader = styled.div`
-	/* border: 1px solid red; */
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
-	/* padding: 1em; */
 	border-bottom: 1px solid ${({ theme: { colors } }) => colors.lightGrey};
 `;
 
@@ -157,13 +132,6 @@ export const CalendarHeaderTitle = styled.h1<CalendarElementsProps>`
 	font: 600 17px/24px 'Poppins';
 	color: ${({ theme: { colors } }) => colors.black};
 `;
-
-// export const CalendarHeaderCell = styled.div<CalendarElementsProps>`
-// 	font: 500 13px/20px 'Poppins';
-// 	text-align: center;
-// 	margin: 1em 0;
-// 	color: ${({ theme: { colors } }) => colors.mediumGrey};
-// `;
 
 export const ArrowIcon = styled(Icon)`
 	:hover {

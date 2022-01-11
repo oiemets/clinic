@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAction } from '@reduxjs/toolkit';
 import { AuthProvider } from 'types';
 
 const authProviderInitialState: AuthProvider = {
@@ -22,21 +22,18 @@ const authProviderSlice = createSlice({
 			...state,
 			...payload,
 		}),
-
-		getProfile: () => {},
-
 		setProfile: (state, { payload }) => ({
 			...state,
 			profile: payload,
 			isAuthenticated: true,
 		}),
-
-		signOutRequest: () => authProviderInitialState,
-		authenticate: () => {},
+		signOutRequest: (_, { payload }) => {
+			payload.navigate('/');
+			return authProviderInitialState;
+		},
 		removeAccessToken: state => {
 			state.accessToken = '';
 		},
-		refreshTokens: () => {},
 		setRefreshedTokens: (state, { payload }) => ({
 			...state,
 			...payload,
@@ -44,15 +41,16 @@ const authProviderSlice = createSlice({
 	},
 });
 
+export const getProfile = createAction('auth/getProfile');
+export const authenticate = createAction('auth/authenticate');
+export const refreshTokens = createAction('auth/refreshTokens');
+
 const { actions, reducer } = authProviderSlice;
 export const {
 	setAuth,
 	signOutRequest,
 	setProfile,
-	authenticate,
 	removeAccessToken,
-	getProfile,
 	setRefreshedTokens,
-	refreshTokens,
 } = actions;
 export { reducer as authProviderReducer };

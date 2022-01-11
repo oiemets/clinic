@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import DatePicker from 'react-datepicker';
 import { format, isSameDay } from 'date-fns';
+import { SelectHeader } from '../SelectHeader';
 import {
 	CalendarContainer,
 	CalendarInnerWrapper,
@@ -10,8 +11,6 @@ import {
 	CalendarHeaderTitle,
 	CalendarTitleContainer,
 } from './style';
-
-import { SelectHeader } from '../SelectHeader';
 
 type SelecDateProps = {
 	selected?: Date | null | undefined;
@@ -26,28 +25,14 @@ export const SelectDate = ({
 }: SelecDateProps) => {
 	const onChange = useCallback(date => dateOnChange(date), [dateOnChange]);
 
-	// const disabledTimeSlots = (start: number, end: number) => {
-	// 	const res = [];
-	// 	for (let i = start; i <= end; i++) {
-	// 		res.push(setHours(setMinutes(new Date(), 0), i));
-	// 	}
-	// 	return res;
-	// };
-
 	return (
 		<DatePicker
 			timeCaption=''
-			title='2huy'
 			timeIntervals={60}
 			selected={selected}
 			onChange={onChange}
 			showTimeSelect
 			inline
-			// includeTimes={
-			// 	availableAppointments?.length === 0
-			// 		? disabledTimeSlots(9, 18)
-			// 		: availableAppointments?.map(d => new Date(d))
-			// }
 			includeTimes={availableAppointments?.map(d => new Date(d))}
 			calendarContainer={props => {
 				return (
@@ -66,15 +51,7 @@ export const SelectDate = ({
 					</CalendarContainer>
 				);
 			}}
-			renderCustomHeader={({
-				date,
-				changeYear,
-				changeMonth,
-				decreaseMonth,
-				increaseMonth,
-				prevMonthButtonDisabled,
-				nextMonthButtonDisabled,
-			}) => {
+			renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => {
 				return (
 					<CalendarHeader>
 						<ArrowIcon

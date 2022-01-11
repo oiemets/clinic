@@ -14,11 +14,11 @@ export type UserAvatarProps = {
 	avatarPhoto?: string;
 };
 
-export const UserAvatar: React.FC<UserAvatarProps> = ({
+export const UserAvatar = ({
 	avatarTitle,
 	avatarUserRole,
 	avatarPhoto,
-}) => {
+}: UserAvatarProps) => {
 	const [photoLoaded, setPhotoLoaded] = useState(true);
 	const onError = () => setPhotoLoaded(false);
 

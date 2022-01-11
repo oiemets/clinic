@@ -61,7 +61,7 @@ export const FormTextField: React.FC<FormTextFieldProps> = ({
 					onBlurCapture={({ target }) =>
 						setIsInputEmpty(target.value.length > 0)
 					}
-					maxLength={30}
+					maxLength={50}
 				/>
 				{errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
 				{iconRight && (

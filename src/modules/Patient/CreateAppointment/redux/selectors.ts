@@ -25,3 +25,8 @@ export const getAvailableAppointmentsSelector = createSelector(
 	createAppointmentSelector,
 	createAppointment => createAppointment?.availableAppointments
 );
+
+export const appointmentConfirmationStatusSelector = createSelector(
+	createAppointmentSelector,
+	createAppointment => createAppointment?.appointmentConfirmationData?.status
+);

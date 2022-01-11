@@ -8,8 +8,6 @@ import { theme, GlobalStyles } from './styles';
 import { PersistGate } from 'redux-persist/integration/react';
 import { SnackBarProvider } from 'modules';
 
-// const { store, persistor } = appStore();
-
 ReactDOM.render(
 	<Provider store={store}>
 		<PersistGate persistor={persistor}>

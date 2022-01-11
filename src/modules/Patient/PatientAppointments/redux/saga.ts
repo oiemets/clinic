@@ -1,5 +1,5 @@
 import { takeLatest, all, put, call } from 'redux-saga/effects';
-import { apiService } from 'services';
+import { getAllAppointmentsRequest } from 'services';
 import { AxiosResponse } from 'axios';
 import { errorHandler } from 'utils';
 
@@ -10,7 +10,7 @@ import {
 
 function* createGetAllApointments() {
 	try {
-		const { data }: AxiosResponse = yield call(apiService.getAllAppointments);
+		const { data }: AxiosResponse = yield call(getAllAppointmentsRequest);
 		yield put(setAllAppointments(data));
 	} catch (error: any) {
 		errorHandler(error);

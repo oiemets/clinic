@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { MakeAppointmentHeaderTitle, InnerPageWrapper } from 'elements';
 import {
 	CreateAppointmentWrapper,
@@ -14,18 +14,33 @@ import {
 	getAvailableAppointments,
 	getAvailableAppointmentsSelector,
 	resetForm,
+	submitCreateAppointmentForm,
 } from './redux';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { useFormik } from 'formik';
 import { createAppointmentFormSchema as validationSchema } from 'modules';
 import { SelectDate, SelectDoctor } from './components';
+import { useNavigate } from 'react-router-dom';
+
+export type FieldsValues = {
+	date: Date;
+	reason: string;
+	note: string;
+	doctorID: string;
+};
 
 export const CreateAppointment = () => {
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(getSpecializations());
 	}, [dispatch]);
+
+	const [doctorSelectValue, setDoctorSelectValue] = useState<{
+		value: string;
+		label: string;
+	} | null>(null);
 
 	const specializations = useAppSelector(getSpecializationsSelector);
 	const doctors = useAppSelector(getDoctorsSelector);
@@ -33,7 +48,7 @@ export const CreateAppointment = () => {
 		getAvailableAppointmentsSelector
 	);
 
-	const formik = useFormik({
+	const formik = useFormik<FieldsValues>({
 		initialValues: {
 			date: new Date(),
 			reason: '',
@@ -42,26 +57,28 @@ export const CreateAppointment = () => {
 		},
 		validationSchema,
 		onSubmit: values => {
-			console.log(values);
+			dispatch(submitCreateAppointmentForm({ values, navigate }));
 		},
 	});
 
 	const specialtyOnChange = useCallback(
 		option => {
 			dispatch(resetForm());
+			setDoctorSelectValue(null);
 			dispatch(getDoctorsBySpecialtyID(option.value));
 		},
 		[dispatch]
 	);
 
 	const doctorOnChange = useCallback(
-		(option: { value: string }) => {
+		(option: { value: string; label: string }) => {
 			dispatch(
 				getAvailableAppointments({
 					doctorID: option.value,
 					date: formik.getFieldProps('date').value,
 				})
 			);
+			setDoctorSelectValue(option);
 			formik.setFieldValue('doctorID', option.value);
 		},
 		[formik, dispatch]
@@ -77,7 +94,6 @@ export const CreateAppointment = () => {
 					})
 				);
 			}
-
 			formik.setFieldValue('date', date);
 		},
 		[formik, dispatch]
@@ -96,6 +112,9 @@ export const CreateAppointment = () => {
 						doctorsSelectOptions={doctors}
 						doctorOnChangeHandler={doctorOnChange}
 						specialtyOnChangeHandler={specialtyOnChange}
+						doctorSelectValue={doctorSelectValue}
+						errors={formik.errors}
+						touched={formik.touched}
 					/>
 					<SelectDate
 						selected={formik.getFieldProps('date').value}

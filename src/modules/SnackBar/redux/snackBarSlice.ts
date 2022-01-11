@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAction } from '@reduxjs/toolkit';
 
 const snackBarInitialState = {
 	type: '',
@@ -18,11 +18,16 @@ const snackBarSlice = createSlice({
 				key: key || new Date().getTime() + Math.random(),
 			};
 		},
-		showSuccessSnackBar: () => {},
-		showErrorSnackBar: () => {},
 	},
 });
 
+export const showSuccessSnackBar = createAction<{ message: string }>(
+	'snackbar/showSuccessSnackBar'
+);
+export const showErrorSnackBar = createAction<{ message: string }>(
+	'snackbar/showErrorSnackBar'
+);
+
 const { actions, reducer } = snackBarSlice;
-export const { addSnackBar, showErrorSnackBar, showSuccessSnackBar } = actions;
+export const { addSnackBar } = actions;
 export { reducer as snackBarReducer };

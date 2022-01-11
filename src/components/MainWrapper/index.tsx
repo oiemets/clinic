@@ -17,8 +17,7 @@ export const MainWrapper: React.FC<MainWrapperProps> = ({
 	const navigate = useNavigate();
 
 	const signOut = () => {
-		dispatch(signOutRequest());
-		navigate('/');
+		dispatch(signOutRequest({ navigate }));
 	};
 	return (
 		<PageWrapper>

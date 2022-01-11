@@ -1,5 +1,7 @@
 import { createSlice, createAction } from '@reduxjs/toolkit';
 import { CreateAppointmentType } from 'types';
+import { FieldsValues } from '../index';
+import { NavigateFunction } from 'react-router-dom';
 
 const initialState: CreateAppointmentType = {
 	specializations: [],
@@ -39,6 +41,9 @@ const createAppointmentSlice = createSlice({
 			state.selectedDoctorID = '';
 			state.selectedAppointmentTime = '';
 		},
+		setAppointmentConfirmationData: (state, { payload }) => {
+			state.appointmentConfirmationData = payload;
+		},
 	},
 });
 
@@ -55,11 +60,17 @@ export const getAvailableAppointments = createAction<{
 	doctorID: string;
 }>('createAppointment/getAvailableAppointments');
 
+export const submitCreateAppointmentForm = createAction<{
+	values: FieldsValues;
+	navigate: NavigateFunction;
+}>('createAppointment/submitCreateAppointmentForm');
+
 const { actions, reducer } = createAppointmentSlice;
 export const {
 	setSpecializations,
 	setDoctorsBySpecialtyID,
 	setAvailableAppointments,
 	resetForm,
+	setAppointmentConfirmationData,
 } = actions;
 export { reducer as createAppointmentReducer };

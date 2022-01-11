@@ -1,11 +1,11 @@
 import { SnackbarProvider, SnackbarProviderProps } from 'notistack';
 import { SnackBar } from '../components';
 
-export const SnackBarProvider: React.FC<SnackbarProviderProps> = ({
+export const SnackBarProvider = ({
 	children,
 	maxSnack,
 	hideIconVariant,
-}) => {
+}: SnackbarProviderProps) => {
 	return (
 		<SnackbarProvider maxSnack={maxSnack} hideIconVariant={hideIconVariant}>
 			{children}

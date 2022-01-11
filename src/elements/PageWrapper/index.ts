@@ -99,7 +99,7 @@ export const AuthFooterWrapper = styled.div`
 export const PageWrapper = styled.div`
 	background-color: ${({ theme: { colors } }) => colors.blueGrey};
 	padding: 22px 64px;
-	min-width: 320px;
+	min-width: 380px;
 	min-height: 100vh;
 	width: 100%;
 	height: 100%;
@@ -125,7 +125,7 @@ export const PageHeader = styled.div`
 `;
 
 export const InnerPageWrapper = styled.div`
-	min-width: 320px;
+	min-width: 380px;
 	background-color: ${({ theme: { colors } }) => colors.lightGrey};
 	border-radius: 16px;
 	padding: 40px 40px 30px 40px;

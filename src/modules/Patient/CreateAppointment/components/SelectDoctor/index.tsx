@@ -1,19 +1,21 @@
-import { SelectDoctorContainer } from './style';
+import { SelectDoctorContainer, SelectWrapper, SelectTitle } from './style';
 import Select from 'react-select';
 import { FormTextField } from 'components';
-import { FormikHandlers } from 'formik';
+import { FormikHandlers, FormikErrors, FormikTouched } from 'formik';
 import { SelectHeader } from '../SelectHeader';
+import { FieldsValues } from '../../index';
 
 type SelectOptionsType = { value: string; label: string };
 
 type SelectDoctorProps = {
-	// setFieldHandler: FormikHelpers<FormikValues>['setFieldValue'];
-
 	handleChange?: FormikHandlers['handleChange'];
 	specializationsSelectOptions?: SelectOptionsType[];
 	doctorsSelectOptions?: SelectOptionsType[];
 	specialtyOnChangeHandler?: (option: any) => void;
 	doctorOnChangeHandler?: (option: any) => void;
+	doctorSelectValue?: { value: string; label: string } | null;
+	errors: FormikErrors<FieldsValues>;
+	touched: FormikTouched<FieldsValues>;
 };
 
 export const SelectDoctor = ({
@@ -22,6 +24,9 @@ export const SelectDoctor = ({
 	doctorsSelectOptions,
 	doctorOnChangeHandler,
 	specialtyOnChangeHandler,
+	doctorSelectValue,
+	errors,
+	touched,
 }: SelectDoctorProps) => {
 	return (
 		<SelectDoctorContainer>
@@ -29,23 +34,46 @@ export const SelectDoctor = ({
 				number='1'
 				title='Select a doctor and define the reason for your visit'
 			/>
-			<Select
-				classNamePrefix='specialty-select'
-				className='specialty-select-container'
-				options={specializationsSelectOptions}
-				onChange={specialtyOnChangeHandler}
-				isSearchable={false}
-			/>
-			<Select
-				classNamePrefix='doctor-select'
-				className='doctor-select-container'
-				options={doctorsSelectOptions}
-				onChange={doctorOnChangeHandler}
-				isSearchable={false}
-			/>
+			<SelectWrapper>
+				<SelectTitle>Occupation</SelectTitle>
+				<Select
+					classNamePrefix='doctor-select'
+					className='doctor-select-container'
+					options={specializationsSelectOptions}
+					onChange={specialtyOnChangeHandler}
+					isSearchable={false}
+					placeholder='Select specialty'
+				/>
+			</SelectWrapper>
+			<SelectWrapper>
+				<SelectTitle>Doctor's Name</SelectTitle>
+				<Select
+					classNamePrefix='doctor-select'
+					className='doctor-select-container'
+					options={doctorsSelectOptions}
+					onChange={doctorOnChangeHandler}
+					isSearchable={false}
+					value={doctorSelectValue}
+					placeholder='Select doctor'
+				/>
+			</SelectWrapper>
 
-			<FormTextField name='reason' onChange={handleChange} />
-			<FormTextField name='note' onChange={handleChange} />
+			<FormTextField
+				title='Reason for the visit'
+				name='reason'
+				onChange={handleChange}
+				errorMessage={
+					touched['reason'] && errors['reason'] ? errors['reason'] : null
+				}
+				borderColor={touched['reason'] && errors['reason'] ? 'lightRed' : null}
+			/>
+			<FormTextField
+				title='Note'
+				name='note'
+				onChange={handleChange}
+				errorMessage={touched['note'] && errors['note'] ? errors['note'] : null}
+				borderColor={touched['note'] && errors['note'] ? 'lightRed' : null}
+			/>
 		</SelectDoctorContainer>
 	);
 };

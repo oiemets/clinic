@@ -1,6 +1,6 @@
 import { select, takeLatest, all, put, call } from 'redux-saga/effects';
 import { getAccessToken, getRefreshToken } from './selectors';
-import { apiService } from 'services';
+import { apiService, getProfileRequest, refreshTokenRequest } from 'services';
 import { AuthProvider } from 'types';
 import {
 	authenticate,
@@ -16,9 +16,6 @@ import { errorHandler, successMessageHandler } from 'utils';
 
 function* authenticateUser() {
 	const token: AuthProvider['accessToken'] = yield select(getAccessToken);
-	// if (!apiService.isToken) {
-	// 	yield put(getProfile());
-	// }
 	if (token) {
 		apiService.setAccessToken(token);
 	}
@@ -26,7 +23,7 @@ function* authenticateUser() {
 
 function* createGetProfile() {
 	try {
-		const { data }: AxiosResponse = yield call(apiService.getProfile);
+		const { data }: AxiosResponse = yield call(getProfileRequest);
 		yield put(setProfile(data));
 		yield successMessageHandler('Successfuly Signed In');
 	} catch (error: any) {
@@ -45,11 +42,13 @@ function* createRefreshTokenRequest() {
 		const currentRefreshToken: AuthProvider['refreshToken'] = yield select(
 			getRefreshToken
 		);
-		const refreshedTokens: AxiosResponse = yield call(
-			apiService.refreshToken,
-			currentRefreshToken
-		);
-		yield put(setRefreshedTokens(refreshedTokens.data));
+		if (currentRefreshToken) {
+			const refreshedTokens: AxiosResponse = yield call(
+				refreshTokenRequest,
+				currentRefreshToken
+			);
+			yield put(setRefreshedTokens(refreshedTokens.data));
+		}
 	} catch (error: any) {
 		yield errorHandler(error);
 	}
