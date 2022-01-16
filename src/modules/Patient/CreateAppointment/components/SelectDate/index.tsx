@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import DatePicker from 'react-datepicker';
 import { format, isSameDay } from 'date-fns';
 import { SelectHeader } from '../SelectHeader';
@@ -23,14 +22,12 @@ export const SelectDate = ({
 	availableAppointments,
 	dateOnChange,
 }: SelecDateProps) => {
-	const onChange = useCallback(date => dateOnChange(date), [dateOnChange]);
-
 	return (
 		<DatePicker
 			timeCaption=''
 			timeIntervals={60}
 			selected={selected}
-			onChange={onChange}
+			onChange={dateOnChange}
 			showTimeSelect
 			inline
 			includeTimes={availableAppointments?.map(d => new Date(d))}

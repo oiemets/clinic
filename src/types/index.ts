@@ -60,9 +60,7 @@ export type CreateAppointmentType = {
 	doctors: Doctor[];
 	reason: string;
 	note?: string;
-	selectedDoctorID?: string;
 	availableAppointments?: string[];
-	selectedAppointmentTime?: string;
 	appointmentConfirmationData?: AppointmentConfirmation;
 };
 

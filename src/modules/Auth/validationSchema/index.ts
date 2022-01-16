@@ -27,8 +27,6 @@ const reason = Yup.string()
 
 const date = Yup.string().required('This field should not be empty');
 
-const note = Yup.string().required('This field should not be empty');
-
 const doctorID = Yup.string().required('This field should not be empty');
 
 export const signUpValidationSchema = Yup.object({

@@ -8,9 +8,7 @@ const initialState: CreateAppointmentType = {
 	doctors: [],
 	reason: '',
 	note: '',
-	selectedDoctorID: '',
 	availableAppointments: [],
-	selectedAppointmentTime: '',
 	appointmentConfirmationData: {
 		id: '',
 		patientId: '',
@@ -38,8 +36,6 @@ const createAppointmentSlice = createSlice({
 		resetForm: state => {
 			state.doctors = [];
 			state.availableAppointments = [];
-			state.selectedDoctorID = '';
-			state.selectedAppointmentTime = '';
 		},
 		setAppointmentConfirmationData: (state, { payload }) => {
 			state.appointmentConfirmationData = payload;

@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { FormTextField } from 'components';
 import { FormikHandlers, FormikErrors, FormikTouched } from 'formik';
 import { SelectHeader } from '../SelectHeader';
-import { FieldsValues } from '../../index';
+import { FieldsValues, SelectValueType } from '../../index';
 
 type SelectOptionsType = { value: string; label: string };
 
@@ -13,7 +13,8 @@ type SelectDoctorProps = {
 	doctorsSelectOptions?: SelectOptionsType[];
 	specialtyOnChangeHandler?: (option: any) => void;
 	doctorOnChangeHandler?: (option: any) => void;
-	doctorSelectValue?: { value: string; label: string } | null;
+	doctorSelectValue?: SelectValueType;
+	specialtySelectValue?: SelectValueType;
 	errors: FormikErrors<FieldsValues>;
 	touched: FormikTouched<FieldsValues>;
 };
@@ -25,6 +26,7 @@ export const SelectDoctor = ({
 	doctorOnChangeHandler,
 	specialtyOnChangeHandler,
 	doctorSelectValue,
+	specialtySelectValue,
 	errors,
 	touched,
 }: SelectDoctorProps) => {
@@ -42,6 +44,7 @@ export const SelectDoctor = ({
 					options={specializationsSelectOptions}
 					onChange={specialtyOnChangeHandler}
 					isSearchable={false}
+					value={specialtySelectValue}
 					placeholder='Select specialty'
 				/>
 			</SelectWrapper>
