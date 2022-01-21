@@ -20,7 +20,7 @@ export const getDoctorsBySpecialtyRequest = async (id: string) =>
 	apiService.get(`doctors/specialization/${id}`);
 
 export const getFreeTimeForVisitRequest = async (
-	date: string,
+	date: Date,
 	doctorID: string
 ) => apiService.get('appointments/time/free', { date, doctorID });
 

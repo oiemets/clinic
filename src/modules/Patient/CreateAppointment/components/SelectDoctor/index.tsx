@@ -1,6 +1,6 @@
-import { SelectDoctorContainer, SelectWrapper, SelectTitle } from './style';
-import Select from 'react-select';
-import { FormTextField } from 'components';
+import { SelectDoctorContainer } from './style';
+import ReSelect from 'react-select';
+import { FormTextField, Select } from 'components';
 import { FormikHandlers, FormikErrors, FormikTouched } from 'formik';
 import { SelectHeader } from '../SelectHeader';
 import { FieldsValues, SelectValueType } from '../../index';
@@ -15,8 +15,8 @@ type SelectDoctorProps = {
 	doctorOnChangeHandler?: (option: any) => void;
 	doctorSelectValue?: SelectValueType;
 	specialtySelectValue?: SelectValueType;
-	errors: FormikErrors<FieldsValues>;
-	touched: FormikTouched<FieldsValues>;
+	errors?: FormikErrors<FieldsValues>;
+	touched?: FormikTouched<FieldsValues>;
 };
 
 export const SelectDoctor = ({
@@ -36,7 +36,8 @@ export const SelectDoctor = ({
 				number='1'
 				title='Select a doctor and define the reason for your visit'
 			/>
-			<SelectWrapper>
+			<Select title='Occupation' placeholder='Select specialty' />
+			{/* <SelectWrapper>
 				<SelectTitle>Occupation</SelectTitle>
 				<Select
 					classNamePrefix='doctor-select'
@@ -47,8 +48,8 @@ export const SelectDoctor = ({
 					value={specialtySelectValue}
 					placeholder='Select specialty'
 				/>
-			</SelectWrapper>
-			<SelectWrapper>
+			</SelectWrapper> */}
+			{/* <SelectWrapper>
 				<SelectTitle>Doctor's Name</SelectTitle>
 				<Select
 					classNamePrefix='doctor-select'
@@ -59,24 +60,10 @@ export const SelectDoctor = ({
 					value={doctorSelectValue}
 					placeholder='Select doctor'
 				/>
-			</SelectWrapper>
+			</SelectWrapper> */}
 
-			<FormTextField
-				title='Reason for the visit'
-				name='reason'
-				onChange={handleChange}
-				errorMessage={
-					touched['reason'] && errors['reason'] ? errors['reason'] : null
-				}
-				borderColor={touched['reason'] && errors['reason'] ? 'lightRed' : null}
-			/>
-			<FormTextField
-				title='Note'
-				name='note'
-				onChange={handleChange}
-				errorMessage={touched['note'] && errors['note'] ? errors['note'] : null}
-				borderColor={touched['note'] && errors['note'] ? 'lightRed' : null}
-			/>
+			{/* <FormTextField title='Reason for the visit' name='reason' /> */}
+			{/* <FormTextField title='Note' name='note' /> */}
 		</SelectDoctorContainer>
 	);
 };

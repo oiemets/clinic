@@ -8,7 +8,6 @@ import {
 } from './style';
 import { Colors } from 'styles';
 import { Icon, icons } from '../Icon';
-import { FormikHandlers } from 'formik';
 import { useState } from 'react';
 
 export type FormTextFieldProps = {
@@ -22,8 +21,6 @@ export type FormTextFieldProps = {
 	type?: React.HTMLInputTypeAttribute;
 	name?: string;
 	value?: string;
-	onChange?: FormikHandlers['handleChange'];
-	onBlur?: FormikHandlers['handleBlur'];
 	errorMessage?: string | null;
 	borderColor?: Colors | null;
 	checked?: boolean;
@@ -54,6 +51,7 @@ export const FormTextField: React.FC<FormTextFieldProps> = ({
 						<Icon icon={icon} color={iconColor} checked={checked} />
 					</IconPosition>
 				)}
+
 				<InputBar
 					{...rest}
 					isIcon={Boolean(icon)}

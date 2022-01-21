@@ -19,7 +19,7 @@ import {
 	resetForm,
 } from './createAppointmentSlice';
 import { appointmentConfirmationStatusSelector } from './selectors';
-import { FieldsValues } from '../index';
+import { CreateAppointmentValues } from 'types';
 import { NavigateFunction } from 'react-router-dom';
 
 function* getSpecializationsSaga() {
@@ -46,7 +46,7 @@ function* getDoctorsBySpecialtyIdSaga({ payload }: { payload: string }) {
 function* getAvailableAppointmentsSaga({
 	payload: { date, doctorID },
 }: {
-	payload: { date: string; doctorID: string };
+	payload: { date: Date; doctorID: string };
 }) {
 	try {
 		const { data }: AxiosResponse = yield call(
@@ -63,7 +63,10 @@ function* getAvailableAppointmentsSaga({
 function* submitCreateAppointmentFormSaga({
 	payload: { values, navigate },
 }: {
-	payload: { values: FieldsValues; navigate: NavigateFunction };
+	payload: {
+		values: CreateAppointmentValues;
+		navigate: NavigateFunction;
+	};
 }) {
 	try {
 		const { data }: AxiosResponse = yield call(

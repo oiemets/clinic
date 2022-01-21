@@ -1,11 +1,12 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect } from 'react';
 import { MakeAppointmentHeaderTitle, InnerPageWrapper } from 'elements';
 import {
 	CreateAppointmentWrapper,
 	CreateAppointmentFormWrapper,
 	ButtonWrapper,
+	SelectDoctorContainer,
 } from './style';
-import { Button } from 'components';
+import { Button, Select, TextField } from 'components';
 import {
 	getSpecializations,
 	getSpecializationsSelector,
@@ -17,17 +18,17 @@ import {
 	submitCreateAppointmentForm,
 } from './redux';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { useFormik } from 'formik';
-import { createAppointmentFormSchema as validationSchema } from 'modules';
-import { SelectDate, SelectDoctor } from './components';
+import { SelectDate, SelectHeader } from './components';
 import { useNavigate } from 'react-router-dom';
-import { isSameDay } from 'date-fns';
+
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
 export type FieldsValues = {
+	specialty: SelectValueType;
+	doctorID: SelectValueType;
 	date: Date;
 	reason: string;
 	note: string;
-	doctorID: string;
 };
 
 export type SelectValueType = {
@@ -39,81 +40,69 @@ export const CreateAppointment = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		dispatch(getSpecializations());
-	}, [dispatch]);
-
-	const [doctorSelectValue, setDoctorSelectValue] =
-		useState<SelectValueType>(null);
-
-	const [specialtySelectValue, setSpecialtySelectValue] =
-		useState<SelectValueType>(null);
-
 	const specializations = useAppSelector(getSpecializationsSelector);
 	const doctors = useAppSelector(getDoctorsSelector);
 	const availableAppointments = useAppSelector(
 		getAvailableAppointmentsSelector
 	);
 
-	const formik = useFormik<FieldsValues>({
-		initialValues: {
+	const {
+		control,
+		register,
+		formState: { errors },
+		watch,
+		getValues,
+		resetField,
+		handleSubmit,
+	} = useForm<FieldsValues>({
+		defaultValues: {
+			specialty: null,
+			doctorID: null,
 			date: new Date(),
 			reason: '',
 			note: '',
-			doctorID: '',
-		},
-		validationSchema,
-		onSubmit: values => {
-			dispatch(submitCreateAppointmentForm({ values, navigate }));
 		},
 	});
+	const onSubmit: SubmitHandler<FieldsValues> = ({
+		date,
+		doctorID,
+		reason,
+		note,
+	}) =>
+		dispatch(
+			submitCreateAppointmentForm({
+				values: { date, doctorID: doctorID?.value ?? '', reason, note },
+				navigate,
+			})
+		);
 
-	const specialtyOnChange = useCallback(
-		option => {
-			if (formik.getFieldProps('doctorID').value !== '') {
-				formik.setFieldValue('doctorID', '');
-				setDoctorSelectValue(null);
-				dispatch(resetForm());
+	useEffect(() => {
+		dispatch(getSpecializations());
+	}, [dispatch]);
+
+	useEffect(() => {
+		const subscription = watch((data, { name }) => {
+			if (name === 'specialty' && data.specialty?.value) {
+				dispatch(getDoctorsBySpecialtyID(data.specialty?.value));
+				if (getValues('doctorID')?.value !== '') {
+					resetField('doctorID');
+					dispatch(resetForm());
+				}
 			}
-			if (specialtySelectValue?.value !== option.value) {
-				dispatch(getDoctorsBySpecialtyID(option.value));
-			}
-			setSpecialtySelectValue(option);
-		},
-		[dispatch, formik, specialtySelectValue]
-	);
-
-	const doctorOnChange = useCallback(
-		(option: { value: string; label: string }) => {
-			dispatch(
-				getAvailableAppointments({
-					doctorID: option.value,
-					date: formik.getFieldProps('date').value,
-				})
-			);
-			setDoctorSelectValue(option);
-			formik.setFieldValue('doctorID', option.value);
-		},
-		[formik, dispatch]
-	);
-
-	const dateOnChange = useCallback(
-		date => {
 			if (
-				formik.getFieldProps('doctorID').value &&
-				!isSameDay(date, formik.getFieldProps('date').value)
+				(name === 'doctorID' && data.doctorID?.value && data.date) ||
+				(name === 'date' && data.doctorID?.value && data.date)
 			) {
 				dispatch(
 					getAvailableAppointments({
-						doctorID: formik.getFieldProps('doctorID').value,
-						date,
+						doctorID: data.doctorID?.value,
+						date: data.date,
 					})
 				);
 			}
-			formik.setFieldValue('date', date);
-		},
-		[formik, dispatch]
-	);
+		});
+		return () => subscription.unsubscribe();
+	}, [watch, dispatch, getValues, resetField]);
 
 	return (
 		<InnerPageWrapper>
@@ -121,22 +110,60 @@ export const CreateAppointment = () => {
 				<MakeAppointmentHeaderTitle>
 					Make an appointment
 				</MakeAppointmentHeaderTitle>
-				<CreateAppointmentFormWrapper onSubmit={formik.handleSubmit}>
-					<SelectDoctor
-						handleChange={formik.handleChange}
-						specializationsSelectOptions={specializations}
-						doctorsSelectOptions={doctors}
-						doctorOnChangeHandler={doctorOnChange}
-						specialtyOnChangeHandler={specialtyOnChange}
-						doctorSelectValue={doctorSelectValue}
-						specialtySelectValue={specialtySelectValue}
-						errors={formik.errors}
-						touched={formik.touched}
-					/>
-					<SelectDate
-						selected={formik.getFieldProps('date').value}
-						dateOnChange={dateOnChange}
-						availableAppointments={availableAppointments}
+				<CreateAppointmentFormWrapper onSubmit={handleSubmit(onSubmit)}>
+					<SelectDoctorContainer>
+						<SelectHeader
+							number='1'
+							title='Select a doctor and define the reason for your visit'
+						/>
+						<Controller
+							control={control}
+							name='specialty'
+							rules={{ required: true }}
+							render={({ field }) => (
+								<Select
+									title='Occupation'
+									placeholder='Select specialty'
+									options={specializations}
+									onChange={field.onChange}
+									errorMessage={
+										errors.specialty && 'This field cannot be empty'
+									}
+								/>
+							)}
+						/>
+						<Controller
+							control={control}
+							name='doctorID'
+							rules={{ required: true }}
+							render={({ field }) => (
+								<Select
+									title="Doctor's Name"
+									placeholder='Select doctor'
+									options={doctors}
+									onChange={field.onChange}
+									value={getValues('doctorID')}
+									errorMessage={errors.doctorID && 'This field cannot be empty'}
+								/>
+							)}
+						/>
+						<TextField
+							title='Reason for the visit'
+							{...register('reason', { required: true })}
+							errorMessage={errors.reason && 'This field cannot be empty'}
+						/>
+						<TextField title='Note' {...register('note')} />
+					</SelectDoctorContainer>
+					<Controller
+						control={control}
+						name='date'
+						render={({ field }) => (
+							<SelectDate
+								selected={field.value}
+								dateOnChange={field.onChange}
+								availableAppointments={availableAppointments}
+							/>
+						)}
 					/>
 					<ButtonWrapper>
 						<Button type='submit'>Submit</Button>

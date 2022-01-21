@@ -8,3 +8,4 @@ export * from './PatientPageHeader';
 export * from './Select';
 export * from './ActionsIcon';
 export * from './DropDownMenu';
+export * from './TextField';

@@ -58,10 +58,15 @@ export type CreateAppointment = {
 export type CreateAppointmentType = {
 	specializations: Specializations;
 	doctors: Doctor[];
-	reason: string;
-	note?: string;
 	availableAppointments?: string[];
 	appointmentConfirmationData?: AppointmentConfirmation;
+};
+
+export type CreateAppointmentValues = {
+	date: Date;
+	doctorID: string;
+	reason: string;
+	note: string;
 };
 
 export type PatientAppointments = {

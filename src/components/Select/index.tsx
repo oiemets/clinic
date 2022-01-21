@@ -1,53 +1,42 @@
-import {
-	SelectWrapper,
-	SelectFieldWrapper,
-	SelectField,
-	SelectTitle,
-	ErrorMessage,
-} from './style';
-import { Colors } from 'styles';
+import { SelectWrapper, SelectTitle, ErrorMessage } from './style';
+import ReactSelect from 'react-select';
 
-export type SelectValue = string | number;
-
-export type SelectDoctor = { value: SelectValue; text: string };
-
-export type SelectProps = {
-	options?: SelectDoctor[];
+type SelectProps = {
 	title?: string;
-	value?: SelectValue;
-	onChange?: (e: any) => void;
+	placeholder?: string;
+	options?: { value: string; label: string }[];
+	errorMessage?: string;
 	name?: string;
-	errorMessage?: string | null;
-	borderColor?: Colors | null;
-	checked?: boolean;
+	onChange?: (option: any) => void;
+	value?: {
+		value: string;
+		label: string;
+	} | null;
 };
 
-export const Select: React.FC<SelectProps> = ({
+export const Select = ({
 	title,
+	placeholder,
 	options,
-	value,
-	onChange,
-	name,
 	errorMessage,
-	borderColor,
-	checked,
+	onChange,
+	value,
 	...rest
-}) => {
+}: SelectProps) => {
 	return (
-		<SelectWrapper>
+		<SelectWrapper isError={!!errorMessage}>
 			<SelectTitle>{title}</SelectTitle>
-			<SelectFieldWrapper borderColor={borderColor} checked={checked}>
-				<SelectField value={value} onChange={onChange} name={name} {...rest}>
-					{options
-						? options.map((o, i) => (
-								<option key={o.value + '--' + i} value={o.value}>
-									{o.text}
-								</option>
-						  ))
-						: null}
-				</SelectField>
-				{errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-			</SelectFieldWrapper>
+			<ReactSelect
+				classNamePrefix='select'
+				className='select-container'
+				placeholder={placeholder}
+				isSearchable={false}
+				options={options}
+				onChange={onChange}
+				value={value}
+				{...rest}
+			/>
+			{errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
 		</SelectWrapper>
 	);
 };

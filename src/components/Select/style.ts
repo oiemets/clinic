@@ -1,49 +1,45 @@
 import styled from 'styled-components';
-import angleDown from 'assets/icons/angle-down.svg';
-import { Colors } from 'styles';
 
-type SelectFieldWrapperProps = {
-	borderColor?: Colors | null;
-	checked?: boolean;
+type SelectWrapperProps = {
+	isError?: boolean;
 };
 
-export const SelectWrapper = styled.div`
+export const SelectWrapper = styled.div<SelectWrapperProps>`
+	position: relative;
 	display: flex;
 	flex-flow: column nowrap;
 	gap: 1em;
-`;
 
-export const SelectFieldWrapper = styled.div<SelectFieldWrapperProps>`
-	display: flex;
-	width: 100%;
-	min-width: 100px;
-	border-radius: 8px;
-	border: 1px solid
-		${({ theme: { colors }, borderColor }) =>
-			colors[borderColor ?? 'solidGrey']};
-	font: 400 17px/24px 'Poppins';
-	cursor: pointer;
-	padding: 1em 0;
-	background: url(${angleDown}) right 10px top 50%/12px no-repeat;
-	background-size: 25px 25px;
-	background-color: #fff;
-	position: relative;
-`;
+	.select-container {
+		font: 400 17px/24px 'Poppins';
+		color: ${({ theme: { colors } }) => colors.black};
+	}
 
-export const SelectField = styled.select`
-	width: 100%;
-	text-overflow: ellipsis;
-	padding: 0 32px 0 10px;
-	appearance: none;
-	background-color: transparent;
-	border: none;
-	margin: 0;
-	font-family: inherit;
-	font-size: inherit;
-	line-height: inherit;
-	cursor: inherit;
-	outline: none;
-	box-sizing: border-box;
+	.select__control {
+		border-radius: 8px;
+		border-color: ${({ theme: { colors }, isError }) =>
+			isError ? colors.lightRed : colors.solidGrey};
+	}
+
+	.select__control {
+		:hover {
+			border: 1px solid
+				${({ theme: { colors }, isError }) =>
+					isError ? colors.lightRed : colors.grey};
+		}
+	}
+
+	.select__value-container {
+		padding: 1em;
+	}
+
+	.select__indicators {
+		margin-right: 10px;
+	}
+
+	.select__indicator-separator {
+		display: none;
+	}
 `;
 
 export const SelectTitle = styled.h3`
